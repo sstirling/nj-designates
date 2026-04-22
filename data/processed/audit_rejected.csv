@@ -1,24 +1,18 @@
 bill_id,session,full_number,synopsis,reason
-2024-AR24,2024,AR24,Commemorates christening of USS John Basilone.,no include pattern matched
-2024-AR189,2024,AR189,Recognizes Sikh community contributions and commemorates Sikh Massacre of 1984.,no include pattern matched
 2024-A223,2024,A223,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
 2024-A601,2024,A601,Establishes Division of Advocacy for Developmentally Disabled within Office of Public Defender; designates public defender for developmentally disabled clients in criminal cases.,no include pattern matched
 2024-A2862,2024,A2862,"Designates drug court program as the ""special probation recovery court program"" in statutes.",no include pattern matched
 2024-A4987,2024,A4987,"Establishes protections for immigrants interacting with government agencies; designates ""New Jersey Immigrant Trust Act.""",no include pattern matched
 2024-A5196,2024,A5196,"Designates sweepstakes casinos as internet gaming; requires licensure, oversight, and taxation thereof within internet gaming framework.",excluded: regulatory_category (regulatory/administrative category definition)
 2024-A6240,2024,A6240,Designates open water lifeguards as first responders and emergency response providers.,excluded: legal_definition (legal/workforce classification)
-2024-AJR65,2024,AJR65,Designates annual Lunar New Year in NJ.,no include pattern matched
 2024-S1878,2024,S1878,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
 2024-S3672,2024,S3672,"Establishes protections for immigrants interacting with government agencies; designates ""New Jersey Immigrant Trust Act.""",no include pattern matched
 2024-S4019,2024,S4019,Designates minimum percentage of residential substance use disorder treatment facility beds for use by NJ FamilyCare eligible individuals as condition for licensure.,no include pattern matched
 2024-S4109,2024,S4109,"Designates sweepstakes casinos as internet gaming; requires licensure, oversight, and taxation thereof within internet gaming framework.",excluded: regulatory_category (regulatory/administrative category definition)
 2024-S4674,2024,S4674,Establishes gold and silver transactional currency system; designates Commissioner of Banking and Insurance as administrator; provides legal tender status; authorizes fees.,excluded: administrative_officer (administrative officer/body designation)
-2024-S4923,2024,S4923,"Designates ""New Jersey and You - Perfect Together Again"" as Division of Travel and Tourism slogan.",no include pattern matched
 2024-A2801,2024,A2801,"Renames, extends eligibility, and makes various other changes to Primary Care Practitioner Loan Redemption Program.",no include pattern matched
-2024-A3090,2024,A3090,"Renames pinelands area as ""John McPhee pinelands area.""",no include pattern matched
 2024-A3678,2024,A3678,Renames Juvenile Justice Commission as Youth Justice Commission.,no include pattern matched
 2024-S780,2024,S780,"Renames, extends eligibility, and makes various other changes to Primary Care Practitioner Loan Redemption Program.*",no include pattern matched
 2024-S1316,2024,S1316,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,no include pattern matched
 2024-S2423,2024,S2423,Renames Juvenile Justice Commission as Youth Justice Commission.,no include pattern matched
-2024-S4670,2024,S4670,"Renames ""Delaware Bay"" to ""Bay of New Jersey""; directs all State departments and agencies to update official publications, signage, websites, and materials to reflect the new designation and notify relevant federal entities.",no include pattern matched
 2024-S4769,2024,S4769,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office.",no include pattern matched

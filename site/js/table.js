@@ -5,6 +5,7 @@
 
 import { getState, setState } from "./state.js";
 import { CATEGORY_LABELS } from "./filters.js";
+import { iconFor } from "./icons.js";
 
 const STATUS_UNKNOWN = "Meaning not documented";
 
@@ -53,17 +54,20 @@ export function refreshSortHeaders(table) {
 
 function rowHtml(b) {
   const sponsors = (b.primary_sponsors || [])
-    .map(s => esc(s.name))
+    .map(s => s.bio_url
+      ? `<a href="${esc(s.bio_url)}" rel="external noopener">${esc(s.name)}</a>`
+      : esc(s.name))
     .join("; ") || "—";
   const statusLabel = b.status_label
     ? esc(b.status_label)
     : `<span class="status-unknown" title="${STATUS_UNKNOWN}">${esc(b.status_code || "—")}</span>`;
   const catLabel = CATEGORY_LABELS[b.primary_category] || b.primary_category;
+  const catIcon = iconFor(b.primary_category);
   return `
     <td class="cell-bill"><a href="${esc(b.url)}" rel="external noopener">${esc(b.full_number)}</a></td>
     <td>${esc(b.session_label)}</td>
     <td class="cell-synopsis">${esc(b.synopsis)}</td>
-    <td class="cell-category"><span class="cat-pill ${esc(b.primary_category)}">${esc(catLabel)}</span></td>
+    <td class="cell-category"><span class="cat-pill ${esc(b.primary_category)}">${catIcon}${esc(catLabel)}</span></td>
     <td>${statusLabel}</td>
     <td>${b.became_law ? '<span class="law-yes">Yes</span>' : '<span class="law-no">No</span>'}</td>
     <td class="cell-sponsors">${sponsors}</td>

@@ -22,12 +22,13 @@
   --accent:      #a5330c;  /* state-seal brick, stronger than buff for web contrast */
   --buff:        #f6c52d;
 
-  /* Category palette — colorblind-safe ColorBrewer Set2 adapted. */
-  --cat-state-symbol:       #1b9e77;
-  --cat-holiday-observance: #d95f02;
-  --cat-road-naming:        #7570b3;
-  --cat-place-naming:       #e7298a;
-  --cat-other-ceremonial:   #7a7466;
+  /* Category palette — colorblind-safe ColorBrewer Set2 darkened so white
+     text on the category pill clears WCAG AA (4.5:1). */
+  --cat-state-symbol:       #0f6f55;
+  --cat-holiday-observance: #9b4100;
+  --cat-road-naming:        #4a4583;
+  --cat-place-naming:       #9c1a60;
+  --cat-other-ceremonial:   #565044;
 
   --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --f-sans:  "Inter", -apple-system, system-ui, "Segoe UI", sans-serif;
@@ -99,6 +100,7 @@ a:focus-visible {
   line-height: 1.05;
   letter-spacing: -0.015em;
   margin: 0 0 0.5rem;
+  word-break: break-word;   /* "Hereby Designated" is fine, but a future title shouldn't clip at 320px */
 }
 
 .dek {
@@ -112,6 +114,7 @@ a:focus-visible {
 
 .running-counter {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem;
   margin-top: 1.25rem;
@@ -122,6 +125,7 @@ a:focus-visible {
   font-size: 0.95rem;
   max-width: 28em;
 }
+.counter-label { min-width: 0; }  /* allow wrap at 320px */
 .counter-number {
   font-family: var(--f-serif);
   font-feature-settings: "tnum";
@@ -219,7 +223,16 @@ a:focus-visible {
   color: var(--ink);
   cursor: pointer;
   transition: all 100ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
+.chip svg { flex: 0 0 auto; font-size: 1.05em; }
+.chip-category-state_symbol       svg { color: var(--cat-state-symbol); }
+.chip-category-holiday_observance svg { color: var(--cat-holiday-observance); }
+.chip-category-road_naming        svg { color: var(--cat-road-naming); }
+.chip-category-place_naming       svg { color: var(--cat-place-naming); }
+.chip[aria-pressed="true"] svg    { color: currentColor; }
 .chip:hover { border-color: var(--accent); }
 .chip[aria-pressed="true"] {
   background: var(--ink);
@@ -315,6 +328,11 @@ a:focus-visible {
   font-family: var(--f-sans);
   font-weight: 600;
   font-size: 0.95rem;
+  word-break: break-word;  /* long names (e.g. "Reynolds-Jackson, Verlina") shouldn't push the bar offscreen at 320px */
+}
+.sponsor-name small {
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 .sponsor-bar {
   position: relative;
@@ -446,7 +464,9 @@ a:focus-visible {
 .cell-sponsors { max-width: 16rem; color: var(--muted); font-size: 0.85rem; }
 
 .cat-pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   padding: 0.15rem 0.55rem;
   border-radius: 2px;
   font-family: var(--f-sans);
@@ -456,6 +476,7 @@ a:focus-visible {
   letter-spacing: 0.06em;
   color: white;
 }
+.cat-pill svg { font-size: 1.2em; }
 .cat-pill.state_symbol       { background: var(--cat-state-symbol); }
 .cat-pill.holiday_observance { background: var(--cat-holiday-observance); }
 .cat-pill.road_naming        { background: var(--cat-road-naming); }

@@ -16,9 +16,11 @@ export function aggregateSponsors(bills) {
     for (const s of bill.primary_sponsors || []) {
       const name = (s.name || "").trim();
       if (!name) continue;
-      const entry = byKey.get(name) || { name, count: 0, laws: 0 };
+      const entry = byKey.get(name) || { name, count: 0, laws: 0, bio_url: s.bio_url || null };
       entry.count += 1;
       if (bill.became_law) entry.laws += 1;
+      // If any occurrence of this sponsor has a bio_url, keep it.
+      if (!entry.bio_url && s.bio_url) entry.bio_url = s.bio_url;
       byKey.set(name, entry);
     }
   }
@@ -46,10 +48,13 @@ export function renderSponsors(listEl, toggleEl, sponsors) {
     const lawNote = s.laws > 0
       ? `<small>${s.laws} became law</small>`
       : `<small>none became law</small>`;
+    const nameHtml = s.bio_url
+      ? `<a href="${esc(s.bio_url)}" rel="external noopener">${esc(s.name)}</a>`
+      : esc(s.name);
     return `
       <li class="sponsor-row">
         <span class="sponsor-name">
-          <strong>${esc(s.name)}</strong>
+          <strong>${nameHtml}</strong>
           ${lawNote}
           <span class="sponsor-bar" aria-hidden="true">
             <span class="sponsor-bar-fill" style="width: ${pct}%"></span>

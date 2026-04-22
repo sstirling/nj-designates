@@ -1,19 +1,39 @@
-# Human-review overrides. Applied last in the categorize pipeline.
+# Human-review overrides. Applied last in the filter+categorize pipeline.
 # Keys are bill_id ("{session}-{full_number}", e.g. "2024-A444").
 #
-# Use these sparingly — the goal is for category_rules.yml to handle
-# 95%+ of bills. Overrides are the journalistic-integrity layer for the
-# remaining ambiguities.
+# Use these sparingly — the goal is for category_rules.yml to handle 95%+ of
+# bills. Overrides are the journalistic-integrity layer for edge cases where
+# regex can't be made both correct and readable.
+#
+# Every entry should have a one-line comment explaining the judgment call, so
+# a future editor can audit the reasoning.
 
-# Phase 2 review: edge cases to consider promoting to the main include rules
-# or adding here as force_include. Not yet applied.
-#   - 2024-AR24   "Commemorates christening of USS John Basilone."
-#   - 2024-AR189  "Recognizes Sikh community contributions and commemorates Sikh Massacre of 1984."
-#   - 2024-AJR65  "Designates annual Lunar New Year in NJ."
-#   - 2024-A3090  "Renames pinelands area as 'John McPhee pinelands area.'"
-#   - 2024-S4670  "Renames 'Delaware Bay' to 'Bay of New Jersey'..."
-#   - 2024-S4923  "Designates 'New Jersey and You - Perfect Together Again' as slogan"
+force_include:
+  # Commemorates christening of USS John Basilone — ceremonial military commemoration;
+  # my regex requires a temporal noun (anniversary/year/day) that this synopsis lacks.
+  - "2024-AR24"
+  # Recognizes Sikh community contributions and commemorates Sikh Massacre of 1984.
+  - "2024-AR189"
+  # Designates annual Lunar New Year in NJ — holiday, but "annual" isn't in my day/week/month pattern.
+  - "2024-AJR65"
+  # Renames pinelands area as "John McPhee pinelands area." — place renaming, not matched by
+  # include regex because the synopsis uses "Renames" + a non-listed place noun ("area").
+  - "2024-A3090"
+  # Renames "Delaware Bay" to "Bay of New Jersey" — a place-rename bill using "to" instead of "as".
+  - "2024-S4670"
+  # Designates NJ tourism slogan. Triggers the admin-officer exclusion ("Division of Travel and Tourism")
+  # but is actually ceremonial — state slogan designation.
+  - "2024-S4923"
 
-force_include: []   # ["2024-AXXXX"] — bills wrongly excluded by rules
-force_exclude: []   # bills wrongly included
-force_category: {}  # {"2024-A444": ["road_naming"]}  explicit category override
+force_exclude: []   # bills the rules wrongly included — none yet
+
+force_category:
+  # Military christening is a one-off commemoration; classify with holiday/observance.
+  "2024-AR24": ["holiday_observance"]
+  "2024-AR189": ["holiday_observance"]
+  "2024-AJR65": ["holiday_observance"]
+  # Renames are place_naming.
+  "2024-A3090": ["place_naming"]
+  "2024-S4670": ["place_naming"]
+  # Slogan → state_symbol. (No subcategory; slogan is its own thing.)
+  "2024-S4923": ["state_symbol"]

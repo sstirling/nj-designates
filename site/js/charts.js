@@ -16,12 +16,14 @@ async function getPlot() {
   }
 }
 
+// Keep in sync with --cat-* CSS variables. Darkened ColorBrewer Set2 that
+// clears WCAG AA against white.
 const CAT_COLORS = {
-  state_symbol:       "#1b9e77",
-  holiday_observance: "#d95f02",
-  road_naming:        "#7570b3",
-  place_naming:       "#e7298a",
-  other_ceremonial:   "#7a7466",
+  state_symbol:       "#0f6f55",
+  holiday_observance: "#9b4100",
+  road_naming:        "#4a4583",
+  place_naming:       "#9c1a60",
+  other_ceremonial:   "#565044",
 };
 
 const CAT_LABELS = {

@@ -34,9 +34,15 @@ def cmd_fetch(args) -> int:
     sessions = _sessions_from_args(args)
     for s in sessions:
         raw_bills = fetch_session(s, force_refresh=args.force)
-        # Apply ceremonial filter up front so we only fetch detail pages
-        # for bills that might matter.
-        kept = [b for b in raw_bills if is_ceremonial((b.get("Synopsis") or ""))]
+        # Apply ceremonial filter up front so we only fetch detail pages for
+        # bills that might matter. Pass bill_id so force_include overrides
+        # are honored — otherwise overridden bills wouldn't get sponsors.
+        kept = []
+        for b in raw_bills:
+            full = (b.get("Bill") or "").strip()
+            bill_id = f"{s}-{full}" if full else None
+            if is_ceremonial(b.get("Synopsis") or "", bill_id=bill_id):
+                kept.append(b)
         logging.info("session %s: %d / %d bills pass filter — fetching details", s, len(kept), len(raw_bills))
         fetch_details(s, kept, force_refresh=args.force)
     return 0

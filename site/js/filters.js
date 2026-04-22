@@ -1,6 +1,7 @@
 // Applies the current state to the bill dataset and renders the filter chips.
 
 import { getState, setState, toggleSession } from "./state.js";
+import { iconFor } from "./icons.js";
 
 export const CATEGORY_LABELS = {
   all: "All",
@@ -45,13 +46,14 @@ export function renderCategoryChips(container, counts) {
   for (const [value, label] of entries) {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "chip";
+    btn.className = `chip chip-category chip-category-${value}`;
     btn.dataset.filter = "category";
     btn.dataset.value = value;
     const n = value === "all"
       ? Object.values(counts).reduce((a, b) => a + b, 0)
       : (counts[value] || 0);
-    btn.textContent = `${label} (${n.toLocaleString()})`;
+    const icon = value !== "all" ? iconFor(value) : "";
+    btn.innerHTML = `${icon}<span>${label} (${n.toLocaleString()})</span>`;
     btn.setAttribute("aria-pressed", state.category === value ? "true" : "false");
     btn.addEventListener("click", () => setState({ category: value }));
     container.appendChild(btn);

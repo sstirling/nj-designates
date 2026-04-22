@@ -133,13 +133,13 @@ def build_session_records(session: int) -> tuple[list[dict], list[dict]]:
         synopsis = (bill.get("Synopsis") or "").strip()
         bill_id = f"{session}-{full_number}"
 
-        if not is_ceremonial(synopsis):
+        if not is_ceremonial(synopsis, bill_id=bill_id):
             rejected.append({
                 "bill_id": bill_id,
                 "session": session,
                 "full_number": full_number,
                 "synopsis": synopsis,
-                "reason": filter_reason(synopsis),
+                "reason": filter_reason(synopsis, bill_id=bill_id),
             })
             continue
 
@@ -244,7 +244,7 @@ def _slim_for_site(records: list[dict]) -> list[dict]:
             "categories": r["categories"],
             "subcategories": r["subcategories"],
             "primary_sponsors": [
-                {"name": s["name"], "role": s["role"]}
+                {"name": s["name"], "role": s["role"], "bio_url": s.get("bio_url")}
                 for s in r["primary_sponsors"]
             ],
             "cosponsor_count": len(r["cosponsors"]),

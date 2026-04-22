@@ -2,6 +2,24 @@
 
 Every rule change, human-review decision, and data refresh that is worth recording for future-me.
 
+## 2026-04-22 — Phase 2 design polish + accessibility
+
+- Category palette darkened from ColorBrewer Set2 defaults so white text on the category pills clears WCAG AA (4.5:1). New values: `#0f6f55` state_symbol, `#9b4100` holiday, `#4a4583` road, `#9c1a60` place, `#565044` other. All white-on-color ratios now 6.1–8.5.
+- Added monochrome SVG line-art icons (star-in-ribbon, calendar, highway shield, civic building) rendered inline in category chips and table cat-pills. No network requests; inherit current color.
+- Wired sponsor bio links through the pipeline — `primary_sponsors[].bio_url` now flows to the site JSON; rendered as links in the table and sponsor leaderboard. 614/670 sponsors have bio URLs (the 56 gaps are legislators no longer serving; API returns null).
+- Banned-words audit against CLAUDE.md style guide: no hits in site/ or docs/.
+- Contrast audit on the cream palette: ink 15.76, muted 5.16, link 11.49, accent 6.06 — all pass normal-text AA. Category icon-tints 3.01–3.95 on cream (AA-large / decorative only, fine since they're aria-hidden).
+- 320px structural audit: no unwanted fixed widths; the only `min-width` (40rem on the bill table) sits inside an `overflow-x: auto` wrapper. Long sponsor names have `word-break: break-word`. Masthead h1 is clamped and wraps.
+- Semantic + ARIA check: one H1, one main landmark, skip link as first tabbable, HTML `lang="en"`, explicit `type` on every button, chart is `role="img"` with aria-label, external links carry `rel="external noopener"`.
+
+## 2026-04-22 — Phase 2 editorial pass (2024 session)
+
+- Wired `data/reference/overrides.yml` into the filter pipeline. `is_ceremonial()` now honors `force_include` / `force_exclude` when given a `bill_id`. Regression tests added in `tests/test_overrides.py`.
+- Applied the six deferred overrides from Phase 1: AR24 (USS John Basilone christening), AR189 (Sikh Massacre), AJR65 (annual Lunar New Year), A3090 (pinelands rename), S4670 (Delaware Bay rename), S4923 (NJ tourism slogan).
+- Post-overrides count: **369 bills** (+6), 26 became law, 17 remaining rejects — all confirmed genuine exclusions (administrative renames, regulatory classifications, legal workforce definitions).
+- Stratified random sample of 25 accepted bills: every one correctly included and categorized. Holidays, state symbols, road namings, and place namings all read as expected.
+- Full rejected list reviewed (17 bills); each is a legitimate admin / regulatory / legal designation. No false negatives found.
+
 ## 2026-04-22 — Phase 1 initial build
 
 - First end-to-end run for the 2024–2025 session.
