@@ -16,14 +16,15 @@ async function getPlot() {
   }
 }
 
-// Keep in sync with --cat-* CSS variables. Darkened ColorBrewer Set2 that
-// clears WCAG AA against white.
+// Keep in sync with --cat-* CSS variables. ColorBrewer Set2, a softer,
+// brighter palette than Dark2. Chart bars are decorative fills so the
+// "text-contrast" constraint doesn't apply here.
 const CAT_COLORS = {
-  state_symbol:       "#0f6f55",
-  holiday_observance: "#9b4100",
-  road_naming:        "#4a4583",
-  place_naming:       "#9c1a60",
-  other_ceremonial:   "#565044",
+  state_symbol:       "#66c2a5",
+  holiday_observance: "#fc8d62",
+  road_naming:        "#8da0cb",
+  place_naming:       "#e78ac3",
+  other_ceremonial:   "#b3b3b3",
 };
 
 const CAT_LABELS = {

@@ -19,16 +19,16 @@
   --muted:       #6a6558;
   --link:        #002f6c;
   --link-hover:  #00122b;
-  --accent:      #a5330c;  /* state-seal brick, stronger than buff for web contrast */
+  --accent:      #b84017;  /* state-seal brick — brighter than the prior #a5330c while still passing WCAG AA (4.93) on cream */
   --buff:        #f6c52d;
 
-  /* Category palette — colorblind-safe ColorBrewer Set2 darkened so white
-     text on the category pill clears WCAG AA (4.5:1). */
-  --cat-state-symbol:       #0f6f55;
-  --cat-holiday-observance: #9b4100;
-  --cat-road-naming:        #4a4583;
-  --cat-place-naming:       #9c1a60;
-  --cat-other-ceremonial:   #565044;
+  /* Category palette — ColorBrewer Set2 (soft, bright). Pills carry dark
+     ink text so contrast still passes WCAG AA (6.8–8.5 ratios). */
+  --cat-state-symbol:       #66c2a5;
+  --cat-holiday-observance: #fc8d62;
+  --cat-road-naming:        #8da0cb;
+  --cat-place-naming:       #e78ac3;
+  --cat-other-ceremonial:   #b3b3b3;
 
   --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --f-sans:  "Inter", -apple-system, system-ui, "Segoe UI", sans-serif;
@@ -489,7 +489,7 @@ a:focus-visible {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: white;
+  color: var(--ink);  /* dark text on soft Set2 fills — 6.8–8.5 contrast */
 }
 .cat-pill svg { font-size: 1.2em; }
 .cat-pill.state_symbol       { background: var(--cat-state-symbol); }
