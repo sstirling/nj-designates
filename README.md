@@ -2,7 +2,7 @@
 
 A data journalism project cataloguing every ceremonial **"Designates X as"** bill introduced in the New Jersey Legislature since 2000 — state symbols, named bridges, commemorative weeks, honorary highway signs. The site is tongue-in-cheek about a genuine quirk of Trenton politics: the amount of the legislative day spent making things official.
 
-The live site runs the full pipeline below end-to-end and renders the archive as an interactive, filterable surface. Data and rule changes are committed to this repo so every number on the site is traceable.
+The live site runs the full pipeline below end-to-end and renders the archive as an interactive, filterable surface. Data and rule changes are committed to this repo so every number on the site is traceable. It can be [found here.](https://sstirling.github.io/nj-designates/site/) 
 
 Reporting by Stephen Stirling. Data from the [NJ Legislature's bill search](https://www.njleg.state.nj.us/bill-search). Full methodology is in [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) and on the live site at [`/methodology.html`](site/methodology.html).
 
