@@ -288,3 +288,18 @@ bill_id,session,full_number,synopsis,reason
 2024-S1316,2024,S1316,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,excluded: renames_authority (administrative body rename)
 2024-S2423,2024,S2423,Renames Juvenile Justice Commission as Youth Justice Commission.,excluded: renames_authority (administrative body rename)
 2024-S4769,2024,S4769,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office.",excluded: renames_authority (administrative body rename)
+2026-A1234,2026,A1234,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
+2026-A1400,2026,A1400,"Establishes protections for immigrants interacting with government agencies; designates ""New Jersey Immigrant Trust Act.""",no include pattern matched
+2026-A1638,2026,A1638,Designates open water lifeguards as first responders and emergency response providers.,excluded: legal_definition (legal/workforce classification)
+2026-A1790,2026,A1790,"Designates drug court program as the ""special probation recovery court program"" in statutes.",no include pattern matched
+2026-A4236,2026,A4236,Designates accounting as STEM subject for various educational and other programs.,no include pattern matched
+2026-S846,2026,S846,Establishes gold and silver transactional currency system; designates Commissioner of Banking and Insurance as administrator; provides legal tender status; authorizes fees.,excluded: administrative_officer (administrative officer/body designation)
+2026-S1500,2026,S1500,"Designates sweepstakes casinos as internet gaming; requires licensure, oversight, and taxation thereof within internet gaming framework.",excluded: regulatory_category (regulatory/administrative category definition)
+2026-S1714,2026,S1714,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
+2026-S2771,2026,S2771,"Establishes protections for immigrants interacting with government agencies; designates ""New Jersey Immigrant Trust Act.""",no include pattern matched
+2026-S3195,2026,S3195,"Designates ""New Jersey and You - Perfect Together Again"" as Division of Travel and Tourism slogan.",no include pattern matched
+2026-S3407,2026,S3407,Designates Hackensack City as urban enterprise zone.,no include pattern matched
+2026-A3676,2026,A3676,"Renames pinelands area as ""John McPhee pinelands area.""",no include pattern matched
+2026-S949,2026,S949,"Renames ""Delaware Bay"" to ""Bay of New Jersey""; directs all State departments and agencies to update official publications, signage, websites, and materials to reflect the new designation and notify relevant federal entities.",no include pattern matched
+2026-S1196,2026,S1196,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office.",excluded: renames_authority (administrative body rename)
+2026-S4079,2026,S4079,"Renames ""township committee"" to ""township council;"" requires townships to update materials to reflect this title change.",no include pattern matched

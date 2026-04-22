@@ -38,6 +38,7 @@
         <li><a href="#sponsors">Sponsors</a></li>
         <li><a href="#limits">Known limits and caveats</a></li>
         <li><a href="#replicate">How to replicate</a></li>
+        <li><a href="#ai-disclosure">AI disclosure</a></li>
         <li><a href="#contact">Corrections and contact</a></li>
       </ol>
     </nav>
@@ -49,11 +50,6 @@
         bill introduced in the New Jersey Legislature since 2000. The state muffin,
         the state native pollinator, every named bridge and commemorative week —
         all of it, in one place, with links back to the official bill record.
-      </p>
-      <p>
-        It started as a question: how much of the legislative day does the
-        New Jersey Legislature spend making things official? The answer, once
-        you pull the numbers, is: a meaningful amount. This project quantifies it.
       </p>
       <p>
         It's a journalism project, not a legislative service. The framing is
@@ -206,7 +202,6 @@
         <li><strong>A bill reintroduced in consecutive sessions appears once per session.</strong> We capture the link between sessions with a bill-family identifier, but the default view does not deduplicate across sessions. The sponsor leaderboard therefore counts each reintroduction.</li>
         <li><strong>The "Became law" field counts governor actions only.</strong> If a resolution passes both chambers but doesn't require the governor's signature, it may not be reflected as "became law" in our dataset even though it is, procedurally, in effect.</li>
         <li><strong>Party, district, and legislator demographics are not included.</strong> See above.</li>
-        <li><strong>The keyword search is English-only.</strong> The NJ Legislature publishes in English; we don't expect this to matter.</li>
         <li><strong>Two bills sit in <code>other_ceremonial</code>.</strong> Both designate Public Laws by honorific names ("Miranda Vargas Act"). These are honorific uses of a substantive law, not a ceremonial designation of a symbol or place. We flag them as a genuine judgment call rather than force them into a category.</li>
       </ul>
     </section>
@@ -228,6 +223,13 @@ python -m http.server --directory site 8000</code></pre>
         The scraper is rate-limited to one request per second, with jitter, and
         uses an honest User-Agent identifying the project and an email
         address. A full refresh across every session takes roughly an hour.
+      </p>
+    </section>
+
+    <section id="ai-disclosure">
+      <h2>AI disclosure</h2>
+      <p>
+        Claude Code was used in the creation of this tool.
       </p>
     </section>
 
