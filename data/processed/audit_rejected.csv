@@ -2,38 +2,29 @@ bill_id,session,full_number,synopsis,reason
 2000-ACR170,2000,ACR170,Commemorates Washington's crossing Delaware River and victory at Trenton.,no include pattern matched
 2000-AR171,2000,AR171,Commemorates June 19 as the Juneteenth celebration.,no include pattern matched
 2000-SR64,2000,SR64,Commemorates June 19 as the Juneteenth celebration.,no include pattern matched
-2000-A1554,2000,A1554,"Designates the Department of Education Building as the ""Matthew Feldman Building.""",excluded: administrative_officer (administrative officer/body designation)
-2000-A1559,2000,A1559,Designates steam locomotive #385 as the N.J. State steam locomotive.,no include pattern matched
 2000-A1847,2000,A1847,"Revises membership of U.S.S. New Jersey Battleship Commission, designates Foundation for the U.S.S. New Jersey Battleship as operator of battleship site and grants control over battleship to the commission.",no include pattern matched
 2000-A2667,2000,A2667,Establishes forensic laboratory fees for sexual assault; designates uses.,no include pattern matched
 2000-A2754,2000,A2754,Designates methadone clinics as business use for zoning purposes.,no include pattern matched
 2000-A3490,2000,A3490,Designates prison telephone revenues for VCCB claims.,no include pattern matched
-2000-AJR29,2000,AJR29,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
 2000-AR38,2000,AR38,Designates the Kechemeche Tribe as native to New Jersey.,no include pattern matched
 2000-S1469,2000,S1469,Designates prison telephone revenues for VCCB claims.,no include pattern matched
 2000-S1533,2000,S1533,Designates methadone clinics as business use for zoning purposes.,no include pattern matched
 2000-S1632,2000,S1632,Establishes forensic laboratory fees for sexual assault; designates uses.,no include pattern matched
 2000-S2181,2000,S2181,Designates certain persons to serve as nonpartisan agents to assist incapacitated absentee voters.,no include pattern matched
-2000-SJR18,2000,SJR18,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
-2000-SR69,2000,SR69,"Designates November 18, 2000 as Walter J. Kavanaugh Day in New Jersey.",no include pattern matched
 2000-A1257,2000,A1257,Renames the Governor's Council on the Prevention of Mental Retardation as the Governor's Council on the Prevention of Mental Retardation and Developmental Disabilities.,no include pattern matched
 2000-A1759,2000,A1759,Renames the New Jersey State College Governing Boards Association as the New Jersey Association of State Colleges and Universities.,no include pattern matched
-2000-A1834,2000,A1834,"Renames and expands scope of the Commission on Racism, Racial Violence and Religious Violence.",no include pattern matched
-2000-A2204,2000,A2204,Renames Office on Minority Health in DHSS as Office on Minority and Multicultural Health and provides additional responsibilities for office; appropriates $1.5 million.*,no include pattern matched
-2000-A2824,2000,A2824,Renames Office on Minority Health in DHSS as Office on Minority and Multicultural Health and provides additional responsibilities for office; appropriates $1.5 million.,no include pattern matched
-2000-S10,2000,S10,Renames Office on Minority Health in DHSS as Office on Minority and Multicultural Health and provides additional responsibilities for office; appropriates $1.5 million.,no include pattern matched
-2000-S176,2000,S176,"Renames and expands scope of Commission on Racism, Racial Violence and Religious Violence.",no include pattern matched
+2000-A1834,2000,A1834,"Renames and expands scope of the Commission on Racism, Racial Violence and Religious Violence.",excluded: renames_authority (administrative body rename)
+2000-A2204,2000,A2204,Renames Office on Minority Health in DHSS as Office on Minority and Multicultural Health and provides additional responsibilities for office; appropriates $1.5 million.*,excluded: renames_authority (administrative body rename)
+2000-A2824,2000,A2824,Renames Office on Minority Health in DHSS as Office on Minority and Multicultural Health and provides additional responsibilities for office; appropriates $1.5 million.,excluded: renames_authority (administrative body rename)
+2000-S10,2000,S10,Renames Office on Minority Health in DHSS as Office on Minority and Multicultural Health and provides additional responsibilities for office; appropriates $1.5 million.,excluded: renames_authority (administrative body rename)
+2000-S176,2000,S176,"Renames and expands scope of Commission on Racism, Racial Violence and Religious Violence.",excluded: renames_authority (administrative body rename)
 2000-S717,2000,S717,Renames the Governor's Council on the Prevention of Mental Retardation as the Governor's Council on the Prevention of Mental Retardation and Developmental Disabilities.,no include pattern matched
 2002-AR80,2002,AR80,Commemorates June 19 as the Juneteenth celebration.,no include pattern matched
-2002-AR330,2002,AR330,"Commemorates contributions of Haitians in Battle of Savannah, Georgia.",no include pattern matched
 2002-SR911,2002,SR911,"Commemorates September 11, 2001.",no include pattern matched
 2002-A168,2002,A168,Designates prison telephone revenues for VCCB claims.,no include pattern matched
-2002-A1760,2002,A1760,"Designates the Department of Education Building as the ""Matthew Feldman Building.""",excluded: administrative_officer (administrative officer/body designation)
 2002-A2404,2002,A2404,Designates official entity constructing law enforcement memorial and museum.,no include pattern matched
 2002-A2742,2002,A2742,Establishes forensic laboratory fees for sexual assault; designates uses.,no include pattern matched
 2002-A3044,2002,A3044,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
-2002-A3384,2002,A3384,Designates five State songs.,no include pattern matched
-2002-AJR14,2002,AJR14,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
 2002-AJR48,2002,AJR48,Designates Sunset Lake Hydrofest in Wildwood Crest as New Jersey Governor's Cup Hydrofest Series.,no include pattern matched
 2002-AJR55,2002,AJR55,"Designates annually Atlantic City Marathon as New Jersey Festival of Running, an official State event.",no include pattern matched
 2002-S369,2002,S369,Designates certain persons to serve as nonpartisan agents to assist incapacitated absentee voters.,no include pattern matched
@@ -41,25 +32,18 @@ bill_id,session,full_number,synopsis,reason
 2002-S1797,2002,S1797,Designates the Homestead Rebate Payment Protection Act; requires the payment of homestead rebates on or before July 31 annually.,no include pattern matched
 2002-S1934,2002,S1934,Establishes forensic laboratory fees for sexual assault; designates uses.,no include pattern matched
 2002-S2111,2002,S2111,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
-2002-S2455,2002,S2455,Designates six State songs.,no include pattern matched
-2002-S2457,2002,S2457,Designates five State songs.,no include pattern matched
 2002-S2712,2002,S2712,Designates the State agencies to be involved in the selection of school renaissance zones.,no include pattern matched
-2002-SJR34,2002,SJR34,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
 2002-SJR37,2002,SJR37,Designates Colonial Musketeers Junior Ancient Fife and Drum Corps and Colonial Musketeers Senior Ancient Fife and Drum Corps as non-exclusive official Junior and Senior Ancient Fife and Drum Corps of New Jersey. *,no include pattern matched
-2002-A2377,2002,A2377,"Renames and expands scope of Commission on Racism, Racial Violence and Religious Violence.",no include pattern matched
-2002-S684,2002,S684,"Renames and expands scope of Commission on Racism, Racial Violence and Religious Violence.",no include pattern matched
-2004-AR143,2004,AR143,Commemorates the accomplishments of Alice Paul.,no include pattern matched
-2004-AR236,2004,AR236,Commemorates life and accomplishments of Chief Roy Crazy Horse.,no include pattern matched
-2004-SR85,2004,SR85,Commemorates life and accomplishments of Chief Roy Crazy Horse.,no include pattern matched
-2004-A324,2004,A324,"Designates the Department of Education Building as the ""Matthew Feldman Building.""",excluded: administrative_officer (administrative officer/body designation)
-2004-A405,2004,A405,Designates five State songs.,no include pattern matched
+2002-A2377,2002,A2377,"Renames and expands scope of Commission on Racism, Racial Violence and Religious Violence.",excluded: renames_authority (administrative body rename)
+2002-A4037,2002,A4037,Renames the State Parole Board as the State Parole Commission.,excluded: renames_authority (administrative body rename)
+2002-S684,2002,S684,"Renames and expands scope of Commission on Racism, Racial Violence and Religious Violence.",excluded: renames_authority (administrative body rename)
+2002-S2617,2002,S2617,Renames the State Parole Board as the State Parole Commission.,excluded: renames_authority (administrative body rename)
 2004-A657,2004,A657,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
 2004-A1055,2004,A1055,Designates prison telephone revenues for VCCB claims.,no include pattern matched
 2004-A1295,2004,A1295,Designates official entity constructing law enforcement memorial and museum.,no include pattern matched
 2004-A1849,2004,A1849,Establishes forensic laboratory fees for sexual assault; designates uses.,no include pattern matched
 2004-A2617,2004,A2617,Reorganzies the State's workforce development system and redesignates the Department of Labor as the Department of Labor and Workforce Development. *,no include pattern matched
 2004-A3816,2004,A3816,Designates ten collective negotiations unit categories for State Executive Branch employees.,no include pattern matched
-2004-AJR55,2004,AJR55,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
 2004-AJR56,2004,AJR56,"Designates annually Atlantic City Marathon as New Jersey Festival of Running, an official State event.",no include pattern matched
 2004-AJR79,2004,AJR79,Designates Sunset Lake Hydrofest in Wildwood Crest as New Jersey Governor's Cup Hydrofest Series.,no include pattern matched
 2004-S349,2004,S349,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
@@ -67,52 +51,46 @@ bill_id,session,full_number,synopsis,reason
 2004-S1452,2004,S1452,Reorganizes the State's workforce development system and redesignates the Department of Labor as the Department of Labor and Workforce Development.,no include pattern matched
 2004-S1470,2004,S1470,Designates official entity constructing law enforcement memorial and museum.,no include pattern matched
 2004-S2235,2004,S2235,Designates ten collective negotiations unit categories for State Executive Branch employees.,no include pattern matched
-2004-SJR28,2004,SJR28,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
 2004-SJR33,2004,SJR33,Designates Colonial Musketeers Junior Ancient Fife and Drum Corps and Colonial Musketeers Senior Ancient Fife and Drum Corps as non-exclusive official Junior and Senior Ancient Fife and Drum Corps of New Jersey.,no include pattern matched
-2004-A3977,2004,A3977,Revises membership of Executive Commission on Ethical Standards; renames commission; makes various other changes concerning ethics. *,no include pattern matched
+2004-A2423,2004,A2423,Renames the State Parole Board as the State Parole Commission.,excluded: renames_authority (administrative body rename)
+2004-A3977,2004,A3977,Revises membership of Executive Commission on Ethical Standards; renames commission; makes various other changes concerning ethics. *,excluded: renames_authority (administrative body rename)
+2004-S1301,2004,S1301,Renames the State Parole Board as the State Parole Commission.,excluded: renames_authority (administrative body rename)
 2004-S1931,2004,S1931,Renames Work First New Jersey program as Family Development Program and makes other revisions to program.,no include pattern matched
-2004-S2335,2004,S2335,Revises membership of Executive Commission on Ethical Standards; renames commission; makes various other changes concerning ethics. *,no include pattern matched
+2004-S2335,2004,S2335,Revises membership of Executive Commission on Ethical Standards; renames commission; makes various other changes concerning ethics. *,excluded: renames_authority (administrative body rename)
 2006-A732,2006,A732,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
 2006-A1223,2006,A1223,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary. *",no include pattern matched
 2006-A1579,2006,A1579,Designates prison telephone revenues for VCCB claims.,no include pattern matched
-2006-A2362,2006,A2362,Designates five State songs.,no include pattern matched
 2006-A2929,2006,A2929,Transfers Division of Elections from Department of Law and Public Safety to Department of State; designates Secretary of State as chief election official.,excluded: administrative_officer (administrative officer/body designation)
 2006-A3158,2006,A3158,"Allocates Amistad Commission in the DOE, designates Commissioner of Education as chair, authorizes commission to hire staff, decreases public members from eight to four, and provides commission with additional powers.",excluded: administrative_officer (administrative officer/body designation)
-2006-AJR54,2006,AJR54,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
 2006-AJR59,2006,AJR59,"Designates annually the Atlantic City Marathon as New Jersey Festival of Running, an official State event.",no include pattern matched
 2006-AJR96,2006,AJR96,Designates Sunset Lake Hydrofest in Wildwood Crest as New Jersey Governor's Cup Hydrofest Series.,no include pattern matched
 2006-S125,2006,S125,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
 2006-S387,2006,S387,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary. *",no include pattern matched
-2006-S1917,2006,S1917,Designates five State songs.,no include pattern matched
 2006-S2449,2006,S2449,Transfers Division of Elections from Department of Law and Public Safety to Department of State; designates Secretary of State as chief election official.,excluded: administrative_officer (administrative officer/body designation)
-2006-SJR46,2006,SJR46,"Designates the State Song, State Anthem, State Popular Song and State March Song.",no include pattern matched
-2006-A518,2006,A518,Revises membership of Executive Commission on Ethical Standards; renames commission; requires ethics training for State employees; increases penalties for ethics violations.,no include pattern matched
+2006-A518,2006,A518,Revises membership of Executive Commission on Ethical Standards; renames commission; requires ethics training for State employees; increases penalties for ethics violations.,excluded: renames_authority (administrative body rename)
 2006-A2935,2006,A2935,Renames the Primary Care Physician and Dentist Loan Redemption Program and makes various other changes to the program.,no include pattern matched
 2006-A3251,2006,A3251,"Renames ""Open Public Meetings Act"" in honor of Senator Byron M. Baer. *",no include pattern matched
 2006-A3524,2006,A3524,Renames New Jersey Merit Rating Plan and provides for changes in procedures for payment of outstanding surcharges. *,no include pattern matched
 2006-A3602,2006,A3602,Renames Continental Airlines Arena the Continental Airlines - Brendan Byrne Arena.,no include pattern matched
 2006-A3903,2006,A3903,"Renames the ""Temporary Disability Benefits Law"" as the ""Temporary Disability and Pregnancy Benefits Law.""",no include pattern matched
-2006-A4254,2006,A4254,"Reorganizes and renames NJ Commerce, Economic Growth and Tourism Commission as NJ Commerce Commission; transfers Division of Travel and Tourism to Department of State.",no include pattern matched
+2006-A4254,2006,A4254,"Reorganizes and renames NJ Commerce, Economic Growth and Tourism Commission as NJ Commerce Commission; transfers Division of Travel and Tourism to Department of State.",excluded: renames_authority (administrative body rename)
 2006-A4310,2006,A4310,"Renames ""Cigarette Sales Act"" as ""Tobacco Products Sales Act""; facilitates collection of taxes on non-face-to-face retail sales of tobacco products.",no include pattern matched
-2006-S256,2006,S256,Revises membership of Executive Commission on Ethical Standards; renames commission; makes various other changes concerning ethics.,no include pattern matched
+2006-S256,2006,S256,Revises membership of Executive Commission on Ethical Standards; renames commission; makes various other changes concerning ethics.,excluded: renames_authority (administrative body rename)
 2006-S661,2006,S661,Renames Work First New Jersey program as Family Development Program and makes other revisions to program.,no include pattern matched
 2006-S1404,2006,S1404,Renames the Primary Care Physician and Dentist Loan Redemption Program and makes various other changes to the program.,no include pattern matched
 2006-S1959,2006,S1959,"Renames ""Open Public Meetings Act"" in honor of Senator Byron M. Baer.",no include pattern matched
 2006-S2063,2006,S2063,"Renames ""Cigarette Sales Act"" as ""Tobacco Products Sales Act""; facilitates collection of taxes on non-face-to-face retail sales of tobacco products.",no include pattern matched
 2006-S2331,2006,S2331,Renames New Jersey Rating Plan and provides for changes in procedures for payment of outstanding surcharges.,no include pattern matched
 2006-S2452,2006,S2452,"Renames the ""Temporary Disability Benefits Law"" as the ""Temporary Disability and Pregnancy Benefits Law.""",no include pattern matched
-2006-S2948,2006,S2948,"Reorganizes and renames NJ Commerce, Economic Growth and Tourism Commission as NJ Commerce Commission; transfers Division of Travel and Tourism to Department of State.",no include pattern matched
+2006-S2948,2006,S2948,"Reorganizes and renames NJ Commerce, Economic Growth and Tourism Commission as NJ Commerce Commission; transfers Division of Travel and Tourism to Department of State.",excluded: renames_authority (administrative body rename)
 2008-A883,2008,A883,Designates prison telephone revenues for VCCB claims.,no include pattern matched
 2008-A1116,2008,A1116,"Allocates Amistad Commission in the DOE, designates Commissioner of Education as chair, authorizes commission to hire staff, decreases public members from eight to four, and provides commission with additional powers.",excluded: administrative_officer (administrative officer/body designation)
 2008-A1448,2008,A1448,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
-2008-A3034,2008,A3034,Designates four State songs.,no include pattern matched
 2008-A3142,2008,A3142,Designates bison as agricultural livestock.,no include pattern matched
 2008-A3305,2008,A3305,"Designates Harrison, South Amboy and Woodbridge as eligible municipalities under Transit Hub Tax Credit program.",no include pattern matched
 2008-A3653,2008,A3653,Designates unmarried ex-spouse of marriage of 25 or more years as the widow or widower eligible for PFRS pension.,no include pattern matched
-2008-A3822,2008,A3822,Designates Statewide specialized long-term care facility for treatment of Huntington's Disease.,no include pattern matched
 2008-AJR84,2008,AJR84,Designates Sunset Lake Hydrofest in Wildwood Crest as New Jersey Governor's Cup Hydrofest Series.,no include pattern matched
 2008-S437,2008,S437,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
-2008-S2054,2008,S2054,Designates four State songs.,no include pattern matched
 2008-S2597,2008,S2597,Designates bison as agricultural livestock.,no include pattern matched
 2008-S2789,2008,S2789,"Allocates Amistad Commission in the DOE, designates Commissioner of Education as chair and Secretary of State as vice-chair, and requires DOE to serve as staff.",excluded: administrative_officer (administrative officer/body designation)
 2008-S2839,2008,S2839,"Designates ""Made With Jersey Fresh"" baked goods and other food products.",no include pattern matched
@@ -120,87 +98,69 @@ bill_id,session,full_number,synopsis,reason
 2008-SJR27,2008,SJR27,Designates Sunset Lake Hydrofest in Wildwood Crest as New Jersey Governor's Cup Hydrofest Series.,no include pattern matched
 2008-A341,2008,A341,Renames New Jersey Merit Rating Plan and provides for changes in procedures for payment of outstanding surcharges.,no include pattern matched
 2008-A836,2008,A836,Renames the Primary Care Physician and Dentist Loan Redemption Program and makes various other changes to the program.,no include pattern matched
-2008-A2011,2008,A2011,Authorizes transfer of the Atlantic City Convention Center project to the Atlantic City Convention and Visitors Authority and renames that authority.,no include pattern matched
+2008-A2011,2008,A2011,Authorizes transfer of the Atlantic City Convention Center project to the Atlantic City Convention and Visitors Authority and renames that authority.,excluded: renames_authority (administrative body rename)
 2008-A3070,2008,A3070,"Revises certain restrictions on permit holders and provisional driver's licensees; renames provisional license ""probationary.""",no include pattern matched
 2008-A3079,2008,A3079,Renames Work First New Jersey program as Family Development Program and makes other revisions to program.,no include pattern matched
 2008-A3119,2008,A3119,"Renames ""Local Unit Alignment, Reorganization and Consolidation Commission"" as ""Karcher Commission""; requires commission to promulgate two consecutive plans for municipal consolidation; provides for enactment of municipal consolidation plans.",no include pattern matched
 2008-A3499,2008,A3499,Renames Dept. of Agriculture as Dept. of Agriculture and Conservation; transfers certain agencies from other depts. to Dept. of Agriculture and Conservation; clarifies authority of Fish and Game Council.,no include pattern matched
 2008-S16,2008,S16,"Revises certain restrictions on permit holders and provisional driver's licensees; renames provisional license ""probationary."" *",no include pattern matched
 2008-S1220,2008,S1220,Renames the Primary Care Physician and Dentist Loan Redemption Program and makes various other changes to the program.,no include pattern matched
-2008-S1393,2008,S1393,Authorizes transfer of the Atlantic City Convention Center project to the Atlantic City Convention and Visitors Authority and renames that authority.,no include pattern matched
+2008-S1393,2008,S1393,Authorizes transfer of the Atlantic City Convention Center project to the Atlantic City Convention and Visitors Authority and renames that authority.,excluded: renames_authority (administrative body rename)
 2008-S2370,2008,S2370,Renames Dept. of Agriculture as Dept. of Agriculture and Conservation; transfers certain agencies from other depts. to Dept. of Agriculture and Conservation; clarifies authority of Fish and Game Council.,no include pattern matched
-2008-S2844,2008,S2844,"Renames ""New Jersey Trauma Center"" at University Hospital as ""Eric Munoz Trauma Center.""",no include pattern matched
 2010-A760,2010,A760,Designates bison as agricultural livestock.,no include pattern matched
 2010-A1259,2010,A1259,Designates prison telephone revenues for VCCB claims.,no include pattern matched
-2010-A2273,2010,A2273,Designates four State songs.,no include pattern matched
 2010-A2523,2010,A2523,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
 2010-A3414,2010,A3414,Designates New Jersey Commuter Pass Credit Act; provides for temporary gross income tax credit for certain commuting passes.,no include pattern matched
 2010-A4395,2010,A4395,"Designates the ""Honor and Remember Flag"" as an official State flag.",no include pattern matched
 2010-S565,2010,S565,"Allocates Amistad Commission in the DOE, designates Commissioner of Education as chair and Secretary of State as vice-chair, and requires DOE to serve as staff.",excluded: administrative_officer (administrative officer/body designation)
 2010-S702,2010,S702,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
-2010-S1611,2010,S1611,Designates four State songs.,no include pattern matched
 2010-S1767,2010,S1767,Designates production of electricity from certain resource recovery facilities as Class I renewable energy.,no include pattern matched
 2010-S2468,2010,S2468,Designates New Jersey Commuter Pass Credit Act; provides for temporary gross income tax credit for certain commuting passes.,no include pattern matched
 2010-S3017,2010,S3017,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
 2010-A157,2010,A157,Renames Dept. of Agriculture as Dept. of Agriculture and Conservation; transfers certain agencies from other depts. to Dept. of Agriculture and Conservation; clarifies authority of Fish and Game Council.,no include pattern matched
-2010-A2504,2010,A2504,"Renames ""New Jersey Trauma Center"" at University Hospital as ""Eric Munoz Trauma Center.""",no include pattern matched
-2010-A2987,2010,A2987,Renames the Division of Insurance Fraud Prevention as the Bureau of Fraud Deterrence in the Department of Banking and Insurance; modifies structure of Office of Insurance Fraud Prosecutor.,no include pattern matched
-2010-A3006,2010,A3006,Renames the Division of Insurance Fraud Prevention as the Bureau of Fraud Deterrence in the Department of Banking and Insurance; modifies structure of Office of Insurance Fraud Prosecutor.,no include pattern matched
+2010-A2987,2010,A2987,Renames the Division of Insurance Fraud Prevention as the Bureau of Fraud Deterrence in the Department of Banking and Insurance; modifies structure of Office of Insurance Fraud Prosecutor.,excluded: renames_authority (administrative body rename)
+2010-A3006,2010,A3006,Renames the Division of Insurance Fraud Prevention as the Bureau of Fraud Deterrence in the Department of Banking and Insurance; modifies structure of Office of Insurance Fraud Prosecutor.,excluded: renames_authority (administrative body rename)
 2010-A3310,2010,A3310,"Renames quail management area within Greenwood Forest Wildlife Management Area as ""Dr. A. Hunter Wilcox Field Trial Grounds.""",no include pattern matched
 2010-A3730,2010,A3730,Temporarily renames NJ Advisory Council on Traumatic Brain Injury as NJ Advisory Council on Traumatic and Acquired Brain Injury; establishes Acquired Brain Injury Fund.,no include pattern matched
 2010-S347,2010,S347,Renames Dept. of Agriculture as Dept. of Agriculture and Conservation; transfers certain agencies from other depts. to Dept. of Agriculture and Conservation; clarifies authority of Fish and Game Council.,no include pattern matched
-2010-S1342,2010,S1342,"Renames ""New Jersey Trauma Center"" at University Hospital as ""Eric Munoz Trauma Center.""",no include pattern matched
-2010-S2098,2010,S2098,Renames the Division of Insurance Fraud Prevention as the Bureau of Fraud Deterrence in the Department of Banking and Insurance; modifies structure of Office of Insurance Fraud Prosecutor.,no include pattern matched
+2010-S2098,2010,S2098,Renames the Division of Insurance Fraud Prevention as the Bureau of Fraud Deterrence in the Department of Banking and Insurance; modifies structure of Office of Insurance Fraud Prosecutor.,excluded: renames_authority (administrative body rename)
 2010-S2224,2010,S2224,"Renames quail management area within Greenwood Forest Wildlife Management Area as ""Dr. A. Hunter Wilcox Field Trial Grounds.""",no include pattern matched
 2010-S2551,2010,S2551,Temporarily renames NJ Advisory Council on Traumatic Brain Injury as NJ Advisory Council on Traumatic and Acquired Brain Injury; establishes Acquired Brain Injury Fund.,no include pattern matched
 2012-ACR159,2012,ACR159,Commemorates suffering endured by comfort women during forced internment in Japanese military camps.,no include pattern matched
 2012-AR85,2012,AR85,Commemorates 13th presidential inauguration ceremony of Republic of China (Taiwan).,no include pattern matched
 2012-SCR124,2012,SCR124,Commemorates suffering endured by comfort women during forced internment in Japanese military camps.,no include pattern matched
-2012-SR131,2012,SR131,"Commemorates life, career, and accomplishments of Richard J. Sullivan, the State's first DEP Commissioner.",no include pattern matched
 2012-A527,2012,A527,Designates bison as agricultural livestock.,no include pattern matched
 2012-A708,2012,A708,Designates New Jersey Commuter Pass Credit Act; provides for temporary gross income tax credit for certain commuting passes.,no include pattern matched
 2012-A1058,2012,A1058,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
 2012-A2029,2012,A2029,"Designates the ""Honor and Remember Flag"" as an official State flag.",no include pattern matched
-2012-A2547,2012,A2547,Designates four State songs.,no include pattern matched
 2012-A2886,2012,A2886,Designates blueberry pie as the New Jersey Dessert.,no include pattern matched
 2012-A3677,2012,A3677,Designates ephedrine and pseudoephedrine as Schedule III controlled dangerous substances.,no include pattern matched
-2012-A4154,2012,A4154,Designates four State songs.,no include pattern matched
 2012-S283,2012,S283,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
-2012-S1865,2012,S1865,Designates four State songs.,no include pattern matched
 2012-S1960,2012,S1960,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
 2012-S2007,2012,S2007,"Designates the ""Honor and Remember Flag"" as an official State flag.",no include pattern matched
 2012-A1005,2012,A1005,Temporarily renames NJ Advisory Council on Traumatic Brain Injury as NJ Advisory Council on Traumatic and Acquired Brain Injury; establishes Acquired Brain Injury Fund.,no include pattern matched
 2012-A1792,2012,A1792,"Renames quail management area within Greenwood Forest Wildlife Management Area as ""Dr. A. Hunter Wilcox Field Trial Grounds.""",no include pattern matched
-2012-A3104,2012,A3104,Reorganizes and renames DHSS as Department of Health; establishes Division of Aging Services in DHS.,no include pattern matched
+2012-A3104,2012,A3104,Reorganizes and renames DHSS as Department of Health; establishes Division of Aging Services in DHS.,excluded: renames_authority (administrative body rename)
 2012-A3360,2012,A3360,Creates Veterans Haven North Council; renames current Veterans Haven Council to Veterans Haven South Council.,no include pattern matched
-2012-A3366,2012,A3366,"Renames Mountainview Youth Correctional Facility as ""William H. Fauver Youth Correctional Facility.""",no include pattern matched
 2012-S786,2012,S786,Temporarily renames NJ Advisory Council on Traumatic Brain Injury as NJ Advisory Council on Traumatic and Acquired Brain Injury; establishes Acquired Brain Injury Fund.,no include pattern matched
 2012-S1405,2012,S1405,"Renames the ""Crime Victim's Bill of Rights"" act the ""Alex DeCroce Crime Victim's Bill of Rights"" act.",no include pattern matched
-2012-S2072,2012,S2072,Reorganizes and renames DHSS as Department of Health; establishes Division of Aging Services in DHS.,no include pattern matched
+2012-S2072,2012,S2072,Reorganizes and renames DHSS as Department of Health; establishes Division of Aging Services in DHS.,excluded: renames_authority (administrative body rename)
 2012-S2254,2012,S2254,Creates Veterans Haven North Council; renames current Veterans Haven Council to Veterans Haven South Council.,no include pattern matched
-2012-S2274,2012,S2274,"Renames Mountainview Youth Correctional Facility as ""William H. Fauver Youth Correctional Facility.""",no include pattern matched
 2014-A432,2014,A432,Designates New Jersey Commuter Pass Credit Act; provides for temporary gross income tax credit for certain commuting passes.,no include pattern matched
 2014-A548,2014,A548,Designates bison as agricultural livestock.,no include pattern matched
-2014-A1085,2014,A1085,Designates four State songs.,no include pattern matched
 2014-A1552,2014,A1552,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
-2014-A1786,2014,A1786,Designates four State songs.,no include pattern matched
 2014-A3261,2014,A3261,"Designates Dept. of Agriculture as sole agency to administer ""Seniors Farmers' Market Nutrition Program.""",no include pattern matched
 2014-A3373,2014,A3373,Designates cheerleading as interscholastic sport; requires safety harness at health clubs with members who are cheerleaders.,no include pattern matched
 2014-A3973,2014,A3973,"Designates Atlantic City and Pleasantville, Atlantic County, as areas eligible for redemption of pinelands development credits.",no include pattern matched
-2014-A4019,2014,A4019,Designates five State songs.,no include pattern matched
 2014-A4563,2014,A4563,Designates striped bass (Morone saxatilis) as New Jersey saltwater fish.,no include pattern matched
 2014-A4737,2014,A4737,Designates Killed in Action flag as an official State flag; mandates it be displayed at certain public buildings.,no include pattern matched
 2014-S410,2014,S410,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
-2014-S1370,2014,S1370,Designates four State songs.,no include pattern matched
 2014-S2275,2014,S2275,Designates cheerleading as interscholastic sport; requires safety harness at health clubs with members who are cheerleaders.,no include pattern matched
-2014-S2438,2014,S2438,Designates five State songs.,no include pattern matched
 2014-S3192,2014,S3192,Designates striped bass (Morone saxatilis) as New Jersey saltwater fish.,no include pattern matched
 2014-S3304,2014,S3304,Designates Killed in Action flag as an official State flag; mandates it be displayed at certain public buildings.,no include pattern matched
 2014-A383,2014,A383,Creates Veterans Haven North Council; renames current Veterans Haven Council to Veterans Haven South Council.,no include pattern matched
-2014-A2022,2014,A2022,"Renames Mountainview Youth Correctional Facility as ""William H. Fauver Youth Correctional Facility.""",no include pattern matched
 2014-A3613,2014,A3613,"Renames ""county vocational school districts"" as ""county career academies.""",no include pattern matched
 2014-AR121,2014,AR121,"Renames ""Tourism and Gaming Committee"" as ""Tourism, Gaming and the Arts Committee.""",no include pattern matched
-2014-S839,2014,S839,"Renames Mountainview Youth Correctional Facility as ""William H. Fauver Youth Correctional Facility.""",no include pattern matched
 2016-ACR229,2016,ACR229,Commemorates NJ Division of Fish and Wildlife for 125 years of fish and wildlife conservation.,no include pattern matched
 2016-AR142,2016,AR142,Commemorates and expresses approval of enactment of legislation by President and Congress adding Zika Virus Disease Priority Review Voucher Program.*,no include pattern matched
 2016-SCR145,2016,SCR145,Commemorates NJ Division of Fish and Wildlife for 125 years of fish and wildlife conservation.,no include pattern matched
@@ -208,14 +168,11 @@ bill_id,session,full_number,synopsis,reason
 2016-A701,2016,A701,Designates bison as agricultural livestock.,no include pattern matched
 2016-A1005,2016,A1005,Designates New Jersey Commuter Pass Credit Act; provides for temporary gross income tax credit for certain commuting passes.,no include pattern matched
 2016-A2326,2016,A2326,Designates cheerleading as interscholastic sport; requires safety harness at health clubs with members who are cheerleaders.,no include pattern matched
-2016-A2357,2016,A2357,Designates four State songs.,no include pattern matched
-2016-A2372,2016,A2372,"""Red Mascara Act;"" designates five State songs.*",no include pattern matched
 2016-A3165,2016,A3165,"Designates Dept. of Agriculture as sole agency to administer ""Seniors Farmers' Market Nutrition Program.""",no include pattern matched
 2016-A3225,2016,A3225,Designates Killed in Action flag as an official State flag; mandates it be displayed at certain public buildings.,no include pattern matched
 2016-AJR123,2016,AJR123,"Designates days of recognition for Rosh Hashanah, Yom Kippur, and Passover.",no include pattern matched
 2016-AJR161,2016,AJR161,Designates Lake Hopatcong Racing Association as New Jersey Governor's Cup Hydrofest Series.,no include pattern matched
 2016-S105,2016,S105,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
-2016-S373,2016,S373,Designates five State songs.,no include pattern matched
 2016-S1497,2016,S1497,Designates Killed in Action flag as an official State flag; mandates it be displayed at certain public buildings.,no include pattern matched
 2016-S2121,2016,S2121,"Designates Dept. of Agriculture as sole agency to administer ""Seniors Farmers' Market Nutrition Program.""",no include pattern matched
 2016-SJR88,2016,SJR88,"Designates days of recognition for Rosh Hashanah, Yom Kippur, and Passover.",no include pattern matched
@@ -223,7 +180,6 @@ bill_id,session,full_number,synopsis,reason
 2016-A10,2016,A10,"Revises ""New Jersey Transportation Trust Fund Authority Act""; establishes State Transportation Infrastructure Bank within NJ Environmental Infrastructure Trust; renames NJ Environmental Infrastructure Trust.",no include pattern matched
 2016-A2930,2016,A2930,Revises and renames NJSTARS; repeals NJSTARS II; establishes NJ HonorScholars Program.,no include pattern matched
 2016-A2986,2016,A2986,"Renames ""county vocational school districts"" as ""county career academies.""",no include pattern matched
-2016-A3325,2016,A3325,"Renames Mountainview Youth Correctional Facility as ""William H. Fauver Youth Correctional Facility.""",no include pattern matched
 2016-A3686,2016,A3686,Establishes new crime of strict liability vehicular homicide; renames existing vehicular homicide as reckless vehicular homicide; designated as Ralph and David's Law.,no include pattern matched
 2016-A3742,2016,A3742,"Makes various revisions to ""Uniform Fraudulent Transfer Act""; renames act to ""Uniform Voidable Transactions Act.""",no include pattern matched
 2016-S991,2016,S991,Revises and renames NJSTARS; repeals NJSTARS II; establishes NJ HonorScholars Program.,no include pattern matched
@@ -234,11 +190,9 @@ bill_id,session,full_number,synopsis,reason
 2018-A645,2018,A645,Designates New Jersey Commuter Pass Credit Act; provides for temporary gross income tax credit for certain commuting passes.,no include pattern matched
 2018-A2151,2018,A2151,"Directs State acquisition of Troy Meadows Natural Area, Morris County, for recreation and conservation purposes and designates it as natural area and wildlife sanctuary.",no include pattern matched
 2018-A2806,2018,A2806,"Clarifies pretrial detention and pretrial release provisions in P.L.2014, c.31; designates P.L.2014, c.31 and this bill as the ""Restoring Judicial Discretion in Bail Setting Act.""",no include pattern matched
-2018-A3481,2018,A3481,Designates four State songs.,no include pattern matched
 2018-A3638,2018,A3638,"Designates Dept. of Agriculture as sole agency to administer ""Seniors Farmers' Market Nutrition Program.""",no include pattern matched
 2018-A3843,2018,A3843,"Designates drug court program as the ""special probation recovery court program"" in statutes.",no include pattern matched
 2018-A4364,2018,A4364,Expands University Hospital board of directors membership from 11 to 13 members; designates University Hospital as rural hospital.*,no include pattern matched
-2018-A5135,2018,A5135,"Designates P.L.2019, c.9 as ""Miranda Vargas Act.""",no include pattern matched
 2018-A5305,2018,A5305,Establishes Division of Advocacy for Developmentally Disabled within Office of Public Defender; designates public defender for developmentally disabled clients in criminal cases.,no include pattern matched
 2018-A5977,2018,A5977,"Provides for establishment of Regional Health Hub Program as replacement to Accountable Care Organization Demonstration Project, and designates existing accountable care organizations and look-alike organizations as Regional Health Hubs.",no include pattern matched
 2018-AJR27,2018,AJR27,"Designates days of recognition for Rosh Hashanah, Yom Kippur, and Passover.",no include pattern matched
@@ -249,7 +203,6 @@ bill_id,session,full_number,synopsis,reason
 2018-S4127,2018,S4127,Designates 9-1-1 operators or dispatchers as 9-1-1 first responder dispatchers.,no include pattern matched
 2018-S4282,2018,S4282,"Provides for establishment of Regional Health Hub Program as replacement to Accountable Care Organization Demonstration Project, and designates existing accountable care organizations and look-alike organizations as Regional Health Hubs.",no include pattern matched
 2018-SJR66,2018,SJR66,Designates Lake Hopatcong Racing Association as New Jersey Governor's Cup Hydrofest Series.,no include pattern matched
-2018-A1305,2018,A1305,"Renames Mountainview Youth Correctional Facility as ""William H. Fauver Youth Correctional Facility.""",no include pattern matched
 2018-A2144,2018,A2144,"Renames ""Physician Orders for Life-Sustaining Treatment Act"" as ""Practitioner Orders for Life-Sustaining Treatment Act""; permits physician assistants to sign and modify POLST forms; requires continuing education concerning end-of-life care.*",no include pattern matched
 2018-A2769,2018,A2769,Revises and renames NJSTARS; repeals NJSTARS II; establishes NJ HonorScholars Program.,no include pattern matched
 2018-A2782,2018,A2782,"Makes various revisions to ""Uniform Fraudulent Transfer Act""; renames act to ""Uniform Voidable Transactions Act.""",no include pattern matched
@@ -263,40 +216,34 @@ bill_id,session,full_number,synopsis,reason
 2018-S1627,2018,S1627,"Renames ""county vocational school districts"" as ""county career academies.""",no include pattern matched
 2018-S1739,2018,S1739,Renames county corrections officers as county correctional police officers.,no include pattern matched
 2018-S1948,2018,S1948,Makes Supplemental Nutrition Assistance Program Employment and Training Provider Demonstration Project permanent and renames program.,no include pattern matched
-2018-S3622,2018,S3622,"Renames Mountainview Youth Correctional Facility as ""William H. Fauver Youth Correctional Facility.""",no include pattern matched
 2018-S3763,2018,S3763,Renames joint meetings as regional service agencies; grandfathers existing joint meetings.,no include pattern matched
 2020-AR145,2020,AR145,Commemorates New Jersey -Taiwan sister state relationship and recognizes importance of strong and enduring partnership between New Jersey and Taiwan.**,no include pattern matched
-2020-AR248,2020,AR248,Commemorates Pro Football Hall of Fame induction of Drew Pearson.,no include pattern matched
 2020-SR108,2020,SR108,Commemorates New Jersey -Taiwan sister state relationship and recognizes importance of strong and enduring partnership between New Jersey and Taiwan.,no include pattern matched
-2020-SR121,2020,SR121,Commemorates Pro Football Hall of Fame induction of Drew Pearson.,no include pattern matched
 2020-A271,2020,A271,"Designates drug court program as the ""special probation recovery court program"" in statutes.",no include pattern matched
 2020-A709,2020,A709,Establishes Division of Advocacy for Developmentally Disabled within Office of Public Defender; designates public defender for developmentally disabled clients in criminal cases.,no include pattern matched
 2020-A892,2020,A892,Expands University Hospital board of directors membership from 11 to 13 members; designates University Hospital as rural hospital.,no include pattern matched
-2020-A2120,2020,A2120,"Designates P.L.2019, c.9 as ""Miranda Vargas Act.""",no include pattern matched
 2020-A3329,2020,A3329,Designates New Jersey Commuter Pass Credit Act; provides for temporary gross income tax credit for certain commuting passes.,no include pattern matched
 2020-A3804,2020,A3804,Designates 9-1-1 operators or dispatchers as 9-1-1 first responder dispatchers.,no include pattern matched
 2020-A4044,2020,A4044,Designates Howell House in Cape May as Harriet Tubman Museum in New Jersey.,no include pattern matched
 2020-A5127,2020,A5127,Designates each community college in State as provider of allowable services under SNAP Employment and Training Program.,no include pattern matched
 2020-A5259,2020,A5259,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
-2020-A5933,2020,A5933,"Designates Department of Health State office building in Trenton as ""Judith M. Persichilli Building.""",excluded: administrative_officer (administrative officer/body designation)
 2020-S1413,2020,S1413,"Clarifies pretrial detention and pretrial release provisions in P.L.2014, c.31; designates P.L.2014, c.31 and this bill as the ""Restoring Judicial Discretion in Bail Setting Act.""",no include pattern matched
 2020-S1590,2020,S1590,Designates 9-1-1 operators or dispatchers as 9-1-1 first responder dispatchers.,no include pattern matched
 2020-S3353,2020,S3353,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
-2020-S3984,2020,S3984,"Designates Department of Health State office building in Trenton as ""Judith M. Persichilli Building.""",excluded: administrative_officer (administrative officer/body designation)
 2020-A1281,2020,A1281,Revises and renames NJSTARS; repeals NJSTARS II; establishes NJ HonorScholars Program.,no include pattern matched
 2020-A3384,2020,A3384,"Makes various revisions to ""Uniform Fraudulent Transfer Act""; renames act to ""Uniform Voidable Transactions Act.""",no include pattern matched
 2020-A3594,2020,A3594,"Renames ""board of chosen freeholders"" to ""board of county commissioners"" and ""freeholder"" and ""chosen freeholder"" to ""county commissioner""; requires counties to update materials to reflect this title change.",no include pattern matched
 2020-A4930,2020,A4930,"Renames ""security aid"" as ""health and safety aid"" to reflect that secure schools provide for students' mental health; provides that State aid for nonpublic school security services may also be used for mental health services.",no include pattern matched
-2020-A5249,2020,A5249,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office to apply to all persons with disabilities and their families.",no include pattern matched
+2020-A5249,2020,A5249,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office to apply to all persons with disabilities and their families.",excluded: renames_authority (administrative body rename)
 2020-A5822,2020,A5822,"Renames Dismal Swamp and Dismal Swamp Preservation Commission as ""Peter J. Barnes III Wildlife Preserve"" and ""Peter J. Barnes III Wildlife Preservation Commission.""",no include pattern matched
-2020-A6159,2020,A6159,Revises and renames Office of Food Insecurity Advocate.,no include pattern matched
+2020-A6159,2020,A6159,Revises and renames Office of Food Insecurity Advocate.,excluded: renames_authority (administrative body rename)
 2020-S326,2020,S326,"Renames ""county vocational school districts"" as ""county career academies.""",no include pattern matched
 2020-S855,2020,S855,"Renames ""board of chosen freeholders"" to ""board of county commissioners"" and ""freeholder"" and ""chosen freeholder"" to ""county commissioner""; requires counties to update materials to reflect this title change.",no include pattern matched
 2020-S3013,2020,S3013,"Renames ""security aid"" as ""health and safety aid"" to reflect that secure schools provide for students' mental health; provides that State aid for nonpublic school security services may also be used for mental health services.",no include pattern matched
 2020-S3171,2020,S3171,"Makes various revisions to ""Uniform Fraudulent Transfer Act""; renames act to ""Uniform Voidable Transactions Act.""",no include pattern matched
-2020-S3384,2020,S3384,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office to apply to all persons with disabilities and their families.",no include pattern matched
+2020-S3384,2020,S3384,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office to apply to all persons with disabilities and their families.",excluded: renames_authority (administrative body rename)
 2020-S3919,2020,S3919,"Renames Dismal Swamp and Dismal Swamp Preservation Commission as ""Peter J. Barnes III Wildlife Preserve"" and ""Peter J. Barnes III Wildlife Preservation Commission.""",no include pattern matched
-2020-S4236,2020,S4236,Revises and renames Office of Food Insecurity Advocate.,no include pattern matched
+2020-S4236,2020,S4236,Revises and renames Office of Food Insecurity Advocate.,excluded: renames_authority (administrative body rename)
 2022-AR131,2022,AR131,Commemorates New Jersey-Taiwan sister state relationship and recognizes importance of strong and enduring partnership between New Jersey and Taiwan.,no include pattern matched
 2022-AR139,2022,AR139,Commemorates appointment of Justice Ketanji Brown Jackson as Associate Justice of United States Supreme Court.,no include pattern matched
 2022-AR156,2022,AR156,Commemorates christening of USS John Basilone.,no include pattern matched
@@ -306,23 +253,25 @@ bill_id,session,full_number,synopsis,reason
 2022-A3388,2022,A3388,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
 2022-A3673,2022,A3673,"Designates drug court program as the ""special probation recovery court program"" in statutes.",no include pattern matched
 2022-A3818,2022,A3818,Designates specific dates for special fire district elections.,no include pattern matched
+2022-A5299,2022,A5299,Designates State Office of Emergency Management as State Agency for Surplus Property.,excluded: administrative_officer (administrative officer/body designation)
 2022-A5326,2022,A5326,"Establishes Community Crisis Response Advisory Council and community crisis response teams pilot program; designates ""Seabrooks-Washington Community-Led Crisis Response Act;"" appropriates $12 million.*",no include pattern matched
 2022-AJR201,2022,AJR201,Designates annual Lunar New Year in NJ.,no include pattern matched
 2022-S1680,2022,S1680,Designates each community college in State as provider of allowable services under SNAP employment and training program.,no include pattern matched
 2022-S2274,2022,S2274,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
+2022-S3753,2022,S3753,Designates State Office of Emergency Management as State Agency for Surplus Property.,excluded: administrative_officer (administrative officer/body designation)
 2022-S4250,2022,S4250,"Establishes Community Crisis Response Advisory Council and community crisis response teams pilot program; designates ""Seabrooks-Washington Community-Led Crisis Response Act;"" appropriates $12 million.*",no include pattern matched
 2022-SJR54,2022,SJR54,Designates Eid Ul-Fitr and Eid Ul-Adha as days of observance in New Jersey.,no include pattern matched
 2022-SJR65,2022,SJR65,Designates Eid Ul-Fitr and Eid Ul-Adha as days of observance in New Jersey.,no include pattern matched
 2022-SJR111,2022,SJR111,Designates annual Lunar New Year in NJ.,no include pattern matched
 2022-A4613,2022,A4613,"Renames, extends eligibility, and makes various other changes to Primary Care Practitioner Loan Redemption Program.*",no include pattern matched
 2022-A4707,2022,A4707,"Renames pinelands area as ""John McPhee pinelands area.""",no include pattern matched
-2022-A5611,2022,A5611,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,no include pattern matched
-2022-A5880,2022,A5880,Renames Juvenile Justice Commission as Youth Justice Commission.,no include pattern matched
-2022-S320,2022,S320,Revises and renames Office of Food Insecurity Advocate.,no include pattern matched
+2022-A5611,2022,A5611,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,excluded: renames_authority (administrative body rename)
+2022-A5880,2022,A5880,Renames Juvenile Justice Commission as Youth Justice Commission.,excluded: renames_authority (administrative body rename)
+2022-S320,2022,S320,Revises and renames Office of Food Insecurity Advocate.,excluded: renames_authority (administrative body rename)
 2022-S3065,2022,S3065,"Renames pinelands area as ""John McPhee pinelands area.""",no include pattern matched
 2022-S3212,2022,S3212,"Renames, extends eligibility, and makes various other changes to Primary Care Practitioner Loan Redemption Program.*",no include pattern matched
-2022-S3745,2022,S3745,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,no include pattern matched
-2022-S4258,2022,S4258,Renames Juvenile Justice Commission as Youth Justice Commission.,no include pattern matched
+2022-S3745,2022,S3745,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,excluded: renames_authority (administrative body rename)
+2022-S4258,2022,S4258,Renames Juvenile Justice Commission as Youth Justice Commission.,excluded: renames_authority (administrative body rename)
 2024-A223,2024,A223,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
 2024-A601,2024,A601,Establishes Division of Advocacy for Developmentally Disabled within Office of Public Defender; designates public defender for developmentally disabled clients in criminal cases.,no include pattern matched
 2024-A2862,2024,A2862,"Designates drug court program as the ""special probation recovery court program"" in statutes.",no include pattern matched
@@ -331,12 +280,11 @@ bill_id,session,full_number,synopsis,reason
 2024-A6240,2024,A6240,Designates open water lifeguards as first responders and emergency response providers.,excluded: legal_definition (legal/workforce classification)
 2024-S1878,2024,S1878,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
 2024-S3672,2024,S3672,"Establishes protections for immigrants interacting with government agencies; designates ""New Jersey Immigrant Trust Act.""",no include pattern matched
-2024-S4019,2024,S4019,Designates minimum percentage of residential substance use disorder treatment facility beds for use by NJ FamilyCare eligible individuals as condition for licensure.,no include pattern matched
 2024-S4109,2024,S4109,"Designates sweepstakes casinos as internet gaming; requires licensure, oversight, and taxation thereof within internet gaming framework.",excluded: regulatory_category (regulatory/administrative category definition)
 2024-S4674,2024,S4674,Establishes gold and silver transactional currency system; designates Commissioner of Banking and Insurance as administrator; provides legal tender status; authorizes fees.,excluded: administrative_officer (administrative officer/body designation)
 2024-A2801,2024,A2801,"Renames, extends eligibility, and makes various other changes to Primary Care Practitioner Loan Redemption Program.",no include pattern matched
-2024-A3678,2024,A3678,Renames Juvenile Justice Commission as Youth Justice Commission.,no include pattern matched
+2024-A3678,2024,A3678,Renames Juvenile Justice Commission as Youth Justice Commission.,excluded: renames_authority (administrative body rename)
 2024-S780,2024,S780,"Renames, extends eligibility, and makes various other changes to Primary Care Practitioner Loan Redemption Program.*",no include pattern matched
-2024-S1316,2024,S1316,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,no include pattern matched
-2024-S2423,2024,S2423,Renames Juvenile Justice Commission as Youth Justice Commission.,no include pattern matched
-2024-S4769,2024,S4769,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office.",no include pattern matched
+2024-S1316,2024,S1316,Renames Division of Purchase and Property; revises certain aspects of State procurement process; repeals MacBride principles certification requirement.,excluded: renames_authority (administrative body rename)
+2024-S2423,2024,S2423,Renames Juvenile Justice Commission as Youth Justice Commission.,excluded: renames_authority (administrative body rename)
+2024-S4769,2024,S4769,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office.",excluded: renames_authority (administrative body rename)

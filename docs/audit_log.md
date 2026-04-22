@@ -2,6 +2,29 @@
 
 Every rule change, human-review decision, and data refresh that is worth recording for future-me.
 
+## 2026-04-22 — Phase 3 post-backfill rule tuning
+
+Two audits on the full 13-session archive — the `other_ceremonial` bucket and a 25-bill random sample from 2000–2004. Found and fixed:
+
+- **Abbreviation bug in category regexes.** `[^.]{0,80}` was stopping matches at any period, so synopses with "U.S.", "St.", "N.J." and similar abbreviations broke. Replaced with `.{0,80}` throughout.
+- **N.J. prefix with periods.** State-symbol pattern assumed "NJ" without periods; added `n\.j\.\s+` alternative to all state_x patterns (include and category).
+- **Building namings misclassified as admin.** "Designates the Department of Education Building as X" was excluded because "Department" hit the admin rule. Added a negative lookahead: admin_officer rule now exempts any synopsis where a place noun (building/center/hall/facility/complex/court/plaza) appears before "as".
+- **Admin renames.** "Renames the State Parole Board as the State Parole Commission" slipped through because my renames_authority rule required the admin noun immediately after "renames". Broadened to allow modifier words between them, with the same place-noun exemption so building renames still pass.
+- **Missing state-symbol taxonomy.** Added "mineral" to the enumerated official-X list; added a multi-word pattern for "official X of (the) State" (catches "official mineral of State of NJ" and "official Junior and Senior Ancient Fife and Drum Corps of New Jersey"); added a no-"as" pattern for "Designates six State songs" and "Designates State Song, State Anthem...".
+- **Missing place-naming nouns**: added "street", "trail", "canal", "hall", "facility", and plain "center" (covers Trauma Center, Welcome Center, Technical Center, Community Center, etc.).
+- **Commemoration scope.** Broadened the include rule so "Commemorates life and accomplishments of Chief Roy Crazy Horse" is caught alongside anniversary-style resolutions.
+
+Net effect: **2,866 → 2,918 bills** (+52), `other_ceremonial` **33 → 2** (both are the "Miranda Vargas Act" — honorific naming of a substantive law, a genuine judgment call we've chosen to leave in `other_ceremonial` rather than force a category).
+
+By category after the fixes:
+- holiday_observance: 2,323
+- road_naming: 267
+- state_symbol: 258 (up from 216)
+- place_naming: 68
+- other_ceremonial: 2
+
+All 60 tests still pass.
+
 ## 2026-04-22 — Phase 3 backfill 2022 back to 2000
 
 - Ran the scraper sequentially for 12 biennial sessions. Wall-clock elapsed: 55:48. No retries needed, zero failed detail fetches.

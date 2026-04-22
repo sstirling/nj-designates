@@ -112,6 +112,21 @@ a:focus-visible {
   max-width: 38em;
 }
 
+.top-links {
+  margin: 0.75rem 0 0;
+  font-family: var(--f-sans);
+  font-size: 0.85rem;
+}
+.top-link {
+  display: inline-block;
+  padding: 0.25rem 0;
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  letter-spacing: 0.02em;
+}
+.top-link:hover { color: var(--link-hover); border-bottom-color: var(--accent); }
+
 .running-counter {
   display: flex;
   flex-wrap: wrap;
