@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Designation Machine — New Jersey's ceremonial bill archive</title>
-  <meta name="description" content="Every 'Designates X as' bill introduced in the New Jersey Legislature since 2000 — state muffin, named bridges, commemorative weeks. A data journalism project by Stephen Stirling.">
+  <title>Hereby Designated — New Jersey's ceremonial bill archive</title>
+  <meta name="description" content="Every 'Designates X as' bill introduced in the New Jersey Legislature — state muffin, named bridges, commemorative weeks. Working to be designated the official state designation tracker since 2026.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="The Designation Machine">
-  <meta property="og:description" content="New Jersey's ceremonial bill archive.">
+  <meta property="og:title" content="Hereby Designated">
+  <meta property="og:description" content="New Jersey's ceremonial bill archive. Working to be designated the official state designation tracker since 2026.">
   <meta property="og:type" content="website">
 
   <!-- Fonts: newspaper serif + clean sans. Loaded with display=swap so the page is readable before fonts arrive. -->
@@ -23,9 +23,8 @@
 
   <header class="site-header">
     <div class="masthead">
-      <p class="kicker">A New Jersey data journalism project</p>
-      <h1>The Designation Machine</h1>
-      <p class="dek">Every time the New&nbsp;Jersey Legislature has tried to make something official since 2000 — the state muffin, a named bridge, a commemorative week. This is the record.</p>
+      <h1>Hereby Designated</h1>
+      <p class="dek">Working to be designated the official state designation tracker since 2026.</p>
     </div>
     <div class="running-counter" aria-live="polite">
       <span class="counter-number" id="counter-number">—</span>
@@ -36,62 +35,69 @@
   <main id="main" class="site-main">
     <section class="lede">
       <h2>What is this?</h2>
-      <p>
-        The New Jersey Legislature spends a lot of its time making things official. Between
-        <span id="span-first-session">—</span> and today, it has introduced
-        <strong id="span-total">—</strong>
-        bills that designate state symbols, name bridges and rest stops, or carve out a
-        commemorative day or week. A sliver of them become law. Most do not.
+      <p id="lede-para">
+        The New Jersey Legislature spends a lot of its time making things official — state
+        symbols, named bridges, commemorative weeks. A sliver of these bills become law.
+        Most do not. This site is the record.
       </p>
       <p>
-        This site lets you browse the whole archive. It is playful about the subject and serious
-        about the data. Every row links back to the official bill page on the NJ Legislature's site.
-        The filters and sort order update the URL, so any view is shareable.
+        Every row below links back to the official bill page on the NJ Legislature's site.
+        Filters and sort order update the URL, so any view you land on is shareable.
       </p>
-    </section>
-
-    <section class="controls" aria-label="Filter controls">
-      <div class="controls-row">
-        <label class="search-box">
-          <span class="visually-hidden">Search bill text</span>
-          <input type="search" id="search" placeholder="Search synopsis, sponsor, or bill number" autocomplete="off">
-        </label>
-      </div>
-
-      <fieldset class="filter-group">
-        <legend>Category</legend>
-        <div id="filter-categories" class="chip-row"></div>
-      </fieldset>
-
-      <fieldset class="filter-group">
-        <legend>Became law?</legend>
-        <div id="filter-law" class="chip-row">
-          <button class="chip" type="button" data-filter="law" data-value="all" aria-pressed="true">All</button>
-          <button class="chip" type="button" data-filter="law" data-value="yes" aria-pressed="false">Became law</button>
-          <button class="chip" type="button" data-filter="law" data-value="no" aria-pressed="false">Did not pass</button>
-        </div>
-      </fieldset>
-
-      <fieldset class="filter-group">
-        <legend>Session</legend>
-        <div id="filter-sessions" class="chip-row"></div>
-      </fieldset>
-
-      <p class="results-summary" id="results-summary" aria-live="polite"></p>
     </section>
 
     <section class="chart-section" aria-label="Ceremonial bills by session">
       <h2>Ceremonial bills by session, stacked by category</h2>
       <p class="chart-dek">
         Each bar is one legislative session. Color shows the primary category.
-        The 2026–2027 session is in progress, so its count is lower than a completed cycle.
+        The current session may be in progress, so its count can trail a completed cycle.
       </p>
       <div id="chart-by-session" class="chart-host" role="img"
            aria-label="Stacked bar chart of ceremonial bills per biennial session, colored by category"></div>
     </section>
 
-    <section class="table-section" aria-label="Bill table">
-      <h2 id="table-heading">The record</h2>
+    <section class="sponsors-section" aria-labelledby="sponsors-heading">
+      <h2 id="sponsors-heading">Most prolific sponsors</h2>
+      <p class="chart-dek">
+        Ranked by the number of ceremonial bills each legislator has taken on as a primary sponsor.
+        Respects the filters below — narrow to a category or session to see who drives that kind of bill.
+      </p>
+      <ol id="sponsors-list" class="sponsors-list" aria-live="polite"></ol>
+      <button id="sponsors-toggle" class="link-button" type="button" hidden>Show more</button>
+    </section>
+
+    <section class="explore-section" aria-label="Search and browse the record">
+      <h2 id="explore-heading">Search the record</h2>
+      <div class="controls" role="group" aria-labelledby="explore-heading">
+        <div class="controls-row">
+          <label class="search-box">
+            <span class="visually-hidden">Search bill text</span>
+            <input type="search" id="search" placeholder="Search synopsis, sponsor, or bill number" autocomplete="off">
+          </label>
+        </div>
+
+        <fieldset class="filter-group">
+          <legend>Category</legend>
+          <div id="filter-categories" class="chip-row"></div>
+        </fieldset>
+
+        <fieldset class="filter-group">
+          <legend>Became law?</legend>
+          <div id="filter-law" class="chip-row">
+            <button class="chip" type="button" data-filter="law" data-value="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-filter="law" data-value="yes" aria-pressed="false">Became law</button>
+            <button class="chip" type="button" data-filter="law" data-value="no" aria-pressed="false">Did not pass</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="filter-group">
+          <legend>Session</legend>
+          <div id="filter-sessions" class="chip-row"></div>
+        </fieldset>
+
+        <p class="results-summary" id="results-summary" aria-live="polite"></p>
+      </div>
+
       <p class="table-dek">
         Click a column header to sort. Click a bill number to open the official NJ Legislature page.
       </p>

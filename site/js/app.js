@@ -4,6 +4,7 @@ import { initState, getState, setState, subscribe } from "./state.js";
 import { applyFilters, renderCategoryChips, renderSessionChips, wireLawChips, refreshLawChips } from "./filters.js";
 import { wireTable, renderTable, sortBills, refreshSortHeaders } from "./table.js";
 import { renderSessionChart } from "./charts.js";
+import { aggregateSponsors, renderSponsors, wireSponsorToggle } from "./sponsors.js";
 
 const state = {
   bills: [],
@@ -31,16 +32,15 @@ async function boot() {
   state.bills = bills;
   state.sessionsInData = [...new Set(bills.map(b => b.session))];
 
-  // Wire masthead numbers from meta.json. Every number on the page is
-  // machine-generated so copy never drifts from the data.
+  // Every number on the page is machine-generated from meta.json so copy
+  // never drifts from the data.
   document.getElementById("meta-updated").textContent = formatDate(meta.updated_at);
-  document.getElementById("span-total").textContent = meta.total_bills.toLocaleString();
-  document.getElementById("span-first-session").textContent =
-    meta.earliest_session ? `${meta.earliest_session}` : "—";
+  document.getElementById("lede-para").innerHTML = ledeCopy(meta);
 
   // Wire static event handlers.
   wireTable(document.getElementById("bills-table"));
   wireLawChips(document.getElementById("filter-law"));
+  wireSponsorToggle(document.getElementById("sponsors-toggle"), () => render(getState()));
 
   document.getElementById("search").addEventListener("input", (e) => {
     setState({ search: e.target.value });
@@ -70,6 +70,15 @@ function render(st) {
     ? `<strong>${filtered.length.toLocaleString()}</strong> bills match, <strong>${becameLaw}</strong> became law.`
     : "No bills match these filters.";
 
+  // Sponsor leaderboard — respects filters so you can ask "who sponsors the
+  // most state symbols" or "who has passed the most ceremonial bills this session".
+  const sponsors = aggregateSponsors(filtered);
+  renderSponsors(
+    document.getElementById("sponsors-list"),
+    document.getElementById("sponsors-toggle"),
+    sponsors
+  );
+
   // Chips + table.
   const counts = countByCategory(state.bills, st);
   renderCategoryChips(document.getElementById("filter-categories"), counts);
@@ -83,8 +92,8 @@ function render(st) {
   const empty = document.getElementById("empty-state");
   empty.hidden = filtered.length > 0;
 
-  // Chart: always renders against the full bills array but could be narrowed
-  // to the filter set — for now it's the 25-year context view.
+  // Chart: always renders against the full bills array. It's the 25-year
+  // context view, not the exploration surface. (Filters drive table & sponsors.)
   renderSessionChart(document.getElementById("chart-by-session"), state.bills);
 }
 
@@ -125,6 +134,25 @@ function formatDate(iso) {
   } catch {
     return iso;
   }
+}
+
+function ledeCopy(meta) {
+  const total = meta.total_bills.toLocaleString();
+  const laws = meta.total_became_law.toLocaleString();
+  const first = meta.earliest_session;
+  const last = meta.latest_session;
+
+  // Single-session phase (Phase 1) reads differently from the eventual
+  // multi-session backfill. Keep the voice consistent either way.
+  const range = first === last
+    ? `In the <strong>${first}–${first + 1}</strong> session, the New Jersey Legislature introduced`
+    : `Since <strong>${first}</strong>, the New Jersey Legislature has introduced`;
+
+  return `
+    ${range} <strong>${total}</strong> ceremonial bills —
+    designating state symbols, naming bridges and rest stops, or carving out a
+    commemorative day or week. <strong>${laws}</strong> became law. The rest did not.
+  `;
 }
 
 boot();
