@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Hereby Designated official seal">
+  <title>Hereby Designated — Mock Official Seal</title>
+
+  <defs>
+    <!-- Curved text paths live in the CREAM band (between r=192 and r=232) -->
+    <!-- Top arc at r=210 (center of band). Text ascenders go outward. -->
+    <path id="topArc" d="M 46 256 A 210 210 0 0 1 466 256" fill="none"/>
+    <!-- Bottom arc at r=210. Text ascenders go inward. -->
+    <path id="bottomArc" d="M 46 256 A 210 210 0 0 0 466 256" fill="none"/>
+
+    <!-- Reusable five-point star -->
+    <symbol id="star" viewBox="-10 -10 20 20" overflow="visible">
+      <polygon points="0,-10 2.94,-3.09 9.51,-3.09 4.29,1.18 6.18,8.09 0,4.00 -6.18,8.09 -4.29,1.18 -9.51,-3.09 -2.94,-3.09"/>
+    </symbol>
+
+    <!-- NJ outline derived from NJ OIT/OGIS municipalities (clipped-to-coast), dissolved + morphological closing + simplification. Local bounds: 0..125.08 x 0..240. -->
+    <path id="nj" d="M 0.25 173.46 L 0.0 170.36 L 3.03 167.2 L 3.61 164.3 L 5.89 161.67 L 7.34 157.49 L 8.99 155.84 L 12.74 153.66 L 14.16 151.55 L 16.49 149.86 L 19.82 149.43 L 21.17 149.9 L 25.29 148.47 L 28.75 146.13 L 31.44 145.93 L 32.59 143.11 L 32.08 140.81 L 32.28 138.46 L 37.34 135.8 L 38.71 133.33 L 41.02 132.63 L 43.71 129.86 L 47.08 127.58 L 52.51 126.02 L 54.5 124.17 L 55.61 121.68 L 58.32 122.31 L 60.25 121.04 L 61.81 120.86 L 63.25 119.23 L 63.1 117.77 L 60.63 115.54 L 59.45 112.73 L 54.49 109.66 L 51.83 104.35 L 48.74 102.52 L 46.51 100.37 L 46.04 97.85 L 44.63 94.71 L 42.46 93.54 L 40.1 94.13 L 37.91 92.87 L 36.87 89.0 L 37.43 85.62 L 36.92 80.51 L 34.9 78.21 L 33.22 77.36 L 31.51 77.2 L 29.8 78.29 L 28.5 78.04 L 27.43 77.05 L 27.77 75.23 L 26.9 73.18 L 27.7 72.08 L 27.04 70.11 L 27.86 68.07 L 26.72 65.69 L 28.14 62.1 L 27.29 59.9 L 28.56 58.74 L 29.08 57.38 L 31.78 57.58 L 33.87 55.95 L 35.48 52.98 L 34.82 51.18 L 34.99 50.36 L 36.92 49.99 L 37.91 48.41 L 37.71 47.33 L 36.45 45.72 L 36.19 43.89 L 34.81 42.6 L 32.94 38.85 L 31.93 37.95 L 32.19 36.37 L 39.68 31.55 L 41.26 28.64 L 42.55 27.6 L 43.63 24.42 L 48.34 21.16 L 51.09 17.31 L 52.45 14.14 L 52.19 12.6 L 54.38 7.9 L 57.27 4.98 L 57.66 3.59 L 59.43 3.09 L 60.53 1.24 L 63.24 1.0 L 65.24 0.0 L 96.55 19.15 L 125.08 35.54 L 122.62 45.17 L 119.3 53.81 L 116.53 58.22 L 114.86 64.99 L 112.97 66.29 L 112.37 68.81 L 110.32 69.94 L 106.84 70.48 L 105.57 69.3 L 103.19 70.64 L 102.22 72.1 L 102.49 74.72 L 101.44 78.27 L 98.73 79.61 L 98.8 82.4 L 97.25 85.59 L 98.0 88.16 L 102.28 90.22 L 103.14 90.1 L 104.19 88.78 L 105.39 89.53 L 107.56 88.97 L 114.15 92.67 L 116.88 93.45 L 117.99 92.73 L 118.14 90.89 L 117.13 88.17 L 116.2 87.3 L 117.6 86.81 L 119.0 89.81 L 119.86 99.17 L 119.46 104.45 L 115.38 122.45 L 112.95 136.05 L 110.46 156.99 L 110.7 158.11 L 109.06 159.94 L 106.81 165.08 L 99.91 177.49 L 95.7 183.18 L 94.46 184.08 L 92.74 189.81 L 86.07 197.74 L 82.64 199.06 L 76.53 203.18 L 75.38 205.32 L 70.91 209.26 L 65.05 218.56 L 64.1 220.88 L 64.5 222.37 L 59.36 229.81 L 58.18 230.53 L 58.25 232.77 L 53.67 237.26 L 52.54 239.21 L 51.29 238.61 L 48.71 239.86 L 47.05 240.0 L 44.56 239.52 L 44.2 238.83 L 45.68 232.12 L 50.15 222.13 L 50.73 218.22 L 49.84 215.91 L 45.36 214.1 L 39.97 213.68 L 39.99 212.18 L 39.03 211.33 L 35.24 212.1 L 33.74 211.85 L 31.73 215.02 L 30.58 214.02 L 29.54 212.85 L 28.94 209.34 L 27.6 208.65 L 26.65 207.15 L 23.83 205.8 L 22.69 203.25 L 21.5 202.97 L 20.1 204.07 L 18.37 202.28 L 16.74 198.81 L 15.78 198.49 L 14.73 199.26 L 14.08 198.19 L 12.9 197.72 L 11.89 195.62 L 9.76 194.62 L 6.91 189.97 L 3.31 187.61 L 1.55 187.41 L 1.06 186.41 L 1.07 183.87 L 2.02 182.95 L 2.32 180.86 L 1.77 179.52 L 3.29 176.43 L 2.84 175.46 L 0.25 173.46 Z"
+      fill="#F5F1E8"
+      stroke="#E63946"
+      stroke-width="1.4"
+      stroke-linejoin="round"
+      stroke-linecap="round"/>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="256" cy="256" r="252" fill="#F5F1E8"/>
+
+  <!-- Outer heavy ring -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#0B2545" stroke-width="10"/>
+
+  <!-- Thin inner border line -->
+  <circle cx="256" cy="256" r="232" fill="none" stroke="#0B2545" stroke-width="1.4"/>
+
+  <!-- Inner bordering line for the text band -->
+  <circle cx="256" cy="256" r="192" fill="none" stroke="#0B2545" stroke-width="1.4"/>
+
+  <!-- Top curved text: HEREBY DESIGNATED -->
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="900" fill="#0B2545" letter-spacing="4">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">HEREBY DESIGNATED</textPath>
+  </text>
+
+  <!-- Bottom curved text: motto -->
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="15" font-weight="700" fill="#E63946" letter-spacing="5">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">AD HOC ET DECORUM</textPath>
+  </text>
+
+  <!-- Left & right red stars dividing top/bottom text -->
+  <g fill="#E63946">
+    <use href="#star" x="42" y="256" width="18" height="18"/>
+    <use href="#star" x="470" y="256" width="18" height="18"/>
+  </g>
+
+  <!-- Medallion: inner dark disc -->
+  <circle cx="256" cy="256" r="184" fill="#0B2545"/>
+  <circle cx="256" cy="256" r="184" fill="none" stroke="#F5F1E8" stroke-width="3"/>
+  <circle cx="256" cy="256" r="174" fill="none" stroke="#F5F1E8" stroke-width="1"/>
+
+  <!-- New Jersey outline, centered and fitted inside medallion -->
+  <!-- NJ path bounds: 0..125.08 x 0..240; center (62.54, 120). Trenton ≈ (60.02, 112.31). -->
+  <!-- Target height ~ 300; scale = 300/240 = 1.25 -->
+  <g transform="translate(256 258) scale(1.25) translate(-62.54 -120)">
+    <use href="#nj"/>
+    <!-- Trenton star marker -->
+    <g fill="#E63946" transform="translate(60.02 112.31)">
+      <polygon points="0,-5 1.47,-1.55 5,-1.55 2.14,0.59 3.09,4.05 0,2.0 -3.09,4.05 -2.14,0.59 -5,-1.55 -1.47,-1.55"/>
+    </g>
+  </g>
+</svg>

@@ -93,6 +93,28 @@ a:focus-visible {
   margin: 0 0 0.75rem;
 }
 
+/* Logo beside the title. Flexes to a column at 320px so the title stays
+   the primary visual element on the smallest screens. */
+.masthead-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.masthead-logo {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  display: block;
+}
+@media (min-width: 720px) {
+  .masthead-logo { width: 96px; height: 96px; }
+  .masthead-title { gap: 1.25rem; }
+}
+@media (max-width: 380px) {
+  .masthead-title { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .masthead-logo { width: 56px; height: 56px; }
+}
+
 .masthead h1 {
   font-family: var(--f-serif);
   font-weight: 700;
