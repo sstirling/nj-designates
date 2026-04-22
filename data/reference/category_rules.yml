@@ -1,0 +1,119 @@
+# Rules for filtering and tagging ceremonial designation bills.
+#
+# Order of operations in scraper/categorize.py:
+#   1. exclude (drop bill entirely, log reason to audit_rejected.csv)
+#   2. include (bill must match at least one pattern or it's dropped)
+#   3. categorize (assign all matching category tags)
+#   4. subcategorize (assign keyword-based tags within each category)
+#   5. priority (pick primary category for default views)
+#
+# Patterns are Python regex, case-insensitive. Edit this file to refine the
+# filter — the scraper reads it at runtime, no code change needed. See
+# docs/METHODOLOGY.md for the intent behind each rule.
+
+# Bills whose synopsis matches ANY exclude pattern are dropped with a reason.
+exclude:
+  - name: administrative_officer
+    pattern: '\bdesignates?\s+(the\s+)?(attorney\s+general|commissioner|secretary|director|department|division|board|commission|authority|bureau|office|chief|executive)\b'
+    reason: "administrative officer/body designation"
+  - name: regulatory_category
+    pattern: '\bdesignates?\b[^.]{0,80}\bas\s+(an?\s+)?(internet|online|regulatory|administrative|primary|secondary)\b'
+    reason: "regulatory/administrative category definition"
+  - name: responsible_agency
+    pattern: '\bdesignates?\b[^.]{0,80}\bas\s+the\s+state\s+agency\s+responsible\b'
+    reason: "designates responsible state agency"
+  - name: legal_definition
+    pattern: '\bdesignates?\b[^.]{0,80}\bas\s+(a\s+)?(first\s+responders?|public\s+employees?|emergency\s+response)\b'
+    reason: "legal/workforce classification"
+
+# A bill must match at least one include pattern to be kept.
+# These are broad; they let in some borderline cases that category rules then
+# sort or leave as other_ceremonial for human review.
+include:
+  - name: state_x
+    # "as [nj/new jersey/new jersey's] State X" — catches state symbols regardless of
+    # whether the synopsis writer uses "state", "NJ State", "New Jersey State", etc.
+    pattern: "\\bas\\s+(the\\s+)?(official\\s+)?(nj\\s+|new\\s+jersey\\s+|new\\s+jersey'?s?\\s+)?state\\b"
+  - name: official_x
+    pattern: '\bas\s+(the\s+)?official\b'
+  - name: public_holiday
+    pattern: '\b(public|state)\s+holiday\b'
+  - name: day_week_month_year
+    # Day / week / weekend / month / year observance. Pattern covers "as X day",
+    # "day as X", "designates ... day" (no 'as'), plus year-long observances
+    # like "designates 2026 as Year of Black History."
+    pattern: '\b(day|week|weekend|month|year)\b[^.]{0,80}\bas\b|\bas\b[^.]{0,80}\b(day|week|weekend|month|year)\b|\bdesignates?\b[^.]{0,120}\b(day|week|weekend|month)\b|\bdesignates?\s+\d{4}\s+as\b'
+  - name: commemorates
+    # Commemorative / celebratory resolutions — "Commemorates 126th anniversary
+    # of Jewish War Veterans." These are ceremonial acts even without 'designates'.
+    # Exclusions handle the rare cases where 'commemorates' appears in an
+    # administrative bill.
+    pattern: '\b(commemorates?|celebrates?)\b[^.]{0,80}\b(anniversary|birthday|independence|day|week|weekend|month|year|holiday|heritage|remembrance|memorial|founding)\b'
+  - name: road_or_place
+    pattern: '\b(highway|route\s+\d+|bridge|interchange|rest\s+area|overpass|expressway|parkway|road|street|rail\s+station|train\s+station|ferry\s+terminal|park|building|plaza)\b'
+  - name: quoted_name
+    pattern: '\bdesignates?\b[^.]{0,120}\bas\s+["“‘]'
+
+# Category tags. A bill gets ALL matching tags. The 'priority' section below
+# decides which tag wins when we need a single "primary" category.
+categories:
+  state_symbol:
+    # Negative lookahead on road/place nouns so "State Highway Route 71" in a
+    # road-naming bill doesn't get miscategorized as a state symbol.
+    patterns:
+      - "\\bas\\s+(the\\s+)?(official\\s+)?(nj\\s+|new\\s+jersey\\s+|new\\s+jersey'?s?\\s+)?state\\b(?!\\s+(highway|route|bridge|interchange|rest\\s+area|overpass|expressway|parkway|park|rail|agency|responsible|police|department|division))"
+      - "\\bas\\s+(the\\s+)?official\\s+state\\b(?!\\s+(highway|route|bridge|interchange|rest\\s+area|overpass|expressway|parkway|park|rail|agency|responsible|police|department|division))"
+      # "Designates neon yellow as official color to raise awareness..." —
+      # 'official X' where X isn't a governmental office or state symbol term.
+      - '\bas\s+(the\s+)?official\s+(color|gem|stone|insignia|emblem|motto)\b'
+    subcategories:
+      food:   ['muffin', 'fruit', 'vegetable', 'beverage', 'dessert', 'candy', 'taffy', 'pie', 'bread', 'cheese', 'ice cream']
+      nature: ['bird', 'flower', 'tree', 'insect', 'pollinator', 'bee', 'reptile', 'amphibian', 'fish', 'mammal', 'butterfly', 'animal', 'seashell']
+      culture: ['song', 'dance', 'sport', 'poem', 'motto', 'locomotive', 'ship', 'vessel', 'dinosaur', 'microbe']
+      geology: ['rock', 'mineral', 'fossil', 'soil', 'gem']
+
+  holiday_observance:
+    patterns:
+      - '\b(public|state)\s+holiday\b'
+      - '\b(day|week|weekend|month|year)\b[^.]{0,80}\bas\b'
+      - '\bas\b[^.]{0,80}\b(day|week|weekend|month|year)\b'
+      # "Designates March 30th of each year 'Menstrual Toxic Shock Syndrome
+      # Awareness Day.'" — no 'as', so match designates ... day/week/month.
+      - '\bdesignates?\b[^.]{0,120}\b(day|week|weekend|month)\b'
+      # "Designates 2026 as 'Year of Black History'" — year-long observance.
+      - '\bdesignates?\s+\d{4}\s+as\b'
+      # "Commemorates X anniversary" resolutions are ceremonial acts too.
+      - '\b(commemorates?|celebrates?)\b[^.]{0,80}\b(anniversary|birthday|independence|day|week|weekend|month|year|holiday|heritage|remembrance|memorial|founding)\b'
+    subcategories:
+      awareness: ['awareness', 'prevention']
+      commemoration: ['memorial', 'remembrance', 'commemorate', 'commemoration', 'in honor of', 'patriot day', 'september 11', 'veterans', 'holocaust']
+      heritage: ['heritage', 'history month', 'pride']
+
+  road_naming:
+    patterns:
+      - '\b(highway|route\s+\d+|bridge|interchange|rest\s+area|overpass|expressway|parkway)\b'
+    subcategories:
+      bridge: ['bridge', 'overpass']
+      highway: ['highway', 'route', 'expressway', 'parkway', 'interchange']
+      rest_area: ['rest area', 'rest stop']
+
+  place_naming:
+    patterns:
+      - '\b(park|building|rail\s+station|train\s+station|ferry\s+terminal|plaza|court|welcome\s+center|visitor\s+center|complex)\b'
+      - '\bdesignates\s+and\s+preserves?\b'
+    subcategories:
+      transit: ['rail station', 'train station', 'ferry', 'transit', 'terminal']
+      civic: ['park', 'building', 'plaza', 'court', 'hall', 'peninsula', 'preserve', 'welcome center', 'visitor center', 'complex']
+
+# Higher priority wins when we need a single "primary" category for a bill.
+# state_symbol beats place_naming when both match (e.g. "designates Caven Point
+# as state natural habitat" would tag both, but state_symbol is what readers
+# care about first).
+# holiday_observance wins over state_symbol: bills like "designates September 11
+# as State and public holiday" legitimately match both ("as State" and "public
+# holiday"), but the journalistic story is the holiday, not the symbol.
+priority:
+  - holiday_observance
+  - state_symbol
+  - road_naming
+  - place_naming

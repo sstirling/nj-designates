@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.DS_Store
+.coverage
+.ipynb_checkpoints/
+
+# Raw scraped data is immutable-per-run but not versioned — too large and too churny.
+# Preserve provenance by committing dated tarballs under data/raw/snapshots/.
+data/raw/sessions/
+data/raw/bill_details/
+
+# Keep the snapshots directory tracked even when empty.
+!data/raw/snapshots/

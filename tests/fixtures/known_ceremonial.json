@@ -1,0 +1,100 @@
+[
+  {
+    "session": "2024",
+    "full_number": "A3611",
+    "synopsis": "Designates blueberry muffin as State Muffin.",
+    "expected_primary_category": "state_symbol",
+    "expected_subcategories": ["food"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A1706",
+    "synopsis": "Designates Ultimate as State sport.",
+    "expected_primary_category": "state_symbol",
+    "expected_subcategories": ["culture"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A444",
+    "synopsis": "Designates \"New Jersey State Song\" as State song.",
+    "expected_primary_category": "state_symbol",
+    "expected_subcategories": ["culture"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A6248",
+    "synopsis": "Designates salt water taffy as New Jersey State Candy.",
+    "expected_primary_category": "state_symbol",
+    "expected_subcategories": ["food"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A3033",
+    "synopsis": "Designates Common Eastern Bumble Bee as New Jersey State Native Pollinator.",
+    "expected_primary_category": "state_symbol",
+    "expected_subcategories": ["nature"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A6196",
+    "synopsis": "Designates \"John Bull\" as NJ State steam locomotive.",
+    "expected_primary_category": "state_symbol",
+    "expected_subcategories": []
+  },
+  {
+    "session": "2024",
+    "full_number": "A309",
+    "synopsis": "Designates, as State and public holiday, September 11 as Patriot Day.",
+    "expected_primary_category": "holiday_observance",
+    "expected_subcategories": ["commemoration"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A654",
+    "synopsis": "Designates Earth Day week each year as Litter Law Enforcement Week for special effort to enforce littering laws.",
+    "expected_primary_category": "holiday_observance",
+    "expected_subcategories": []
+  },
+  {
+    "session": "2024",
+    "full_number": "AJR57",
+    "synopsis": "Designates March 30th of each year \"Menstrual Toxic Shock Syndrome Awareness Day.\"",
+    "expected_primary_category": "holiday_observance",
+    "expected_subcategories": ["awareness"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A676",
+    "synopsis": "Designates portion of State Highway Route 71 as \"John Tarantino Highway.\"",
+    "expected_primary_category": "road_naming",
+    "expected_subcategories": ["highway"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A1758",
+    "synopsis": "Designates State Highway Route 72 as \"Burlington-Ocean Purple Heart Memorial Highway.\"",
+    "expected_primary_category": "road_naming",
+    "expected_subcategories": ["highway"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A4127",
+    "synopsis": "Designates State Highway Route 42 and Interstate Highway Route 295 interchange as \"Ensign John R. Elliott Memorial Interchange.\"",
+    "expected_primary_category": "road_naming",
+    "expected_subcategories": ["highway"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A2681",
+    "synopsis": "Designates Morris Plains rail station as \"Frank J. Druetzler Station - Morris Plains, New Jersey.\"",
+    "expected_primary_category": "place_naming",
+    "expected_subcategories": ["transit"]
+  },
+  {
+    "session": "2024",
+    "full_number": "A4058",
+    "synopsis": "Designates and preserves Caven Point Peninsula in Liberty State Park as natural habitat.",
+    "expected_primary_category": "place_naming",
+    "expected_subcategories": ["civic"]
+  }
+]

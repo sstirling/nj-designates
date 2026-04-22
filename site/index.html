@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Designation Machine — New Jersey's ceremonial bill archive</title>
+  <meta name="description" content="Every 'Designates X as' bill introduced in the New Jersey Legislature since 2000 — state muffin, named bridges, commemorative weeks. A data journalism project by Stephen Stirling.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Designation Machine">
+  <meta property="og:description" content="New Jersey's ceremonial bill archive.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts: newspaper serif + clean sans. Loaded with display=swap so the page is readable before fonts arrive. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="masthead">
+      <p class="kicker">A New Jersey data journalism project</p>
+      <h1>The Designation Machine</h1>
+      <p class="dek">Every time the New&nbsp;Jersey Legislature has tried to make something official since 2000 — the state muffin, a named bridge, a commemorative week. This is the record.</p>
+    </div>
+    <div class="running-counter" aria-live="polite">
+      <span class="counter-number" id="counter-number">—</span>
+      <span class="counter-label" id="counter-label">ceremonial bills</span>
+    </div>
+  </header>
+
+  <main id="main" class="site-main">
+    <section class="lede">
+      <h2>What is this?</h2>
+      <p>
+        The New Jersey Legislature spends a lot of its time making things official. Between
+        <span id="span-first-session">—</span> and today, it has introduced
+        <strong id="span-total">—</strong>
+        bills that designate state symbols, name bridges and rest stops, or carve out a
+        commemorative day or week. A sliver of them become law. Most do not.
+      </p>
+      <p>
+        This site lets you browse the whole archive. It is playful about the subject and serious
+        about the data. Every row links back to the official bill page on the NJ Legislature's site.
+        The filters and sort order update the URL, so any view is shareable.
+      </p>
+    </section>
+
+    <section class="controls" aria-label="Filter controls">
+      <div class="controls-row">
+        <label class="search-box">
+          <span class="visually-hidden">Search bill text</span>
+          <input type="search" id="search" placeholder="Search synopsis, sponsor, or bill number" autocomplete="off">
+        </label>
+      </div>
+
+      <fieldset class="filter-group">
+        <legend>Category</legend>
+        <div id="filter-categories" class="chip-row"></div>
+      </fieldset>
+
+      <fieldset class="filter-group">
+        <legend>Became law?</legend>
+        <div id="filter-law" class="chip-row">
+          <button class="chip" type="button" data-filter="law" data-value="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="law" data-value="yes" aria-pressed="false">Became law</button>
+          <button class="chip" type="button" data-filter="law" data-value="no" aria-pressed="false">Did not pass</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="filter-group">
+        <legend>Session</legend>
+        <div id="filter-sessions" class="chip-row"></div>
+      </fieldset>
+
+      <p class="results-summary" id="results-summary" aria-live="polite"></p>
+    </section>
+
+    <section class="chart-section" aria-label="Ceremonial bills by session">
+      <h2>Ceremonial bills by session, stacked by category</h2>
+      <p class="chart-dek">
+        Each bar is one legislative session. Color shows the primary category.
+        The 2026–2027 session is in progress, so its count is lower than a completed cycle.
+      </p>
+      <div id="chart-by-session" class="chart-host" role="img"
+           aria-label="Stacked bar chart of ceremonial bills per biennial session, colored by category"></div>
+    </section>
+
+    <section class="table-section" aria-label="Bill table">
+      <h2 id="table-heading">The record</h2>
+      <p class="table-dek">
+        Click a column header to sort. Click a bill number to open the official NJ Legislature page.
+      </p>
+      <div class="table-wrapper">
+        <table id="bills-table">
+          <thead>
+            <tr>
+              <th scope="col" data-sort="full_number">Bill</th>
+              <th scope="col" data-sort="session">Session</th>
+              <th scope="col" data-sort="synopsis">Synopsis</th>
+              <th scope="col" data-sort="primary_category">Category</th>
+              <th scope="col" data-sort="status_label">Status</th>
+              <th scope="col" data-sort="became_law">Law?</th>
+              <th scope="col">Primary sponsors</th>
+            </tr>
+          </thead>
+          <tbody id="bills-tbody"></tbody>
+        </table>
+      </div>
+      <p id="empty-state" class="empty-state" hidden>
+        No ceremonial bills match these filters. The legislature briefly rested.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="source-line">
+      Data: New Jersey Legislature bill search API
+      (<a href="https://www.njleg.state.nj.us/bill-search" rel="external noopener">njleg.state.nj.us</a>).
+      Last refreshed <span id="meta-updated">—</span>.
+      See <a href="https://github.com/sstirling/nj-designates" rel="external noopener">the methodology</a> for what counts as a ceremonial bill and what doesn't.
+    </p>
+    <p class="byline">Reporting by Stephen Stirling.</p>
+  </footer>
+
+  <!-- Observable Plot for charting (ESM from unpkg). -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

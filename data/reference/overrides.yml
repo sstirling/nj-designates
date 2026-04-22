@@ -1,0 +1,19 @@
+# Human-review overrides. Applied last in the categorize pipeline.
+# Keys are bill_id ("{session}-{full_number}", e.g. "2024-A444").
+#
+# Use these sparingly — the goal is for category_rules.yml to handle
+# 95%+ of bills. Overrides are the journalistic-integrity layer for the
+# remaining ambiguities.
+
+# Phase 2 review: edge cases to consider promoting to the main include rules
+# or adding here as force_include. Not yet applied.
+#   - 2024-AR24   "Commemorates christening of USS John Basilone."
+#   - 2024-AR189  "Recognizes Sikh community contributions and commemorates Sikh Massacre of 1984."
+#   - 2024-AJR65  "Designates annual Lunar New Year in NJ."
+#   - 2024-A3090  "Renames pinelands area as 'John McPhee pinelands area.'"
+#   - 2024-S4670  "Renames 'Delaware Bay' to 'Bay of New Jersey'..."
+#   - 2024-S4923  "Designates 'New Jersey and You - Perfect Together Again' as slogan"
+
+force_include: []   # ["2024-AXXXX"] — bills wrongly excluded by rules
+force_exclude: []   # bills wrongly included
+force_category: {}  # {"2024-A444": ["road_naming"]}  explicit category override

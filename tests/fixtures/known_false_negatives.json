@@ -1,0 +1,28 @@
+[
+  {
+    "note": "These bills were dropped by an earlier version of the include regex that only matched lowercase 'as state'. They must pass the current filter. Regression harness.",
+    "session": "2024",
+    "full_number": "A3033",
+    "synopsis": "Designates Common Eastern Bumble Bee as New Jersey State Native Pollinator."
+  },
+  {
+    "session": "2024",
+    "full_number": "A4129",
+    "synopsis": "Designates \"New Jersey's For You and Me\" by Kathleen Golden Murphy and Shannon Murphy Flannery as New Jersey State song."
+  },
+  {
+    "session": "2024",
+    "full_number": "A6196",
+    "synopsis": "Designates \"John Bull\" as NJ State steam locomotive."
+  },
+  {
+    "session": "2024",
+    "full_number": "A6248",
+    "synopsis": "Designates salt water taffy as New Jersey State Candy."
+  },
+  {
+    "session": "2024",
+    "full_number": "AJR57",
+    "synopsis": "Designates March 30th of each year \"Menstrual Toxic Shock Syndrome Awareness Day.\""
+  }
+]

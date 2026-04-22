@@ -1,0 +1,19 @@
+code,label,notes
+WAPP,Waiting approval by governor,Bill passed both houses; awaiting governor signature or veto
+APP,Approved by governor,Signed into law; see the Governor Action field for nuance
+ASL,Assembly second reading list,In the Assembly queue for second reading
+AEN,Assembly enacted,Passed the Assembly; awaiting Senate action or concurrence
+AHU,Assembly hold under call,Placed on hold in the Assembly
+AIR,Assembly introduced and referred,Introduced in the Assembly and referred to committee
+AIC,Assembly introduced in committee,
+ACP,Assembly committee pending,Awaiting action in Assembly committee
+AR,Assembly reported,Reported out of committee
+ARM,Assembly reported with amendments,
+SIN,Senate introduced,Introduced in the Senate
+SIR,Senate introduced and referred,Introduced in the Senate and referred to committee
+SSL,Senate second reading list,In the Senate queue for second reading
+SHU,Senate hold under call,Placed on hold in the Senate
+SR,Senate reported,Reported out of committee
+SRM,Senate reported with amendments,
+SEN,Senate enacted,Passed the Senate
+SCP,Senate committee pending,Awaiting action in Senate committee
