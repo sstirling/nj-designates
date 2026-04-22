@@ -1,0 +1,28 @@
+backfill started 2026-04-22T09:19:41-04:00 — 12 sessions
+[2026-04-22T09:19:41-04:00] starting session 2022
+  finished session 2022 in 424s — 2026-04-22 09:26:45,590 INFO scraper.fetch_bill_details session=2022: 319 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T09:26:45-04:00] starting session 2020
+  finished session 2020 in 433s — 2026-04-22 09:33:58,208 INFO scraper.fetch_bill_details session=2020: 326 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T09:33:58-04:00] starting session 2018
+  finished session 2018 in 455s — 2026-04-22 09:41:33,511 INFO scraper.fetch_bill_details session=2018: 341 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T09:41:33-04:00] starting session 2016
+  finished session 2016 in 364s — 2026-04-22 09:47:37,754 INFO scraper.fetch_bill_details session=2016: 274 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T09:47:37-04:00] starting session 2014
+  finished session 2014 in 313s — 2026-04-22 09:52:50,414 INFO scraper.fetch_bill_details session=2014: 235 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T09:52:50-04:00] starting session 2012
+  finished session 2012 in 259s — 2026-04-22 09:57:09,468 INFO scraper.fetch_bill_details session=2012: 192 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T09:57:09-04:00] starting session 2010
+  finished session 2010 in 223s — 2026-04-22 10:00:52,131 INFO scraper.fetch_bill_details session=2010: 167 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T10:00:52-04:00] starting session 2008
+  finished session 2008 in 229s — 2026-04-22 10:04:40,893 INFO scraper.fetch_bill_details session=2008: 166 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T10:04:41-04:00] starting session 2006
+  finished session 2006 in 192s — 2026-04-22 10:07:52,986 INFO scraper.fetch_bill_details session=2006: 141 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T10:07:53-04:00] starting session 2004
+  finished session 2004 in 180s — 2026-04-22 10:10:52,961 INFO scraper.fetch_bill_details session=2004: 132 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T10:10:53-04:00] starting session 2002
+  finished session 2002 in 152s — 2026-04-22 10:13:25,190 INFO scraper.fetch_bill_details session=2002: 115 fetched, 0 skipped (cached), 0 failed
+[2026-04-22T10:13:25-04:00] starting session 2000
+  finished session 2000 in 124s — 2026-04-22 10:15:29,843 INFO scraper.fetch_bill_details session=2000: 89 fetched, 0 skipped (cached), 0 failed
+backfill fetch done 2026-04-22T10:15:29-04:00; running full build...
+build finished rc=0 — built 2866 bills across sessions [2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024]; 341 rejected
+ALL DONE 2026-04-22T10:15:30-04:00

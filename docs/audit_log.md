@@ -2,6 +2,14 @@
 
 Every rule change, human-review decision, and data refresh that is worth recording for future-me.
 
+## 2026-04-22 — Phase 3 backfill 2022 back to 2000
+
+- Ran the scraper sequentially for 12 biennial sessions. Wall-clock elapsed: 55:48. No retries needed, zero failed detail fetches.
+- Dataset grew from 369 bills (2024 only) to **2,866 bills** across 13 sessions. 312 became law (10.9% pass rate across the full archive — noticeably higher than 2024 alone because older sessions have more time for bills to have made it through).
+- Per-session bill counts confirm what the 2024 sample suggested: ceremonial designation bills have grown steadily. 89 in 2000–2001, 115 in 2002–2003, climbing to 341 in 2018–2019 and 369 in 2024–2025.
+- Rejected bills across the archive: 341. Audit-review queue to revisit (~3% of the total kept volume), manageable.
+- Top sponsor across the full period is Assemblywoman Angela V. McKnight with 194 primary sponsorships. Second is Valerie Vainieri Huttle (retired 2021) at 149.
+
 ## 2026-04-22 — Phase 2 design polish + accessibility
 
 - Category palette darkened from ColorBrewer Set2 defaults so white text on the category pills clears WCAG AA (4.5:1). New values: `#0f6f55` state_symbol, `#9b4100` holiday, `#4a4583` road, `#9c1a60` place, `#565044` other. All white-on-color ratios now 6.1–8.5.
