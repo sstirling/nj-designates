@@ -15,3 +15,6 @@ data/raw/bill_details/
 
 # Keep the snapshots directory tracked even when empty.
 !data/raw/snapshots/
+
+# Scraper run logs — regenerated on every backfill.
+scripts/*.log
