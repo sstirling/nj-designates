@@ -7,7 +7,7 @@ Pipeline per session:
   3. Read per-bill details from data/raw/bill_details/<year>/<bill>.json.
   4. Categorize; build a slim per-bill record.
   5. Write data/processed/bills.parquet (columnar, for future analysis) and
-     site/data/bills.json + meta.json + sessions.json (for the web app).
+     data/bills.json + meta.json + sessions.json (for the web app).
 
 Every quantitative value the site displays comes from meta.json, which this
 script generates. Nothing is hand-typed in site copy.
@@ -208,7 +208,7 @@ def write_outputs(all_records: list[dict], all_rejected: list[dict],
         DATA_PROCESSED / "audit_rejected.csv", index=False
     )
 
-    # Site JSON — consumed directly by site/js/app.js.
+    # Site JSON — consumed directly by js/app.js.
     site_rows = _slim_for_site(all_records)
     (SITE_DATA / "bills.json").write_text(json.dumps(site_rows))
 

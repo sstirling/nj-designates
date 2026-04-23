@@ -7,7 +7,7 @@ amount of tspan / font-feature tweaking fixed it. The logo itself still comes
 from its SVG source, rasterized once via cairosvg (its all-caps curved text
 renders cleanly).
 
-Reads live figures from site/data/meta.json so the stat line stays in sync.
+Reads live figures from data/meta.json so the stat line stays in sync.
 Run after every data refresh:
     python scripts/make_social_card.py
 """
@@ -22,11 +22,11 @@ import cairosvg
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
-META = ROOT / "site" / "data" / "meta.json"
-LOGO = ROOT / "site" / "assets" / "hereby-designated-logo.svg"
-OUT_PNG = ROOT / "site" / "assets" / "social-card.png"
+META = ROOT / "data" / "meta.json"
+LOGO = ROOT / "assets" / "hereby-designated-logo.svg"
+OUT_PNG = ROOT / "assets" / "social-card.png"
 
-# Palette — keep in sync with site/css/base.css.
+# Palette — keep in sync with css/base.css.
 CREAM = (246, 241, 231)
 INK = (26, 24, 18)
 MUTED = (106, 101, 88)

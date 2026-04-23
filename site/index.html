@@ -2,164 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hereby Designated — New Jersey's ceremonial bill archive</title>
-  <meta name="description" content="Every 'Designates X as' bill introduced in the New Jersey Legislature — state muffin, named bridges, commemorative weeks. Working to be designated the official state designation tracker since 2026.">
+  <title>Hereby Designated — redirecting…</title>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Hereby Designated">
-  <meta property="og:description" content="New Jersey's ceremonial bill archive. Working to be designated the official state designation tracker since 2026.">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Hereby Designated">
-  <meta property="og:url" content="https://sstirling.github.io/nj-designates/">
-  <meta property="og:image" content="https://sstirling.github.io/nj-designates/assets/social-card.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Hereby Designated — a mock official seal of New Jersey next to the tagline 'Working to be designated the official state designation tracker since 2026.'">
+  <!-- This page moved on 2026-04-22. The site now lives at the repo root.
+       Meta refresh handles no-JS browsers and most crawlers; the inline
+       script gives modern browsers a slightly faster jump. -->
+  <meta http-equiv="refresh" content="0; url=../">
+  <link rel="canonical" href="https://sstirling.github.io/nj-designates/">
+  <meta name="robots" content="noindex">
+  <script>window.location.replace("../");</script>
 
-  <!-- Twitter card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hereby Designated">
-  <meta name="twitter:description" content="Every 'Designates X as' bill the New Jersey Legislature has tried to pass since 2000.">
-  <meta name="twitter:image" content="https://sstirling.github.io/nj-designates/assets/social-card.png">
-  <meta name="twitter:image:alt" content="Hereby Designated — a mock official seal of New Jersey next to the tagline 'Working to be designated the official state designation tracker since 2026.'">
-
-  <!-- Fonts: newspaper serif + clean sans. Loaded with display=swap so the page is readable before fonts arrive. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { font-family: Georgia, serif; max-width: 36em; margin: 4rem auto; padding: 0 1.25rem; color: #1a1812; }
+    a { color: #002f6c; }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <header class="site-header">
-    <div class="masthead">
-      <div class="masthead-title">
-        <img class="masthead-logo" src="assets/hereby-designated-logo.svg"
-             alt="" width="96" height="96">
-        <div>
-          <h1>Hereby Designated</h1>
-          <p class="dek">Working to be designated the official state designation tracker since 2026.</p>
-        </div>
-      </div>
-      <p class="top-links">
-        <a class="top-link" href="methodology.html">Methodology &amp; sources →</a>
-      </p>
-    </div>
-    <div class="running-counter" aria-live="polite">
-      <span class="counter-number" id="counter-number">—</span>
-      <span class="counter-label" id="counter-label">ceremonial bills</span>
-    </div>
-  </header>
-
-  <main id="main" class="site-main">
-    <section class="lede">
-      <h2>What is this?</h2>
-      <p id="lede-para">
-        The New Jersey Legislature spends a lot of its time making things official — state
-        symbols, named bridges, commemorative weeks. A sliver of these bills become law.
-        Most do not. This site is the record.
-      </p>
-      <p>
-        Every row below links back to the official bill page on the NJ Legislature's site.
-        Filters and sort order update the URL, so any view you land on is shareable.
-      </p>
-    </section>
-
-    <section class="chart-section" aria-label="Ceremonial bills by session">
-      <h2>Ceremonial bills by session, stacked by category</h2>
-      <p class="chart-dek">
-        Each bar is one legislative session. Color shows the primary category.
-        The current session may be in progress, so its count can trail a completed cycle.
-      </p>
-      <div id="chart-by-session" class="chart-host" role="img"
-           aria-label="Stacked bar chart of ceremonial bills per biennial session, colored by category"></div>
-    </section>
-
-    <section class="sponsors-section" aria-labelledby="sponsors-heading">
-      <h2 id="sponsors-heading">Most prolific sponsors</h2>
-      <p class="chart-dek">
-        Ranked by the number of ceremonial bills each legislator has taken on as a primary sponsor.
-        Respects the filters below — narrow to a category or session to see who drives that kind of bill.
-      </p>
-      <ol id="sponsors-list" class="sponsors-list" aria-live="polite"></ol>
-      <button id="sponsors-toggle" class="link-button" type="button" hidden>Show more</button>
-    </section>
-
-    <section class="explore-section" aria-label="Search and browse the record">
-      <h2 id="explore-heading">Search the record</h2>
-      <div class="controls" role="group" aria-labelledby="explore-heading">
-        <div class="controls-row">
-          <label class="search-box">
-            <span class="visually-hidden">Search bill text</span>
-            <input type="search" id="search" placeholder="Search synopsis, sponsor, or bill number" autocomplete="off">
-          </label>
-        </div>
-
-        <fieldset class="filter-group">
-          <legend>Category</legend>
-          <div id="filter-categories" class="chip-row"></div>
-        </fieldset>
-
-        <fieldset class="filter-group">
-          <legend>Became law?</legend>
-          <div id="filter-law" class="chip-row">
-            <button class="chip" type="button" data-filter="law" data-value="all" aria-pressed="true">All</button>
-            <button class="chip" type="button" data-filter="law" data-value="yes" aria-pressed="false">Became law</button>
-            <button class="chip" type="button" data-filter="law" data-value="no" aria-pressed="false">Did not pass</button>
-          </div>
-        </fieldset>
-
-        <fieldset class="filter-group">
-          <legend>Session</legend>
-          <div id="filter-sessions" class="chip-row"></div>
-        </fieldset>
-
-        <p class="results-summary" id="results-summary" aria-live="polite"></p>
-      </div>
-
-      <p class="table-dek">
-        Click a column header to sort. Click a bill number to open the official NJ Legislature page.
-      </p>
-      <div class="table-wrapper">
-        <table id="bills-table">
-          <thead>
-            <tr>
-              <th scope="col" data-sort="full_number">Bill</th>
-              <th scope="col" data-sort="session">Session</th>
-              <th scope="col" data-sort="synopsis">Synopsis</th>
-              <th scope="col" data-sort="primary_category">Category</th>
-              <th scope="col" data-sort="status_label">Status</th>
-              <th scope="col" data-sort="became_law">Law?</th>
-              <th scope="col">Primary sponsors</th>
-            </tr>
-          </thead>
-          <tbody id="bills-tbody"></tbody>
-        </table>
-      </div>
-      <p id="empty-state" class="empty-state" hidden>
-        No ceremonial bills match these filters. The legislature briefly rested.
-      </p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p class="source-line">
-      Data: New Jersey Legislature bill search API
-      (<a href="https://www.njleg.state.nj.us/bill-search" rel="external noopener">njleg.state.nj.us</a>).
-      Last refreshed <span id="meta-updated">—</span>.
-      See the <a href="methodology.html">methodology</a> for what counts as a ceremonial bill and what doesn't.
-    </p>
-    <p class="byline">Reporting by Stephen Stirling.</p>
-  </footer>
-
-  <!-- Observable Plot for charting (ESM from unpkg). -->
-  <script type="module" src="js/app.js"></script>
-
-  <!-- GoatCounter privacy-friendly analytics. -->
-  <script data-goatcounter="https://sstirling.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
+  <h1>This page moved.</h1>
+  <p>
+    Hereby Designated now lives at
+    <a href="https://sstirling.github.io/nj-designates/">sstirling.github.io/nj-designates/</a>.
+    You should be redirected automatically.
+  </p>
 </body>
 </html>

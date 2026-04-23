@@ -24,9 +24,9 @@ billDetail/billSponsors ───► data/raw/bill_details/<year>/<bill>.json
                                          │
                               ┌──────────┴──────────┐
                               ▼                     ▼
-                   data/processed/bills.parquet   site/data/bills.json
-                   data/processed/audit_rejected.csv  site/data/meta.json
-                                                  site/data/sessions.json
+                   data/processed/bills.parquet   data/bills.json
+                   data/processed/audit_rejected.csv  data/meta.json
+                                                  data/sessions.json
 ```
 
 Raw files are immutable once written. Filter and category rules are applied in the build step; re-running the build with the same raw produces the same output.

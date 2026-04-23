@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology — Hereby Designated</title>
+  <meta name="description" content="How Hereby Designated decides what counts as a ceremonial New Jersey bill, where the data comes from, and what's left out.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Methodology — Hereby Designated">
+  <meta property="og:description" content="How Hereby Designated decides what counts as a ceremonial New Jersey bill, where the data comes from, and what's left out.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Hereby Designated">
+  <meta property="og:url" content="https://sstirling.github.io/nj-designates/methodology.html">
+  <meta property="og:image" content="https://sstirling.github.io/nj-designates/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hereby Designated — a mock official seal of New Jersey next to the tagline 'Working to be designated the official state designation tracker since 2026.'">
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Methodology — Hereby Designated">
+  <meta name="twitter:description" content="What counts as a ceremonial New Jersey bill, where the data comes from, and what's left out.">
+  <meta name="twitter:image" content="https://sstirling.github.io/nj-designates/assets/social-card.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/methodology.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="masthead">
+      <div class="masthead-title">
+        <a href="./" aria-label="Back to Hereby Designated">
+          <img class="masthead-logo" src="assets/hereby-designated-logo.svg"
+               alt="" width="72" height="72">
+        </a>
+        <div>
+          <p class="kicker"><a href="./">← Hereby Designated</a></p>
+          <h1>Methodology</h1>
+          <p class="dek">How we decide what counts as a ceremonial bill, where the data comes from, and what's left out on purpose.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="site-main methodology-main">
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>On this page</h2>
+      <ol>
+        <li><a href="#what-is-it">What is this project?</a></li>
+        <li><a href="#data-source">Where the data comes from</a></li>
+        <li><a href="#what-counts">What counts as ceremonial</a></li>
+        <li><a href="#what-does-not">What we exclude</a></li>
+        <li><a href="#categories">How bills are categorized</a></li>
+        <li><a href="#status-codes">Status codes</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
+        <li><a href="#limits">Known limits and caveats</a></li>
+        <li><a href="#replicate">How to replicate</a></li>
+        <li><a href="#ai-disclosure">AI disclosure</a></li>
+        <li><a href="#contact">Corrections and contact</a></li>
+      </ol>
+    </nav>
+
+    <section id="what-is-it">
+      <h2>What is this project?</h2>
+      <p>
+        Hereby Designated is a catalogue of every <em>ceremonial</em> designation
+        bill introduced in the New Jersey Legislature since 2000. The state muffin,
+        the state native pollinator, every named bridge and commemorative week —
+        all of it, in one place, with links back to the official bill record.
+      </p>
+      <p>
+        It's a journalism project, not a legislative service. The framing is
+        tongue-in-cheek; the sourcing is strict.
+      </p>
+    </section>
+
+    <section id="data-source">
+      <h2>Where the data comes from</h2>
+      <p>
+        Every bill in the dataset comes from the New Jersey Legislature's
+        public bill-search system at
+        <a href="https://www.njleg.state.nj.us/bill-search" rel="external noopener">njleg.state.nj.us</a>.
+        The Office of Legislative Services does not publish a formal API, but the
+        website's interactive search is powered by JSON endpoints that respond to
+        the same queries you can make by hand on the search page. We use those
+        endpoints directly.
+      </p>
+      <p>
+        Our scraper runs a keyword search for each of <strong>"Designates"</strong>,
+        <strong>"Renames"</strong>, and <strong>"Commemorates"</strong> against each
+        biennial session from 2000–2001 through 2024–2025 and takes the union.
+        Using three keywords prevents silent misses — a road dedication that reads
+        "Renames the bridge..." rather than "Designates the bridge..." would otherwise
+        be invisible.
+      </p>
+      <p>
+        For every bill that survives the filter we also fetch the sponsor list from
+        the legislature's bill-detail endpoint. That's the list of legislators whose
+        names the Office of Legislative Services has attached to the bill — primary
+        sponsors and co-sponsors both.
+      </p>
+      <p>
+        Raw API responses are saved verbatim before any rule touches them. The
+        filtering and categorization happen later, against those saved files. That
+        means every number you see here is traceable back to exactly what the
+        legislature's system returned on the day we ran the scrape.
+      </p>
+    </section>
+
+    <section id="what-counts">
+      <h2>What counts as ceremonial</h2>
+      <p>A bill is considered ceremonial if its synopsis points at one of the following:</p>
+      <dl class="definition-list">
+        <dt>State symbols</dt>
+        <dd>A designation of an official state thing — the state muffin, state sport, state native pollinator, state song. Also newer additions like a state slogan, nickname, or official color.</dd>
+
+        <dt>Holidays and observances</dt>
+        <dd>Public or state holidays; named days, weeks, weekends, months, or years; commemorative resolutions for anniversaries, independence days, remembrances, and the like.</dd>
+
+        <dt>Road namings</dt>
+        <dd>A highway, bridge, interchange, rest area, overpass, expressway, parkway, or street given a new name — usually honoring a veteran, public official, or local figure.</dd>
+
+        <dt>Place namings</dt>
+        <dd>Rail stations, parks, welcome centers, buildings, trails, canals, plazas, halls, and similar civic places receiving a new name.</dd>
+
+        <dt>Other ceremonial</dt>
+        <dd>A small residual bucket for designations that are clearly ceremonial but don't fit the four categories above — currently just two bills that honorifically name a piece of substantive law after a person.</dd>
+      </dl>
+    </section>
+
+    <section id="what-does-not">
+      <h2>What we exclude</h2>
+      <p>
+        The word "designates" appears in hundreds of bills every session that are
+        not ceremonial. We filter these out:
+      </p>
+      <ul>
+        <li><strong>Administrative designations.</strong> "Designates the Attorney General as chief election official" — the bill is naming an officer to a role, not a symbol.</li>
+        <li><strong>Regulatory classifications.</strong> "Designates sweepstakes casinos as internet gaming" — policy, not commemoration.</li>
+        <li><strong>Legal or workforce classifications.</strong> "Designates open water lifeguards as first responders" — legal status change.</li>
+        <li><strong>Renames of administrative bodies.</strong> "Renames Juvenile Justice Commission as Youth Justice Commission" — a department-level rename. We try to distinguish these from <em>buildings</em> owned by the same department ("Designates the Department of Education Building as ...") by looking at whether a place noun appears later in the synopsis.</li>
+        <li><strong>Statutory program naming.</strong> "Designates drug court program as the 'special probation recovery court program'" — changes the name of a program within the statutory code without physical, honorific, or symbolic weight.</li>
+      </ul>
+      <p>
+        Every bill the filter drops is logged to an audit file along with the
+        rule that dropped it. The audit file is committed to the project
+        repository so the exclusions are checkable.
+      </p>
+    </section>
+
+    <section id="categories">
+      <h2>How bills are categorized</h2>
+      <p>
+        Each bill can carry multiple category tags; a "primary" category is chosen
+        using a priority order so that bills like "Designates September 11 as
+        State and public holiday" count as a holiday rather than a symbol (the
+        journalistic story is the holiday, even though the synopsis touches both).
+      </p>
+      <p>
+        Category rules live in a plain-text file
+        (<code>data/reference/category_rules.yml</code>) in the project repository,
+        editable by anyone. A small set of hand-review overrides
+        (<code>data/reference/overrides.yml</code>) handles edge cases the
+        rule-based filter cannot decide unambiguously.
+      </p>
+      <p>
+        When a bill is unusually ambiguous — for example, a bill that names a
+        piece of substantive law after a person — we flag it in the
+        <code>other_ceremonial</code> bucket rather than force it into a category
+        that doesn't fit.
+      </p>
+    </section>
+
+    <section id="status-codes">
+      <h2>Status codes</h2>
+      <p>
+        The NJ Legislature's API returns a short alphabetic code for each bill's
+        current status (<code>ASL</code>, <code>WAPP</code>, <code>APP</code>,
+        <code>SIR</code>, and so on). Those codes are not documented by any
+        public endpoint we've found. We maintain a hand-curated decoder cross-referenced
+        against the NJ Legislature's glossary and the bill-history endpoint.
+        Codes we haven't yet confirmed are shown as the raw code with a
+        "Meaning not documented" tooltip rather than a guess.
+      </p>
+      <p>
+        A bill is marked "became law" only if its governor-action field is one of the
+        three documented codes corresponding to a completed signing: APP (Approved),
+        FSS (Filed with Secretary of State), or WOA (Became law Without Approval).
+        Bills sitting in <code>WAPP</code> — waiting for the governor — are not
+        counted, because they haven't crossed the line.
+      </p>
+    </section>
+
+    <section id="sponsors">
+      <h2>Sponsors</h2>
+      <p>
+        For every bill we fetch the full sponsor list: primary sponsors and
+        co-sponsors. The leaderboard and the sponsor counts on individual bills
+        use <em>primary sponsors only</em>. A co-sponsor's signature adds weight
+        to a bill but doesn't carry authorship in the way the prime does.
+      </p>
+      <p>
+        The API returns a bio link for each sponsor pointing at the NJ Legislature's
+        legislator roster. When a sponsor has since left office, the link may be
+        missing; 56 of 670 primary sponsor occurrences in our 2024 sample lacked
+        a bio URL for that reason. Those sponsors are still counted, just not
+        linked.
+      </p>
+      <p>
+        Party affiliation and legislative district are not included in the
+        search-API response. Adding them would require a second scrape of the
+        legislator roster, which we have not done yet.
+      </p>
+    </section>
+
+    <section id="limits">
+      <h2>Known limits and caveats</h2>
+      <ul>
+        <li><strong>A bill reintroduced in consecutive sessions appears once per session.</strong> We capture the link between sessions with a bill-family identifier, but the default view does not deduplicate across sessions. The sponsor leaderboard therefore counts each reintroduction.</li>
+        <li><strong>The "Became law" field counts governor actions only.</strong> If a resolution passes both chambers but doesn't require the governor's signature, it may not be reflected as "became law" in our dataset even though it is, procedurally, in effect.</li>
+        <li><strong>Party, district, and legislator demographics are not included.</strong> See above.</li>
+        <li><strong>Two bills sit in <code>other_ceremonial</code>.</strong> Both designate Public Laws by honorific names ("Miranda Vargas Act"). These are honorific uses of a substantive law, not a ceremonial designation of a symbol or place. We flag them as a genuine judgment call rather than force them into a category.</li>
+      </ul>
+    </section>
+
+    <section id="replicate">
+      <h2>How to replicate</h2>
+      <p>
+        Everything needed to rebuild the dataset from scratch lives in the
+        <a href="https://github.com/sstirling/nj-designates" rel="external noopener">project repository</a>.
+        With Python 3.11+ and a clone of the repo:
+      </p>
+      <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pytest                                           # all tests pass
+python -m scraper refresh --all                  # scrape + build
+python -m http.server --directory site 8000</code></pre>
+      <p>
+        The scraper is rate-limited to one request per second, with jitter, and
+        uses an honest User-Agent identifying the project and an email
+        address. A full refresh across every session takes roughly an hour.
+      </p>
+    </section>
+
+    <section id="ai-disclosure">
+      <h2>AI disclosure</h2>
+      <p>
+        Claude Code was used in the creation of this tool.
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2>Corrections and contact</h2>
+      <p>
+        Reporting by <a href="https://sstirling.github.io" rel="external noopener">Stephen Stirling</a>. If you've found a mistake — a bill that
+        should be included and isn't, a category that reads wrong, a sponsor
+        attribution that needs updating — please file an issue on the project's
+        GitHub repository or reach out directly.
+      </p>
+      <p>
+        Data is current as of <span id="meta-updated">—</span>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="source-line">
+      Data: New Jersey Legislature bill search API
+      (<a href="https://www.njleg.state.nj.us/bill-search" rel="external noopener">njleg.state.nj.us</a>).
+      <a href="./">Back to Hereby Designated →</a>
+    </p>
+  </footer>
+
+  <script type="module">
+    // Keep the "data current as of" stamp consistent with the main page.
+    fetch("data/meta.json", { cache: "no-cache" })
+      .then(r => r.json())
+      .then(meta => {
+        const d = new Date(meta.updated_at);
+        document.getElementById("meta-updated").textContent =
+          d.toLocaleString(undefined, { year: "numeric", month: "long", day: "numeric" });
+      })
+      .catch(() => {});
+  </script>
+
+  <!-- GoatCounter privacy-friendly analytics. -->
+  <script data-goatcounter="https://sstirling.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

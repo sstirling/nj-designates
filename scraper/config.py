@@ -41,7 +41,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_RAW = ROOT / "data" / "raw"
 DATA_REFERENCE = ROOT / "data" / "reference"
 DATA_PROCESSED = ROOT / "data" / "processed"
-SITE_DATA = ROOT / "site" / "data"
+SITE_DATA = ROOT / "data"
 
 
 def session_label(session: int) -> str:

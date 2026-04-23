@@ -78,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
     add_session_args(fetch_p)
     fetch_p.set_defaults(func=cmd_fetch)
 
-    build_p = sub.add_parser("build", help="transform raw → site/data/ + data/processed/")
+    build_p = sub.add_parser("build", help="transform raw → data/ + data/processed/")
     add_session_args(build_p)
     build_p.set_defaults(func=cmd_build)
 
