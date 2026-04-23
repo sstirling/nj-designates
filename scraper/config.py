@@ -13,9 +13,10 @@ from pathlib import Path
 BASE_URL = "https://www.njleg.state.nj.us"
 
 # Identify the scraper honestly so OLS can reach us if they want to rate-limit.
+# Contact is the repo's issue tracker; no personal email embedded.
 USER_AGENT = (
     "nj-designates scraper/0.1 "
-    "(+https://github.com/sstirling/nj-designates; stephenstirling@gmail.com)"
+    "(+https://github.com/sstirling/nj-designates)"
 )
 
 # Seconds between any two HTTP requests. Jitter is added on top.
