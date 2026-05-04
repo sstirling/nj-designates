@@ -13,6 +13,11 @@ __pycache__/
 data/raw/sessions/
 data/raw/bill_details/
 
+# api_client.Client's request-level cache. Must NOT be committed: a CI checkout
+# would pull in stale cached responses and the search endpoint (whose body is
+# identical every week) would never re-hit the API to discover new bills.
+data/raw/.cache/
+
 # Keep the snapshots directory tracked even when empty.
 !data/raw/snapshots/
 
