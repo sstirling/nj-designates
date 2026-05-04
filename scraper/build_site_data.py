@@ -279,25 +279,62 @@ def _build_meta(records: list[dict], sessions_covered: list[int]) -> dict:
     }
 
 
-def build_sessions(sessions: Iterable[int]) -> dict[str, Any]:
-    """Run the full build for one or more sessions. Returns a summary dict."""
+def build_sessions(sessions: Iterable[int], augment: bool = False) -> dict[str, Any]:
+    """Run the build for one or more sessions. Returns a summary dict.
+
+    If augment=True, preserves rows in the existing committed bills.parquet and
+    audit_rejected.csv for sessions NOT being rebuilt. The CI weekly job uses
+    this so refreshing only the current session doesn't drop the historical
+    archive — the runner has no raw API data for closed sessions, so the
+    committed parquet is the source of truth for them.
+    """
+    refresh_targets = [int(s) for s in sessions]
+    refresh_str = {str(s) for s in refresh_targets}
+
     all_records: list[dict] = []
     all_rejected: list[dict] = []
     sessions_covered: list[int] = []
 
-    for s in sessions:
+    if augment:
+        bills_parquet = DATA_PROCESSED / "bills.parquet"
+        if bills_parquet.exists():
+            # pyarrow.to_pylist() returns native Python lists/dicts; pandas
+            # read_parquet returns numpy ndarrays for list columns, which then
+            # break json.dumps when bills.json is written.
+            import pyarrow.parquet as pq
+            table = pq.read_table(bills_parquet)
+            preserved_sessions: set[str] = set()
+            for row in table.to_pylist():
+                if str(row.get("session")) not in refresh_str:
+                    all_records.append(row)
+                    preserved_sessions.add(str(row["session"]))
+            sessions_covered.extend(int(s) for s in sorted(preserved_sessions))
+            log.info("augment: preserved %d records from %d prior sessions",
+                     len(all_records), len(preserved_sessions))
+
+        rejected_csv = DATA_PROCESSED / "audit_rejected.csv"
+        if rejected_csv.exists():
+            existing_rej = pd.read_csv(rejected_csv)
+            kept_rej = existing_rej[
+                ~existing_rej["session"].astype(str).isin(refresh_str)
+            ]
+            all_rejected.extend(kept_rej.to_dict("records"))
+
+    for s in refresh_targets:
         try:
-            kept, rejected = build_session_records(s)
+            kept_records, rejected_records = build_session_records(s)
         except FileNotFoundError as e:
             log.warning("skipping session %s: %s", s, e)
             continue
-        all_records.extend(kept)
-        all_rejected.extend(rejected)
-        sessions_covered.append(s)
+        all_records.extend(kept_records)
+        all_rejected.extend(rejected_records)
+        if s not in sessions_covered:
+            sessions_covered.append(s)
 
-    write_outputs(all_records, all_rejected, sessions_covered)
+    write_outputs(all_records, all_rejected, sorted(sessions_covered))
     return {
-        "sessions": sessions_covered,
+        "sessions": sorted(sessions_covered),
         "kept": len(all_records),
         "rejected": len(all_rejected),
+        "augment": augment,
     }

@@ -54,8 +54,15 @@ jobs:
       - name: Run test suite
         run: pytest
 
-      - name: Refresh current session
-        run: python -m scraper --verbose refresh --session "$SESSION"
+      # Fetch is current-session-only — closed sessions don't change.
+      # Build uses --augment so the committed bills.parquet supplies rows for
+      # all the OTHER sessions whose raw data isn't on this runner. Without
+      # --augment the build would rewrite meta.json with totals for just 2026.
+      - name: Fetch current session
+        run: python -m scraper --verbose fetch --session "$SESSION"
+
+      - name: Rebuild current session, preserving historical archive
+        run: python -m scraper --verbose build --session "$SESSION" --augment
 
       - name: Regenerate social card
         run: python scripts/make_social_card.py

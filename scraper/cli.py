@@ -50,9 +50,10 @@ def cmd_fetch(args) -> int:
 
 def cmd_build(args) -> int:
     sessions = _sessions_from_args(args)
-    summary = build_sessions(sessions)
+    summary = build_sessions(sessions, augment=getattr(args, "augment", False))
     print(f"built {summary['kept']} bills across sessions {summary['sessions']}; "
-          f"{summary['rejected']} rejected")
+          f"{summary['rejected']} rejected"
+          + (" (augment)" if summary.get("augment") else ""))
     return 0
 
 
@@ -78,12 +79,22 @@ def main(argv: list[str] | None = None) -> int:
     add_session_args(fetch_p)
     fetch_p.set_defaults(func=cmd_fetch)
 
+    def add_augment_arg(sp):
+        sp.add_argument(
+            "--augment", action="store_true",
+            help="preserve rows in the committed bills.parquet for sessions NOT "
+                 "being rebuilt; required by the weekly CI job so a single-session "
+                 "refresh doesn't clobber the historical archive",
+        )
+
     build_p = sub.add_parser("build", help="transform raw → data/ + data/processed/")
     add_session_args(build_p)
+    add_augment_arg(build_p)
     build_p.set_defaults(func=cmd_build)
 
     refresh_p = sub.add_parser("refresh", help="fetch + build in one shot")
     add_session_args(refresh_p)
+    add_augment_arg(refresh_p)
     refresh_p.set_defaults(func=cmd_refresh)
 
     args = p.parse_args(argv)
