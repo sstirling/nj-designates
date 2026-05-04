@@ -5,3 +5,4 @@ pandas>=2.1
 pyarrow>=14.0
 pytest>=7.4
 cairosvg>=2.7
+pillow>=10.0

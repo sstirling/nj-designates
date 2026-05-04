@@ -1,0 +1,89 @@
+name: Weekly data refresh
+
+# Sunday night ET → Monday 05:00 UTC (12 AM EST / 1 AM EDT).
+# GitHub Actions cron is UTC and ignores DST, so the local time shifts by
+# an hour twice a year. That's fine for a weekly job.
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SESSION: "2026"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      # cairosvg needs libcairo2 at runtime; ubuntu-latest usually has it,
+      # but install explicitly so a runner image change doesn't silently break us.
+      - name: Install system deps
+        run: sudo apt-get update && sudo apt-get install -y libcairo2
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      # The raw fetch dirs are gitignored, so without a cache every run
+      # re-downloads every bill detail. Caching the per-bill responses keeps
+      # the API load to just new/changed bills in the current session.
+      # The unique save key + restore-keys prefix is the standard
+      # "always refresh, always restore latest" pattern.
+      - name: Restore raw fetch cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/raw/sessions
+            data/raw/bill_details
+            data/raw/.cache
+          key: nj-leg-raw-${{ env.SESSION }}-${{ github.run_id }}
+          restore-keys: |
+            nj-leg-raw-${{ env.SESSION }}-
+
+      - name: Run test suite
+        run: pytest
+
+      - name: Refresh current session
+        run: python -m scraper --verbose refresh --session "$SESSION"
+
+      - name: Regenerate social card
+        run: python scripts/make_social_card.py
+
+      - name: Open pull request with refreshed data
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/weekly-refresh
+          base: main
+          title: "Weekly data refresh (session ${{ env.SESSION }})"
+          commit-message: "chore: weekly data refresh (session ${{ env.SESSION }})"
+          body: |
+            Automated weekly refresh of session ${{ env.SESSION }} bills from the NJ Legislature API.
+
+            Review the diffs below before merging:
+            - `data/meta.json` — totals and per-category counts.
+            - `data/bills.json` — site dataset.
+            - `data/sessions.json` — session list.
+            - `data/processed/bills.parquet` — columnar audit copy.
+            - `data/processed/audit_rejected.csv` — every bill the filter dropped, with reason.
+            - `assets/social-card.png` — Open Graph image regenerated from the new totals.
+
+            Triggered by `.github/workflows/weekly-refresh.yml`. If nothing changed upstream this PR will not open.
+          add-paths: |
+            data/bills.json
+            data/meta.json
+            data/sessions.json
+            data/processed/bills.parquet
+            data/processed/audit_rejected.csv
+            assets/social-card.png
+          delete-branch: true
