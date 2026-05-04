@@ -35,21 +35,25 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements.txt
 
-      # The raw fetch dirs are gitignored, so without a cache every run
-      # re-downloads every bill detail. Caching the per-bill responses keeps
-      # the API load to just new/changed bills in the current session.
-      # The unique save key + restore-keys prefix is the standard
-      # "always refresh, always restore latest" pattern.
-      - name: Restore raw fetch cache
+      # Cache only the per-bill detail files. fetch_bill_details.py uses an
+      # LDOA-based manifest to skip bills whose state is unchanged, so caching
+      # this directory means weekly runs only spend API calls on new or
+      # changed bills.
+      #
+      # We deliberately do NOT cache data/raw/.cache (the request-level cache
+      # used by api_client.Client) — the search request body is identical
+      # every week, so caching it would suppress discovery of newly filed
+      # bills. The same .cache also stores per-bill GETs whose URLs don't
+      # encode LDOA, so a cached entry can return stale sponsors after a bill
+      # changes. Skipping it forces fresh API responses; the per-bill JSON
+      # files above still provide correct LDOA-based caching.
+      - name: Restore bill-details cache
         uses: actions/cache@v4
         with:
-          path: |
-            data/raw/sessions
-            data/raw/bill_details
-            data/raw/.cache
-          key: nj-leg-raw-${{ env.SESSION }}-${{ github.run_id }}
+          path: data/raw/bill_details
+          key: nj-leg-bill-details-${{ env.SESSION }}-${{ github.run_id }}
           restore-keys: |
-            nj-leg-raw-${{ env.SESSION }}-
+            nj-leg-bill-details-${{ env.SESSION }}-
 
       - name: Run test suite
         run: pytest
