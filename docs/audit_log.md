@@ -2,18 +2,17 @@
 
 Every rule change, human-review decision, and data refresh that is worth recording for future-me.
 
-## 2026-05-04 — Widened search keywords
+## 2026-05-04 — Added "official State" phrase to search keywords
 
 While verifying the new weekly auto-refresh job, found that S4120 ("Establishes 'Freedom Flag' as official State flag.") wasn't being captured. Its synopsis uses "Establishes" rather than "Designates", and the keyword list was `["Designates", "Renames", "Commemorates"]`. The ceremonial filter accepts the synopsis when given it directly — the gap was at the search-discovery layer, not the filter.
 
-Added `Establishes`, `Honors`, `Recognizes` to `SEARCH_KEYWORDS` in `scraper/config.py`. Did not add `Provides for`: it returns 176 hits in 2026 of which only 5 are ceremonial — the bills it would catch are mostly already caught by other keywords.
+First attempted fix was to add the verbs `Establishes`, `Honors`, `Recognizes` to `SEARCH_KEYWORDS`. Live-API measurements for session 2026 showed `Establishes` alone returns 1,766 hits with only 58 ceremonial — a 30:1 noise ratio against the filter. The cost (1,708 substantive bills churning through the filter every weekly run, plus a ballooning audit_rejected.csv, plus the risk of false-positive ceremonial classifications) outweighed the gain for what is mostly an edge-case verb.
 
-Live-API measurements for session 2026 at the time of the change:
-- `Establishes`: 1,766 hits → 58 ceremonial after filter
-- `Honors`: 8 → 4
-- `Recognizes`: 30 → 11
+Reverted that change and instead added the single phrase **`"official State"`**. The NJ Leg search API treats multi-word `keyWords` as phrase queries, so this is highly targeted — it returns only 3 bills in session 2026, all 3 ceremonial:
+- A2698, S1184: "Designates 9/11 Heart Symbol flag as official State flag…" (already caught by `Designates`; deduplicated)
+- S4120: "Establishes 'Freedom Flag' as official State flag."
 
-Expected effect on the next refresh: roughly +73 ceremonial bills in session 2026; historical sessions are unchanged because we are not retroactively re-running the older sessions. The methodology page has been updated to list all six keywords. A future full backfill (`python -m scraper refresh --all`) would close the historical gap if we want consistent coverage across the whole archive.
+Net effect on the next refresh: +1 ceremonial bill in session 2026 (S4120). Historical sessions are unchanged — applied forward only. If the same `"X as official State Y"` pattern appears with non-`Designates` verbs in older sessions, those bills are still missed; a future full backfill (`python -m scraper refresh --all`) would close that gap if needed. Verbs other than `Designates`/`Renames`/`Commemorates` (like `Establishes`/`Honors`/`Recognizes` for non-state-symbol bills) remain out of scope by design — too noisy to be worth catching in this archive.
 
 ## 2026-04-22 — Phase 3 post-backfill rule tuning
 
