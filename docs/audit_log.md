@@ -2,6 +2,19 @@
 
 Every rule change, human-review decision, and data refresh that is worth recording for future-me.
 
+## 2026-05-04 — Widened search keywords
+
+While verifying the new weekly auto-refresh job, found that S4120 ("Establishes 'Freedom Flag' as official State flag.") wasn't being captured. Its synopsis uses "Establishes" rather than "Designates", and the keyword list was `["Designates", "Renames", "Commemorates"]`. The ceremonial filter accepts the synopsis when given it directly — the gap was at the search-discovery layer, not the filter.
+
+Added `Establishes`, `Honors`, `Recognizes` to `SEARCH_KEYWORDS` in `scraper/config.py`. Did not add `Provides for`: it returns 176 hits in 2026 of which only 5 are ceremonial — the bills it would catch are mostly already caught by other keywords.
+
+Live-API measurements for session 2026 at the time of the change:
+- `Establishes`: 1,766 hits → 58 ceremonial after filter
+- `Honors`: 8 → 4
+- `Recognizes`: 30 → 11
+
+Expected effect on the next refresh: roughly +73 ceremonial bills in session 2026; historical sessions are unchanged because we are not retroactively re-running the older sessions. The methodology page has been updated to list all six keywords. A future full backfill (`python -m scraper refresh --all`) would close the historical gap if we want consistent coverage across the whole archive.
+
 ## 2026-04-22 — Phase 3 post-backfill rule tuning
 
 Two audits on the full 13-session archive — the `other_ceremonial` bucket and a 25-bill random sample from 2000–2004. Found and fixed:

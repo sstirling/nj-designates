@@ -24,10 +24,17 @@ REQUEST_DELAY_SECONDS = 1.0
 REQUEST_JITTER_SECONDS = 0.5
 REQUEST_TIMEOUT_SECONDS = 30
 
-# Multiple keyword passes broaden coverage — road/bridge dedications sometimes
-# use "Renames", "Commemorates", or "Establishes X as" instead of "Designates".
-# The filter deduplicates by (session, full_bill_number).
-SEARCH_KEYWORDS = ["Designates", "Renames", "Commemorates"]
+# Multiple keyword passes broaden coverage — the legislature uses several
+# verb forms for ceremonial designations. "Renames" catches road/bridge
+# dedications worded as renamings; "Commemorates" catches anniversary
+# resolutions; "Establishes" catches state-symbol bills like "Establishes
+# 'Freedom Flag' as official State flag" (S4120, 2026); "Honors" and
+# "Recognizes" catch a small number of additional ceremonial resolutions.
+# The filter deduplicates by (session, full_bill_number) and rejects the
+# bulk of "Establishes" hits as substantive (regulatory frameworks, pilot
+# programs, etc.) — those land in audit_rejected.csv with reasons.
+SEARCH_KEYWORDS = ["Designates", "Renames", "Commemorates",
+                   "Establishes", "Honors", "Recognizes"]
 
 # Biennial sessions, starting year. Covers 2000 through the 2026–2027 session.
 ALL_SESSIONS = [2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018,
