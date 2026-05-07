@@ -2,6 +2,21 @@
 
 Every rule change, human-review decision, and data refresh that is worth recording for future-me.
 
+## 2026-05-07 — Re-added "Honors" and "Recognizes" to search keywords
+
+Reversing the May-4 decision to keep `Honors`/`Recognizes` out. The earlier reasoning leaned on aggregate hit-counts; an actual inspection of the 21 bills currently in the dataset whose synopses start with those verbs showed the signal is much higher than the search-volume number suggested.
+
+Of the 21 `Honors` + `Recognizes` bills currently kept (across all sessions), about 13 are unambiguously ceremonial and would otherwise be lost on the next refresh. Examples:
+
+- **Honors** — "Honors life of Congressman William J. Pascrell, Jr." (SR53); "Honors 40th anniversary of Jersey Fresh program" (SCR20); "Honors life of Charles 'Charlie' Kirk" (AR43).
+- **Recognizes** — "Recognizes 138th anniversary of Knights of Columbus" (ACR44); "Recognizes Prince Hall as Revolutionary Era activist" (ACR116/SCR105); "Recognizes 30th Anniversary of Srebrenica genocide and Dayton Accords" (ACR120/SCR109); "Recognizes and celebrates April 10 as Dolores Huerta's birthday" (AR71/SR12); "Recognizes contributions of Special Olympics" (AR98); "Recognizes NJ-Taiwan sister-state relationship" (AR130/SR96).
+
+These are exactly the kind of honoring/anniversary/sister-state resolutions the project tracks. The `is_ceremonial` filter catches the bulk of substantive `Honors X program / Recognizes X regulation` noise, so the per-week churn is bounded.
+
+`Establishes` stays out. Inspecting the 48 `Establishes` bills in the current dataset confirmed the May-4 reasoning was right for that verb specifically: nearly all are substantive policy (grant programs, study commissions, reimbursement rates) that the categorize step mis-tags as ceremonial. Two genuine ceremonial `Establishes` bills will be lost on the next refresh as a result — A3296 ("Establishes State holiday on September 11") and SJR72 ("Establishes April as Military Sexual Trauma Awareness Month"). We deliberately did **not** add a recovery mechanism (narrow phrase search or special-case fetch) for those two: both bills sit on serious topics (mass-casualty memorial; sexual trauma awareness) that don't fit the project's tongue-in-cheek register. Cataloguing them next to state-vegetable resolutions would misread the tone. The cleaner outcome is to let them drop with the rest of the `Establishes` noise.
+
+New `SEARCH_KEYWORDS`: `["Designates", "Renames", "Commemorates", "Honors", "Recognizes", "official State"]`. Effect on the dataset is forward-only — the change takes effect on the next fetch (Sunday's CI run or a manual workflow_dispatch).
+
 ## 2026-05-04 — Added "official State" phrase to search keywords
 
 While verifying the new weekly auto-refresh job, found that S4120 ("Establishes 'Freedom Flag' as official State flag.") wasn't being captured. Its synopsis uses "Establishes" rather than "Designates", and the keyword list was `["Designates", "Renames", "Commemorates"]`. The ceremonial filter accepts the synopsis when given it directly — the gap was at the search-discovery layer, not the filter.

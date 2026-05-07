@@ -43,7 +43,7 @@ A companion file, `data/reference/overrides.yml`, lets a human reviewer add expl
 
 ## How completeness is verified
 
-- The scraper runs multiple keyword searches per session (`Designates`, `Renames`, `Commemorates`, and the phrase `official State`) and deduplicates the union. Ceremonial road-naming bills sometimes use "Renames" rather than "Designates", and state-symbol bills occasionally use a verb the first three keywords miss — for example, "Establishes 'Freedom Flag' as official State flag." The phrase search catches that pattern without adding noise.
+- The scraper runs multiple keyword searches per session (`Designates`, `Renames`, `Commemorates`, `Honors`, `Recognizes`, and the phrase `official State`) and deduplicates the union. Ceremonial road-naming bills sometimes use "Renames" rather than "Designates"; honorary resolutions often start with "Honors life of…" and recognition resolutions with "Recognizes anniversary of…"; and state-symbol bills occasionally use a verb that none of the others would catch — for example, "Establishes 'Freedom Flag' as official State flag." The phrase search catches that pattern without adding noise.
 - Every bill the scraper pulls is logged to `data/raw/sessions/<year>/search_<keyword>.json` before any filtering happens. The filter and categorizer only read those files — they never hit the API. A re-run with the same raw produces the same output.
 - Every dropped bill is written to `data/processed/audit_rejected.csv` with the rule that rejected it. A human can scan that file to look for false negatives.
 - A sample of accepted bills is hand-reviewed per session. Decisions are logged in `docs/audit_log.md`.

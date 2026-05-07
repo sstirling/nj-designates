@@ -5,6 +5,7 @@ import { applyFilters, renderCategoryChips, renderSessionChips, wireLawChips, re
 import { wireTable, renderTable, sortBills, refreshSortHeaders } from "./table.js";
 import { renderSessionChart } from "./charts.js";
 import { aggregateSponsors, renderSponsors, wireSponsorToggle } from "./sponsors.js";
+import { renderTicker, renderWhatsNew } from "./recent.js";
 
 const state = {
   bills: [],
@@ -36,6 +37,11 @@ async function boot() {
   // never drifts from the data.
   document.getElementById("meta-updated").textContent = formatDate(meta.updated_at);
   document.getElementById("lede-para").innerHTML = ledeCopy(meta);
+
+  // Ticker + "what's new" callout describe the dataset, not the explore
+  // view, so render once on boot rather than on every state change.
+  renderTicker(document.getElementById("ticker"), state.bills, meta);
+  renderWhatsNew(document.getElementById("whats-new"), state.bills, meta);
 
   // Wire static event handlers.
   wireTable(document.getElementById("bills-table"));

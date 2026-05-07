@@ -95,13 +95,16 @@
       </p>
       <p>
         Our scraper runs a keyword search for each of <strong>"Designates"</strong>,
-        <strong>"Renames"</strong>, <strong>"Commemorates"</strong>, and the
+        <strong>"Renames"</strong>, <strong>"Commemorates"</strong>,
+        <strong>"Honors"</strong>, <strong>"Recognizes"</strong>, and the
         phrase <strong>"official State"</strong> against each biennial session
         and takes the union. Using multiple keywords prevents silent misses — a
         road dedication that reads "Renames the bridge…" rather than "Designates
-        the bridge…" would otherwise be invisible, and a state-symbol bill like
-        "Establishes 'Freedom Flag' as official State flag" only surfaces under
-        the phrase search.
+        the bridge…" would otherwise be invisible; honorary resolutions
+        ("Honors life of…") and recognition resolutions ("Recognizes 30th
+        anniversary of…") often skip the verb "Designates" entirely; and a
+        state-symbol bill like "Establishes 'Freedom Flag' as official State
+        flag" only surfaces under the phrase search.
       </p>
       <p>
         For every bill that survives the filter we also fetch the sponsor list from
@@ -230,6 +233,7 @@
         <li><strong>The "Became law" field counts governor actions only.</strong> If a resolution passes both chambers but doesn't require the governor's signature, it may not be reflected as "became law" in our dataset even though it is, procedurally, in effect.</li>
         <li><strong>Party, district, and legislator demographics are not included.</strong> See above.</li>
         <li><strong>Two bills sit in <code>other_ceremonial</code>.</strong> Both designate Public Laws by honorific names ("Miranda Vargas Act"). These are honorific uses of a substantive law, not a ceremonial designation of a symbol or place. We flag them as a genuine judgment call rather than force them into a category.</li>
+        <li><strong>The "what's new" callout and ticker reflect this dataset, not the legislature's calendar.</strong> The ticker shows the current session's most recently active bills by their last date of action. The "what's new" block counts bills that didn't exist in our previous weekly snapshot. Bills already in the archive when we started tracking that field have <code>first_seen = null</code> — we do not retroactively assign a date we don't have.</li>
       </ul>
     </section>
 

@@ -25,13 +25,27 @@ REQUEST_JITTER_SECONDS = 0.5
 REQUEST_TIMEOUT_SECONDS = 30
 
 # Multiple keyword passes broaden coverage — road/bridge dedications sometimes
-# use "Renames", "Commemorates" catches anniversary resolutions, and the
-# phrase "official State" catches state-symbol bills that use a verb other
-# than "Designates" — e.g. "Establishes 'Freedom Flag' as official State
-# flag" (S4120, 2026). The NJ Leg search API treats multi-word values as
-# phrase queries, so "official State" is precise enough to add zero noise.
+# use "Renames", "Commemorates" catches anniversary resolutions, "Honors" and
+# "Recognizes" catch honorary resolutions and recognition resolutions for
+# anniversaries, sister-state relationships, and birthdays (e.g. "Honors life
+# of Congressman William J. Pascrell, Jr."; "Recognizes 138th anniversary of
+# Knights of Columbus"). Those two verbs together pull in ~20 bills per
+# session and skew heavily ceremonial. The phrase "official State" catches
+# state-symbol bills that use a verb other than "Designates" — e.g.
+# "Establishes 'Freedom Flag' as official State flag" (S4120, 2026); the NJ
+# Leg search API treats multi-word values as phrase queries, so it's precise
+# enough to add zero noise.
+#
+# We deliberately do NOT search the verb "Establishes" alone: it overwhelmingly
+# pulls substantive policy bills (grant programs, commissions, reimbursement
+# rates) that the categorize step then mis-tags as ceremonial because the bill
+# "establishes" something with a name. A handful of true ceremonial bills use
+# "Establishes" (state holiday on Sept. 11; awareness months); those are
+# captured via overrides in data/reference/overrides.yml when needed.
+#
 # The filter deduplicates by (session, full_bill_number).
-SEARCH_KEYWORDS = ["Designates", "Renames", "Commemorates", "official State"]
+SEARCH_KEYWORDS = ["Designates", "Renames", "Commemorates",
+                   "Honors", "Recognizes", "official State"]
 
 # Biennial sessions, starting year. Covers 2000 through the 2026–2027 session.
 ALL_SESSIONS = [2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018,

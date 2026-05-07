@@ -27,7 +27,7 @@ The repo root IS the GitHub Pages site root — `index.html` is at the top level
 ├── index.html             Site home — the archive browser.
 ├── methodology.html       Site methodology page.
 ├── css/{base,methodology}.css
-├── js/{app,state,filters,table,charts,sponsors,icons}.js
+├── js/{app,state,filters,table,charts,sponsors,icons,recent}.js
 ├── assets/{hereby-designated-logo,social-card}.{svg,png}
 ├── scraper/               The full pipeline.
 │   ├── api_client.py        Rate-limited, retryable requests wrapper.

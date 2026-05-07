@@ -36,6 +36,7 @@ Raw files are immutable once written. Filter and category rules are applied in t
 | Field on site | Source | Transformation |
 |---|---|---|
 | `id` | derived | `{session}-{full_number}` |
+| `first_seen` | derived at build time | UTC date when the bill first appeared in our scrape; preserved across rebuilds. Null for bills already in the archive before this field was introduced — we don't fabricate dates we don't know. |
 | `session` | `LIS_Value` from search | stringified |
 | `session_label` | derived | `{year}–{year+1}` with en-dash |
 | `bill_type` | prefix of `Bill` | A, S, AJR, SJR, ACR, SCR, AR, SR |

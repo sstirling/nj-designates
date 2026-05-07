@@ -570,6 +570,185 @@ a:focus-visible {
   .controls-row { grid-column: 1 / -1; }
 }
 
+/* ---- News ticker ----
+   Wire-service ticker tape running below the masthead. Two duplicated rows
+   slide left in lockstep so the tail of one meets the head of the other,
+   creating a seamless loop. Pause on hover/focus so anyone reading or tabbing
+   through the bills can catch up. */
+
+.ticker-bar {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--f-sans);
+  font-size: 0.875rem;
+  overflow: hidden;
+}
+
+.ticker-label {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 0.4rem 0.85rem;
+  background: var(--accent);
+  color: var(--paper);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ticker-viewport {
+  flex: 1 1 auto;
+  overflow: hidden;
+  position: relative;
+  /* Soft fade at the right edge — a wire-feed convention that signals
+     "more coming". Left edge stays hard against the WIRE label. */
+  -webkit-mask-image: linear-gradient(to right, black 92%, transparent 100%);
+          mask-image: linear-gradient(to right, black 92%, transparent 100%);
+}
+
+.ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ticker-scroll 150s linear infinite;
+  will-change: transform;
+}
+
+.ticker-bar:hover .ticker-track,
+.ticker-bar:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.ticker-bill {
+  font-family: var(--f-mono);
+  font-weight: 700;
+  color: var(--buff);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ticker-bill:hover,
+.ticker-bill:focus-visible {
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ticker-bill:focus-visible {
+  outline: 2px solid var(--buff);
+  outline-offset: 2px;
+}
+
+.ticker-synopsis {
+  font-style: italic;
+  color: var(--paper);
+  opacity: 0.92;
+}
+
+.ticker-sep {
+  color: var(--accent);
+  font-weight: 700;
+  padding: 0 0.25rem;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ---- "What's new" callout ----
+   Sits between the lede and the chart. Two states: a list of newly-added
+   bills, or a tongue-in-cheek empty-state line when nothing changed. */
+
+.whats-new {
+  margin: 0 0 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--paper-warm);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+
+.whats-new-heading {
+  font-family: var(--f-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.whats-new-lede {
+  font-family: var(--f-serif);
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem;
+}
+.whats-new-lede strong { color: var(--accent); }
+
+.whats-new-empty {
+  font-family: var(--f-serif);
+  font-style: italic;
+  color: var(--muted);
+  margin: 0;
+}
+
+.whats-new-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.whats-new-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: baseline;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 0.95rem;
+}
+.whats-new-item:first-child { border-top: 0; }
+
+.whats-new-bill {
+  font-family: var(--f-mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.whats-new-synopsis {
+  font-family: var(--f-serif);
+  color: var(--ink);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
+
+  /* Stop the ticker stuck at translateX(0). Wrap to multiple lines and hide
+     the duplicated row so we don't show every bill twice. */
+  .ticker-track {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+  .ticker-row[aria-hidden="true"] { display: none; }
+  .ticker-viewport {
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
 }
