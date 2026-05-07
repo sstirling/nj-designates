@@ -63,7 +63,8 @@ The repo root IS the GitHub Pages site root — `index.html` is at the top level
 │   ├── api_notes.md         Reverse-engineering notes for the undocumented NJ Leg API.
 │   └── audit_log.md         Rule changes and review decisions, in chronological order.
 └── scripts/
-    └── make_social_card.py  Regenerate the Open Graph / Twitter card from the latest meta.
+    ├── make_social_card.py  Regenerate the Open Graph / Twitter card from the latest meta.
+    └── make_favicon.py      Rasterize the favicon SVG into ICO + PNG fallbacks.
 ```
 
 ## Quickstart
@@ -103,6 +104,10 @@ python -m scraper refresh --all
 
 # Regenerate the social share card from the fresh numbers.
 python scripts/make_social_card.py
+
+# Rebuild the favicon raster fallbacks (only needed after editing
+# assets/favicon.svg or the source logo SVG).
+python scripts/make_favicon.py
 ```
 
 After a refresh, `git diff data/processed/bills.parquet` and `git diff data/meta.json` show exactly what changed. Commit those (and `assets/social-card.png` if regenerated) so the published site matches what's in the repo.
