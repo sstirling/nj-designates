@@ -301,6 +301,29 @@ bill_id,session,full_number,synopsis,reason
 2026-S3195,2026,S3195,"Designates ""New Jersey and You - Perfect Together Again"" as Division of Travel and Tourism slogan.",no include pattern matched
 2026-S3407,2026,S3407,Designates Hackensack City as urban enterprise zone.,no include pattern matched
 2026-S4147,2026,S4147,Designates accounting as STEM subject for various educational and other programs.,no include pattern matched
+2026-A3684,2026,A3684,Establishes Military Funeral Honors Grant Program to provide grants to certain veteran organizations that provide military funeral honors.,no include pattern matched
+2026-AR122,2026,AR122,Honors Thomas Mundy Peterson for being first African American to vote following ratification of 15th Amendment to US Constitution.,no include pattern matched
+2026-S2042,2026,S2042,Establishes Military Funeral Honors Grant Program to provide grants to certain veteran organizations that provide military funeral honors.,no include pattern matched
+2026-SR92,2026,SR92,Honors Thomas Mundy Peterson for being first African American to vote following ratification of 15th Amendment to US Constitution.,no include pattern matched
+2026-ACR33,2026,ACR33,Recognizes Armenian Genocide and condemns attacks against civilians in Republic of Artsakh.,no include pattern matched
+2026-ACR134,2026,ACR134,Recognizes role of natural gas in New Jersey's energy policy goals and declares natural gas clean fuel.,no include pattern matched
+2026-ACR144,2026,ACR144,Recognizes centennial of Shrewsbury Borough.,no include pattern matched
+2026-AJR51,2026,AJR51,Recognizes Orange Heart Medal in NJ.,no include pattern matched
+2026-AJR72,2026,AJR72,Recognizes right to adequate food.,no include pattern matched
+2026-AJR78,2026,AJR78,Recognizes Sanskrit as one of world languages.,no include pattern matched
+2026-AJR116,2026,AJR116,Recognizes importance of nuclear energy in NJ.,no include pattern matched
+2026-AR25,2026,AR25,Recognizes historical importance and cultural significance of Hinchliffe Stadium and annual football game between Montclair State University and William Paterson University at Hinchliffe Stadium.,no include pattern matched
+2026-AR34,2026,AR34,Supports Abraham Accords and recognizes importance of peace and coexistence in Middle East.,no include pattern matched
+2026-AR129,2026,AR129,Recognizes history of women's suffrage in NJ.,no include pattern matched
+2026-SCR112,2026,SCR112,Recognizes role of natural gas in New Jersey's energy policy goals and declares natural gas clean fuel.,no include pattern matched
+2026-SCR134,2026,SCR134,Recognizes centennial of Shrewsbury Borough.,no include pattern matched
+2026-SJR53,2026,SJR53,Recognizes Sanskrit as one of world languages.,no include pattern matched
+2026-SJR71,2026,SJR71,Recognizes Orange Heart Medal in NJ.,no include pattern matched
+2026-SJR93,2026,SJR93,Recognizes right to adequate food.,no include pattern matched
+2026-SR27,2026,SR27,Recognizes loneliness as public health crisis.,no include pattern matched
+2026-SR44,2026,SR44,Recognizes open water lifeguards as first responders and emergency services providers.,no include pattern matched
+2026-SR72,2026,SR72,Recognizes open water lifeguards as first responders and emergency services providers.,no include pattern matched
+2026-SR94,2026,SR94,Recognizes history of women's suffrage in NJ.,no include pattern matched
 2026-A3676,2026,A3676,"Renames pinelands area as ""John McPhee pinelands area.""",no include pattern matched
 2026-S949,2026,S949,"Renames ""Delaware Bay"" to ""Bay of New Jersey""; directs all State departments and agencies to update official publications, signage, websites, and materials to reflect the new designation and notify relevant federal entities.",no include pattern matched
 2026-S1196,2026,S1196,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office.",excluded: renames_authority (administrative body rename)
