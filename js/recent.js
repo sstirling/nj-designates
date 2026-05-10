@@ -14,6 +14,7 @@
 // dataset itself, not the user's current view.
 
 const TICKER_LIMIT = 20;
+const WHATS_NEW_PREVIEW = 3;
 
 export function renderTicker(container, bills, meta) {
   if (!container) return;
@@ -84,12 +85,22 @@ export function renderWhatsNew(container, bills, meta) {
     .filter(b => b.first_seen === today)
     .sort((a, b) => (a.ldoa < b.ldoa ? 1 : -1));
 
-  const list = newBills.map(b => `
-    <li class="whats-new-item">
-      <a class="whats-new-bill" href="${esc(b.url)}" rel="external noopener">${esc(b.full_number)}</a>
-      <span class="whats-new-synopsis">${esc(b.synopsis || "")}</span>
-    </li>
-  `).join("");
+  // Truncate long lists so the callout doesn't overrun the page. Items past
+  // the preview limit get a marker class and start hidden; the toggle below
+  // flips them all in place.
+  const overflow = newBills.length > WHATS_NEW_PREVIEW;
+  const hiddenCount = newBills.length - WHATS_NEW_PREVIEW;
+
+  const list = newBills.map((b, i) => {
+    const cls = i >= WHATS_NEW_PREVIEW ? "whats-new-item whats-new-extra" : "whats-new-item";
+    const hidden = i >= WHATS_NEW_PREVIEW ? " hidden" : "";
+    return `
+      <li class="${cls}"${hidden}>
+        <a class="whats-new-bill" href="${esc(b.url)}" rel="external noopener">${esc(b.full_number)}</a>
+        <span class="whats-new-synopsis">${esc(b.synopsis || "")}</span>
+      </li>
+    `;
+  }).join("");
 
   const noun = added === 1 ? "new ceremonial bill" : "new ceremonial bills";
   container.innerHTML = `
@@ -98,7 +109,24 @@ export function renderWhatsNew(container, bills, meta) {
       <strong>${added.toLocaleString()}</strong> ${noun}${sinceText}.
     </p>
     <ul class="whats-new-list">${list}</ul>
+    ${overflow ? `
+      <button type="button" class="whats-new-toggle" aria-expanded="false">
+        Show ${hiddenCount} more
+      </button>
+    ` : ""}
   `;
+
+  if (overflow) {
+    const button = container.querySelector(".whats-new-toggle");
+    const extras = container.querySelectorAll(".whats-new-extra");
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      const next = !expanded;
+      button.setAttribute("aria-expanded", String(next));
+      extras.forEach(el => { el.hidden = !next; });
+      button.textContent = next ? "Show fewer" : `Show ${hiddenCount} more`;
+    });
+  }
 }
 
 function formatRefreshDate(iso) {

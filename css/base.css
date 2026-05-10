@@ -737,6 +737,22 @@ a:focus-visible {
   color: var(--ink);
 }
 
+.whats-new-toggle {
+  margin: 0.65rem 0 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--f-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.whats-new-toggle:hover { opacity: 0.75; }
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 
