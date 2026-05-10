@@ -724,6 +724,8 @@ a:focus-visible {
   font-size: 0.95rem;
 }
 .whats-new-item:first-child { border-top: 0; }
+/* Beat the display:grid above so [hidden] actually hides extras. */
+.whats-new-item[hidden] { display: none; }
 
 .whats-new-bill {
   font-family: var(--f-mono);
