@@ -1,8 +1,6 @@
 name: Weekly data refresh
 
 # Sunday night ET → Monday 05:00 UTC (12 AM EST / 1 AM EDT).
-# GitHub Actions cron is UTC and ignores DST, so the local time shifts by
-# an hour twice a year. That's fine for a weekly job.
 on:
   schedule:
     - cron: "0 5 * * 1"
