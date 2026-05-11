@@ -106,6 +106,18 @@ a:focus-visible {
   height: 72px;
   display: block;
 }
+.masthead-home {
+  display: inline-flex;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.masthead-home:hover { opacity: 0.8; }
+.masthead-home:active { transform: scale(0.97); }
+.masthead-home:focus-visible {
+  outline: 2px solid var(--accent, #2563eb);
+  outline-offset: 4px;
+}
 @media (min-width: 720px) {
   .masthead-logo { width: 96px; height: 96px; }
   .masthead-title { gap: 1.25rem; }

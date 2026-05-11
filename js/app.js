@@ -1,6 +1,6 @@
 // Entry point. Loads data, wires controls, renders on every state change.
 
-import { initState, getState, setState, subscribe } from "./state.js";
+import { initState, getState, setState, subscribe, DEFAULT_STATE } from "./state.js";
 import { applyFilters, renderCategoryChips, renderSessionChips, wireLawChips, refreshLawChips } from "./filters.js";
 import { wireTable, renderTable, sortBills, refreshSortHeaders } from "./table.js";
 import { renderSessionChart } from "./charts.js";
@@ -52,6 +52,17 @@ async function boot() {
     setState({ search: e.target.value });
   });
   document.getElementById("search").value = getState().search;
+
+  // Logo doubles as a home button: clears the search box and every filter
+  // without a full page reload. The href="./" on the anchor is the no-JS
+  // fallback and also handles cmd/ctrl/middle-click (open in new tab).
+  document.querySelector(".masthead-home")?.addEventListener("click", (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    document.getElementById("search").value = "";
+    setState({ ...DEFAULT_STATE });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
   // Initial paint + subscribe for state changes.
   subscribe(render);
