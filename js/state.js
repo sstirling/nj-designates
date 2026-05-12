@@ -13,6 +13,7 @@ export const DEFAULT_STATE = {
   law: "all",           // "all" | "yes" | "no"
   sessions: [],         // [] means all; otherwise array of session strings ("2024", ...)
   search: "",
+  sponsorActive: "all", // "all" | "yes" — "yes" keeps only bills with a currently-serving primary sponsor
   sort: "session",      // column key
   sortDir: "desc",      // "asc" | "desc"
 };
@@ -32,6 +33,7 @@ function parseHash() {
     state.sessions = raw ? raw.split(",").filter(Boolean) : [];
   }
   if (params.has("q")) state.search = params.get("q");
+  if (params.has("active")) state.sponsorActive = params.get("active");
   if (params.has("sort")) state.sort = params.get("sort");
   if (params.has("dir")) state.sortDir = params.get("dir");
   return state;
@@ -43,6 +45,7 @@ function writeHash(state) {
   if (state.law !== DEFAULT_STATE.law) params.set("law", state.law);
   if (state.sessions.length) params.set("sessions", state.sessions.join(","));
   if (state.search) params.set("q", state.search);
+  if (state.sponsorActive !== DEFAULT_STATE.sponsorActive) params.set("active", state.sponsorActive);
   if (state.sort !== DEFAULT_STATE.sort) params.set("sort", state.sort);
   if (state.sortDir !== DEFAULT_STATE.sortDir) params.set("dir", state.sortDir);
   const next = params.toString();

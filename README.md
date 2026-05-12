@@ -54,6 +54,7 @@ The repo root IS the GitHub Pages site root — `index.html` is at the top level
 │   │   ├── category_rules.yml   Include / exclude / category patterns.
 │   │   ├── overrides.yml        Human-review overrides for edge cases.
 │   │   └── status_codes.csv     Decoder for the legislature's opaque status codes.
+│   ├── active_legislators.json  Generated. Current roster, drives the "currently serving" filter and badges.
 │   └── processed/           Committed. Diffable outputs of each build.
 │       ├── bills.parquet        The full filtered dataset (columnar).
 │       └── audit_rejected.csv   Every bill the filter dropped, with reason.
@@ -101,6 +102,11 @@ python -m scraper build --session 2024
 
 # Or do both for every session in one go. Takes ~60 minutes.
 python -m scraper refresh --all
+
+# Pull the current legislator roster (drives the "currently serving" filter
+# and the leaderboard badges). Folded into `refresh --all`; run standalone
+# any time the legislature seats a new member.
+python -m scraper fetch-roster
 
 # Regenerate the social share card from the fresh numbers.
 python scripts/make_social_card.py

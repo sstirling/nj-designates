@@ -1,16 +1,36 @@
 // Entry point. Loads data, wires controls, renders on every state change.
 
 import { initState, getState, setState, subscribe, DEFAULT_STATE } from "./state.js";
-import { applyFilters, renderCategoryChips, renderSessionChips, wireLawChips, refreshLawChips } from "./filters.js";
+import {
+  applyFilters,
+  renderCategoryChips,
+  renderSessionChips,
+  wireLawChips,
+  refreshLawChips,
+  wireSponsorActiveChips,
+  refreshSponsorActiveChips,
+} from "./filters.js";
 import { wireTable, renderTable, sortBills, refreshSortHeaders } from "./table.js";
 import { renderSessionChart } from "./charts.js";
-import { aggregateSponsors, renderSponsors, wireSponsorToggle } from "./sponsors.js";
+import { aggregateSponsors, canonicalizeName, renderSponsors, wireSponsorToggle } from "./sponsors.js";
 import { renderTicker, renderWhatsNew } from "./recent.js";
 
 const state = {
   bills: [],
   meta: null,
   sessionsInData: [],
+  // Set of canonicalized names (see canonicalizeName in sponsors.js) for
+  // legislators currently serving in the current biennial session. Populated
+  // on boot from data/active_legislators.json. An empty Set is the failure
+  // mode — the filter chip stays hidden and the leaderboard runs without
+  // active badges if the roster file can't be loaded.
+  activeCanon: new Set(),
+  // Map of canonical_name → party code ("D", "R", "I"...) for currently
+  // serving members. We only have party data for current-roster members, so
+  // historical sponsors get no flag — which is the right editorial call
+  // (we'd be guessing their party affiliation from the year).
+  partyByCanon: new Map(),
+  rosterMeta: null,
 };
 
 async function boot() {
@@ -33,6 +53,21 @@ async function boot() {
   state.bills = bills;
   state.sessionsInData = [...new Set(bills.map(b => b.session))];
 
+  // Roster is non-essential — if it fails to load, the rest of the site still
+  // works; the filter chip just stays hidden and badges don't render.
+  try {
+    const roster = await fetch("data/active_legislators.json", { cache: "no-cache" }).then(r => r.json());
+    state.rosterMeta = { updated_at: roster.updated_at, current_session: roster.current_session };
+    state.activeCanon = new Set((roster.legislators || []).map(l => l.canonical_name));
+    state.partyByCanon = new Map(
+      (roster.legislators || [])
+        .filter(l => l.canonical_name && l.party)
+        .map(l => [l.canonical_name, l.party])
+    );
+  } catch (e) {
+    console.warn("Could not load data/active_legislators.json; active-legislator filter disabled.", e);
+  }
+
   // Every number on the page is machine-generated from meta.json so copy
   // never drifts from the data.
   document.getElementById("meta-updated").textContent = formatDate(meta.updated_at);
@@ -46,7 +81,14 @@ async function boot() {
   // Wire static event handlers.
   wireTable(document.getElementById("bills-table"));
   wireLawChips(document.getElementById("filter-law"));
+  wireSponsorActiveChips(document.getElementById("filter-active"));
   wireSponsorToggle(document.getElementById("sponsors-toggle"), () => render(getState()));
+
+  // Hide the active-legislator filter group entirely if the roster didn't
+  // load. Better to omit the control than to ship one that always returns
+  // zero rows.
+  const activeGroup = document.getElementById("filter-active-group");
+  if (activeGroup) activeGroup.hidden = state.activeCanon.size === 0;
 
   document.getElementById("search").addEventListener("input", (e) => {
     setState({ search: e.target.value });
@@ -71,7 +113,7 @@ async function boot() {
 
 function render(st) {
   // Filter, sort, render.
-  const filtered = applyFilters(state.bills, st);
+  const filtered = applyFilters(state.bills, st, state.activeCanon);
   const sorted = sortBills(filtered, st);
 
   // Top-of-page counter: always reflects current filter set — that's the joke
@@ -93,7 +135,15 @@ function render(st) {
   renderSponsors(
     document.getElementById("sponsors-list"),
     document.getElementById("sponsors-toggle"),
-    sponsors
+    sponsors,
+    {
+      activeCanon: state.activeCanon,
+      activeLabel: "Active",
+      activeAriaLabel: state.rosterMeta
+        ? `Currently serving in the ${state.rosterMeta.current_session}–${state.rosterMeta.current_session + 1} session`
+        : "Currently serving",
+      partyByCanon: state.partyByCanon,
+    }
   );
 
   // Chips + table.
@@ -101,9 +151,10 @@ function render(st) {
   renderCategoryChips(document.getElementById("filter-categories"), counts);
   renderSessionChips(document.getElementById("filter-sessions"), state.sessionsInData);
   refreshLawChips(document.getElementById("filter-law"));
+  refreshSponsorActiveChips(document.getElementById("filter-active"));
 
   const tbody = document.getElementById("bills-tbody");
-  renderTable(tbody, sorted);
+  renderTable(tbody, sorted, { partyByCanon: state.partyByCanon });
   refreshSortHeaders(document.getElementById("bills-table"));
 
   const empty = document.getElementById("empty-state");
@@ -118,7 +169,7 @@ function countByCategory(bills, st) {
   // Counts respect every filter EXCEPT category, so each chip shows the
   // hypothetical count if you clicked it.
   const others = { ...st, category: "all" };
-  const filtered = applyFilters(bills, others);
+  const filtered = applyFilters(bills, others, state.activeCanon);
   return filtered.reduce((acc, b) => {
     acc[b.primary_category] = (acc[b.primary_category] || 0) + 1;
     return acc;
@@ -140,6 +191,7 @@ function labelForCounter(st, n) {
   if (st.law === "yes") bits.push("that became law");
   if (st.law === "no") bits.push("that did not pass");
   if (st.sessions.length === 1) bits.push(`in ${st.sessions[0]}–${Number(st.sessions[0]) + 1}`);
+  if (st.sponsorActive === "yes") bits.push("from currently serving legislators");
   if (st.search) bits.push(`matching "${st.search}"`);
   return bits.filter(Boolean).join(" ");
 }

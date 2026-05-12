@@ -6,6 +6,7 @@
 import { getState, setState } from "./state.js";
 import { CATEGORY_LABELS } from "./filters.js";
 import { iconFor } from "./icons.js";
+import { partyFlagHtml } from "./sponsors.js";
 
 const STATUS_UNKNOWN = "Meaning not documented";
 
@@ -27,15 +28,16 @@ export function wireTable(table) {
   });
 }
 
-export function renderTable(tbody, bills) {
+export function renderTable(tbody, bills, opts = {}) {
   if (!bills.length) {
     tbody.innerHTML = "";
     return;
   }
+  const { partyByCanon = null } = opts;
   const frag = document.createDocumentFragment();
   for (const b of bills) {
     const tr = document.createElement("tr");
-    tr.innerHTML = rowHtml(b);
+    tr.innerHTML = rowHtml(b, partyByCanon);
     frag.appendChild(tr);
   }
   tbody.replaceChildren(frag);
@@ -52,11 +54,15 @@ export function refreshSortHeaders(table) {
   });
 }
 
-function rowHtml(b) {
+function rowHtml(b, partyByCanon) {
   const sponsors = (b.primary_sponsors || [])
-    .map(s => s.bio_url
-      ? `<a href="${esc(s.bio_url)}" rel="external noopener">${esc(s.name)}</a>`
-      : esc(s.name))
+    .map(s => {
+      const nameHtml = s.bio_url
+        ? `<a href="${esc(s.bio_url)}" rel="external noopener">${esc(s.name)}</a>`
+        : esc(s.name);
+      const flag = partyFlagHtml(s.name, partyByCanon);
+      return flag ? `${nameHtml} ${flag}` : nameHtml;
+    })
     .join("; ") || "—";
   const statusLabel = b.status_label
     ? esc(b.status_label)

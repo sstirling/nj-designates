@@ -2,6 +2,7 @@
 
 import { getState, setState, toggleSession } from "./state.js";
 import { iconFor } from "./icons.js";
+import { canonicalizeName } from "./sponsors.js";
 
 export const CATEGORY_LABELS = {
   all: "All",
@@ -12,15 +13,24 @@ export const CATEGORY_LABELS = {
   other_ceremonial: "Other",
 };
 
-export function applyFilters(bills, state) {
+export function applyFilters(bills, state, activeCanon = null) {
   const q = state.search.trim().toLowerCase();
   const activeSessions = new Set(state.sessions);
+  // "Currently serving" is a no-op unless we have a roster loaded AND the
+  // user asked for it. The size check matches the same guard in app.js that
+  // hides the chip when the roster file failed to load.
+  const wantActive = state.sponsorActive === "yes" && activeCanon && activeCanon.size > 0;
 
   return bills.filter(b => {
     if (state.category !== "all" && b.primary_category !== state.category) return false;
     if (state.law === "yes" && !b.became_law) return false;
     if (state.law === "no" && b.became_law) return false;
     if (activeSessions.size && !activeSessions.has(b.session)) return false;
+    if (wantActive) {
+      const hasActiveSponsor = (b.primary_sponsors || [])
+        .some(s => activeCanon.has(canonicalizeName(s.name || "")));
+      if (!hasActiveSponsor) return false;
+    }
     if (q) {
       const hay = [
         b.synopsis || "",
@@ -90,5 +100,22 @@ export function refreshLawChips(container) {
   const state = getState();
   container.querySelectorAll("button.chip").forEach(btn => {
     btn.setAttribute("aria-pressed", btn.dataset.value === state.law ? "true" : "false");
+  });
+}
+
+export function wireSponsorActiveChips(container) {
+  if (!container) return;
+  container.addEventListener("click", (e) => {
+    const btn = e.target.closest("button.chip");
+    if (!btn) return;
+    setState({ sponsorActive: btn.dataset.value });
+  });
+}
+
+export function refreshSponsorActiveChips(container) {
+  if (!container) return;
+  const state = getState();
+  container.querySelectorAll("button.chip").forEach(btn => {
+    btn.setAttribute("aria-pressed", btn.dataset.value === state.sponsorActive ? "true" : "false");
   });
 }

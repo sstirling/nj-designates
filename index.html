@@ -96,7 +96,12 @@
       <h2 id="sponsors-heading">Most prolific sponsors</h2>
       <p class="chart-dek">
         Ranked by the number of ceremonial bills each legislator has taken on as a primary sponsor.
-        Use the filters on the search tool lower on the page to alter these numbers.
+        Names with <span class="party-flag party-flag--D">D</span> or
+        <span class="party-flag party-flag--R">R</span> next to them are
+        currently serving in the 2026–27 session, per the
+        <a href="https://www.njleg.state.nj.us/legislative-roster" rel="external noopener">official roster</a>;
+        the <span class="sponsor-active-badge sponsor-active-badge--inline">Active</span> tag marks
+        the same set. Use the filters on the search tool lower on the page to alter these numbers.
       </p>
       <ol id="sponsors-list" class="sponsors-list" aria-live="polite"></ol>
       <button id="sponsors-toggle" class="link-button" type="button" hidden>Show more</button>
@@ -123,6 +128,14 @@
             <button class="chip" type="button" data-filter="law" data-value="all" aria-pressed="true">All</button>
             <button class="chip" type="button" data-filter="law" data-value="yes" aria-pressed="false">Became law</button>
             <button class="chip" type="button" data-filter="law" data-value="no" aria-pressed="false">Did not pass</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="filter-group" id="filter-active-group" hidden>
+          <legend>Sponsor</legend>
+          <div id="filter-active" class="chip-row">
+            <button class="chip" type="button" data-filter="active" data-value="all" aria-pressed="true">All sponsors</button>
+            <button class="chip" type="button" data-filter="active" data-value="yes" aria-pressed="false">Currently serving</button>
           </div>
         </fieldset>
 

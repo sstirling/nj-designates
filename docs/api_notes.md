@@ -103,6 +103,42 @@ A two-element array: `[primarySponsors, coSponsors]`. `BioLink` may be null for 
 
 One gotcha: `billDetail/billDescription/A444/2024` sometimes returns data for the **current live** version of a bill number, not the 2024 version specifically. Use `billDetailHist/...` for anything before the current session.
 
+### `GET /legislative-roster` (HTML page, not an API)
+
+The current legislator roster is **not** exposed at any `/api/...` route we have been able to find — every variant we tried (`/api/legislative-roster`, `/api/legislators`, `/api/members`, etc.) returns a 404 with `{"message":"Route GET:/... not found"}`. The roster page at `https://www.njleg.state.nj.us/legislative-roster` is server-rendered by Next.js and inlines the roster as JSON inside a single `<script id="__NEXT_DATA__">` block.
+
+`scraper/fetch_roster.py` fetches that page, extracts the blob, and writes a clean `data/active_legislators.json`. The blob shape:
+
+```
+blob.props.pageProps.legrosterData = [legislators, towns, districts]
+```
+
+Only index 0 is interesting. Each legislator record has:
+
+```json
+{
+  "Full_Name": "Bramnick, Jon M.",
+  "DisplayName": "Bramnick, Jon M.",
+  "LegTitle": "Senator ",
+  "RosterHouseCode": "S",
+  "Roster_House": "Senate",
+  "Roster_District": 21,
+  "Party": "R",
+  "PartyDescription": "Republican",
+  "Suffix": null,
+  "BioLink": "/legislative-roster/433/senator-bramnick",
+  "Last_Name": "Bramnick",
+  "First_Name": "Jon",
+  "Middle_Name": "M.",
+  "VacantSort": 0,
+  "ContactLink": "https://..."
+}
+```
+
+**Vacant seats:** records with `VacantSort != 0` or empty `Full_Name` represent empty seats awaiting appointment. Drop them.
+
+**Name matching to `billSponsors` output:** the two endpoints disagree on suffix placement. The roster shoves it into the last-name slot (`"Amato Jr., Carmen F."`) while `billSponsors` puts it at the end (`"Amato, Carmen F., Jr."`). Same divergence for `M.D.`, `Esq.`, `IV`, etc. To match, strip those tokens entirely on both sides and lowercase — the project keeps a Python and JS implementation of the same rule in `scraper/fetch_roster.py::canonicalize_name` and `js/sponsors.js::canonicalizeName`. Across the 100 unique primary sponsor names in the 2026 session, the canonical form yields 100% exact matches with no duplicate keys among the 120 currently-seated legislators.
+
 ## Status codes (`CurrentStatus`) — undocumented
 
 The `searchFields` endpoint documents only the seven governor actions above. Bill-level `CurrentStatus` codes (e.g. `ASL`, `AHU`, `AEN`, `WAPP`, `SIN`, `AIR`) are not documented by any endpoint we've found. We maintain a hand-curated decoder at `data/reference/status_codes.csv`, seeded with values derived empirically from `billHistory` responses. Unknown codes are surfaced to the reader as the raw code with "Meaning not documented" rather than fabricated.

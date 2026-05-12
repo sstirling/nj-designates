@@ -10,6 +10,54 @@
 
 const INITIAL_VISIBLE = 10;
 
+// Mirrors scraper/fetch_roster.py::canonicalize_name. Strips honorifics
+// (Jr./Sr./II/III/IV/M.D./Ph.D./Esq./Dr.), drops periods, collapses commas
+// and whitespace, lowercases. We need it here because the roster's Full_Name
+// and the bill-sponsor endpoint's Full_Name disagree on where to put the
+// suffix — roster says "Amato Jr., Carmen F." while bills say
+// "Amato, Carmen F., Jr." — and the canonical form ("amato,carmen f")
+// collapses that gap.
+//
+// Bare "V" is deliberately omitted from the alternation. Middle initials like
+// "John V. Smith" are common; a 5th-generation suffix is not. Including "V"
+// would silently strip every "V." middle initial and create false matches.
+//
+// IMPORTANT: if this regex changes, update the Python counterpart in lockstep
+// or the active-legislator filter will silently miss matches.
+const _HONORIFIC = /(?<!\w)(?:Jr|Sr|II|III|IV|M\.?\s*D|Ph\.?\s*D|Esq|Dr)\.?(?!\w)/gi;
+
+export function canonicalizeName(name) {
+  let n = (name || "").replace(_HONORIFIC, "");
+  n = n.replace(/\./g, "");
+  n = n.replace(/\s+/g, " ");
+  n = n.replace(/\s*,\s*/g, ",");
+  n = n.replace(/,+/g, ",");
+  return n.replace(/^[\s,]+|[\s,]+$/g, "").toLowerCase();
+}
+
+const PARTY_LABEL = { D: "Democrat", R: "Republican", I: "Independent" };
+
+// Small inline pill for the legislator's party affiliation. Renders only when
+// the name resolves to a currently-seated legislator — historical sponsors
+// who are no longer in the roster get no flag (we don't have party data for
+// them). Returns "" when nothing to render so callers can concatenate freely.
+export function partyFlagHtml(name, partyByCanon) {
+  if (!partyByCanon || !partyByCanon.size) return "";
+  const code = partyByCanon.get(canonicalizeName(name));
+  if (!code) return "";
+  const cls = /^[A-Z]$/.test(code) ? code : "X";  // guard against unexpected values
+  const label = PARTY_LABEL[code] || code;
+  return `<span class="party-flag party-flag--${cls}" title="${label}" aria-label="${label}">${escForAttr(code)}</span>`;
+}
+
+function escForAttr(s) {
+  return String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export function aggregateSponsors(bills) {
   const byKey = new Map();
   for (const bill of bills) {
@@ -30,7 +78,13 @@ export function aggregateSponsors(bills) {
   });
 }
 
-export function renderSponsors(listEl, toggleEl, sponsors) {
+export function renderSponsors(listEl, toggleEl, sponsors, opts = {}) {
+  const {
+    activeCanon = null,
+    activeLabel = "Active",
+    activeAriaLabel = "Currently serving",
+    partyByCanon = null,
+  } = opts;
   const top = sponsors.slice(0, INITIAL_VISIBLE);
   const expanded = toggleEl.dataset.expanded === "true";
   const visible = expanded ? sponsors : top;
@@ -48,13 +102,20 @@ export function renderSponsors(listEl, toggleEl, sponsors) {
     const lawNote = s.laws > 0
       ? `<small>${s.laws} became law</small>`
       : `<small>none became law</small>`;
+    const isActive = activeCanon && activeCanon.has(canonicalizeName(s.name));
+    const activeBadge = isActive
+      ? `<span class="sponsor-active-badge" title="${esc(activeAriaLabel)}" aria-label="${esc(activeAriaLabel)}">${esc(activeLabel)}</span>`
+      : "";
+    const partyFlag = partyFlagHtml(s.name, partyByCanon);
     const nameHtml = s.bio_url
       ? `<a href="${esc(s.bio_url)}" rel="external noopener">${esc(s.name)}</a>`
       : esc(s.name);
     return `
-      <li class="sponsor-row">
+      <li class="sponsor-row${isActive ? " sponsor-row--active" : ""}">
         <span class="sponsor-name">
-          <strong>${nameHtml}</strong>
+          <span class="sponsor-name-line">
+            <strong>${nameHtml}</strong>${partyFlag}${activeBadge}
+          </span>
           ${lawNote}
           <span class="sponsor-bar" aria-hidden="true">
             <span class="sponsor-bar-fill" style="width: ${pct}%"></span>

@@ -18,6 +18,7 @@ from typing import Iterable
 from scraper.build_site_data import build_sessions
 from scraper.config import ALL_SESSIONS
 from scraper.fetch_bill_details import fetch_details
+from scraper.fetch_roster import fetch_roster
 from scraper.fetch_sessions import fetch_session
 from scraper.filter_ceremonial import is_ceremonial
 
@@ -60,6 +61,13 @@ def cmd_build(args) -> int:
 def cmd_refresh(args) -> int:
     cmd_fetch(args)
     cmd_build(args)
+    cmd_fetch_roster(args)
+    return 0
+
+
+def cmd_fetch_roster(args) -> int:
+    doc = fetch_roster()
+    print(f"wrote {len(doc['legislators'])} active legislators to data/active_legislators.json")
     return 0
 
 
@@ -96,6 +104,12 @@ def main(argv: list[str] | None = None) -> int:
     add_session_args(refresh_p)
     add_augment_arg(refresh_p)
     refresh_p.set_defaults(func=cmd_refresh)
+
+    roster_p = sub.add_parser(
+        "fetch-roster",
+        help="pull the current legislator roster to data/active_legislators.json",
+    )
+    roster_p.set_defaults(func=cmd_fetch_roster)
 
     args = p.parse_args(argv)
     logging.basicConfig(

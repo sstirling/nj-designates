@@ -30,6 +30,13 @@
   --cat-place-naming:       #e78ac3;
   --cat-other-ceremonial:   #b3b3b3;
 
+  /* Party palette — single-letter pills next to legislator names. Deep,
+     desaturated tones so they coexist with the cream paper and the brick
+     accent without screaming. White text passes WCAG AA at >=7:1 on both. */
+  --party-d:                #1f4e79;
+  --party-r:                #9b1f1f;
+  --party-i:                #6a6558;  /* fall back to muted ink for independents */
+
   --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --f-sans:  "Inter", -apple-system, system-ui, "Segoe UI", sans-serif;
   --f-mono:  "SF Mono", Menlo, Consolas, monospace;
@@ -378,6 +385,66 @@ a:focus-visible {
   font-weight: 600;
   font-size: 0.95rem;
   word-break: break-word;  /* long names (e.g. "Reynolds-Jackson, Verlina") shouldn't push the bar offscreen at 320px */
+}
+.sponsor-name-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.5rem;
+  row-gap: 0.15rem;
+}
+.sponsor-active-badge {
+  display: inline-block;
+  flex: 0 0 auto;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: var(--accent, #2563eb);
+  color: #fff;
+  font-family: var(--f-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: 0.1em;  /* nudge so the pill sits with the cap height of the name */
+}
+.sponsor-active-badge--inline {
+  /* When the pill appears mid-paragraph as a key (in the leaderboard dek), it
+     doesn't need its own line and shouldn't inherit accent color from the body. */
+  vertical-align: baseline;
+  font-size: 0.6rem;
+}
+
+/* Single-letter party affiliation pill. D = blue, R = red, fall back to
+   muted gray for anything else. Always shown alongside the textual letter
+   so color isn't the sole signal — passes the "if you printed this in
+   grayscale" test. */
+.party-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--party-i);
+  color: #fff;
+  font-family: var(--f-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  vertical-align: 0.05em;
+}
+.party-flag--D { background: var(--party-d); }
+.party-flag--R { background: var(--party-r); }
+.party-flag--I { background: var(--party-i); }
+/* In the bills table, sponsor names are inline and run-on; tighten the gap so
+   "Name [D]; Other Name [R]" reads as a compact unit. */
+.cell-sponsors .party-flag {
+  margin-left: 0.15rem;
+  vertical-align: 0.1em;
 }
 .sponsor-name small {
   font-size: 0.75rem;
