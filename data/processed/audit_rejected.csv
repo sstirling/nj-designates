@@ -315,6 +315,7 @@ bill_id,session,full_number,synopsis,reason
 2026-AR25,2026,AR25,Recognizes historical importance and cultural significance of Hinchliffe Stadium and annual football game between Montclair State University and William Paterson University at Hinchliffe Stadium.,no include pattern matched
 2026-AR34,2026,AR34,Supports Abraham Accords and recognizes importance of peace and coexistence in Middle East.,no include pattern matched
 2026-AR129,2026,AR129,Recognizes history of women's suffrage in NJ.,no include pattern matched
+2026-AR139,2026,AR139,Recognizes use of turfgrass for 2026 FIFA World Cup.,no include pattern matched
 2026-SCR112,2026,SCR112,Recognizes role of natural gas in New Jersey's energy policy goals and declares natural gas clean fuel.,no include pattern matched
 2026-SCR134,2026,SCR134,Recognizes centennial of Shrewsbury Borough.,no include pattern matched
 2026-SJR53,2026,SJR53,Recognizes Sanskrit as one of world languages.,no include pattern matched
@@ -324,6 +325,7 @@ bill_id,session,full_number,synopsis,reason
 2026-SR44,2026,SR44,Recognizes open water lifeguards as first responders and emergency services providers.,no include pattern matched
 2026-SR72,2026,SR72,Recognizes open water lifeguards as first responders and emergency services providers.,no include pattern matched
 2026-SR94,2026,SR94,Recognizes history of women's suffrage in NJ.,no include pattern matched
+2026-SR101,2026,SR101,Declares New Jersey's natural lands essential infrastructure; recognizes need for land conservation.,no include pattern matched
 2026-A3676,2026,A3676,"Renames pinelands area as ""John McPhee pinelands area.""",no include pattern matched
 2026-S949,2026,S949,"Renames ""Delaware Bay"" to ""Bay of New Jersey""; directs all State departments and agencies to update official publications, signage, websites, and materials to reflect the new designation and notify relevant federal entities.",no include pattern matched
 2026-S1196,2026,S1196,"Renames Office of Ombudsman for Individuals with Intellectual or Developmental Disabilities, creates position of deputy ombudsman, and expands duties of office.",excluded: renames_authority (administrative body rename)
