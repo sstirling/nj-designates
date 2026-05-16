@@ -86,7 +86,11 @@ def draw_star(draw: ImageDraw.ImageDraw, cx: int, cy: int, r: int, color) -> Non
 def main() -> None:
     meta = json.loads(META.read_text())
     total = f"{meta['total_bills']:,}"
-    span = f"{meta['earliest_session']}–{meta['latest_session'] + 1}"
+    # NJ sessions are 2-year spans, but the dataset only covers bills introduced
+    # through the last refresh — use updated_at's year so the span never claims
+    # coverage we don't yet have (e.g., "2000–2027" while still in 2026).
+    refresh_year = int(meta["updated_at"][:4])
+    span = f"{meta['earliest_session']}–{refresh_year}"
 
     W, H = 1200, 630
     img = Image.new("RGB", (W, H), CREAM)
