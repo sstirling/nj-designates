@@ -47,6 +47,7 @@ The repo root IS the GitHub Pages site root — `index.html` is at the top level
 ├── data/
 │   ├── bills.json           Generated. The site's primary dataset.
 │   ├── meta.json            Generated. Totals and per-category counts.
+│   ├── movement.json        Generated. Bills that advanced in the last 7 days.
 │   ├── sessions.json        Generated. Session list for the filter chips.
 │   ├── raw/                 Gitignored. Raw API responses are immutable per run.
 │   │   └── snapshots/         Dated tarballs at publication milestones (committed).

@@ -834,6 +834,115 @@ a:focus-visible {
 }
 .whats-new-toggle:hover { opacity: 0.75; }
 
+/* ---- "On the move" panel ----
+   Sits below "What's new". Grouped by bucket so the reader can scan for
+   the highest-stakes items first (signings, then floor passage, then
+   committee action). Hidden entirely when no events landed in the window. */
+
+.movement {
+  margin: 0 0 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--paper-warm);
+  border-left: 4px solid var(--ink);
+  border-radius: 0 4px 4px 0;
+}
+
+.movement-heading {
+  font-family: var(--f-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.movement-lede {
+  font-family: var(--f-serif);
+  font-size: 1.05rem;
+  margin: 0 0 1rem;
+}
+.movement-lede strong { color: var(--ink); }
+
+.movement-bucket {
+  margin: 0 0 1rem;
+}
+.movement-bucket:last-child { margin-bottom: 0; }
+
+.movement-bucket-heading {
+  font-family: var(--f-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.movement-bucket-count {
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 0.25rem;
+}
+
+.movement-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.movement-item {
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.movement-item:first-child { border-top: 0; padding-top: 0.15rem; }
+
+.movement-item-head {
+  display: flex;
+  gap: 0.65rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 0.15rem;
+}
+
+.movement-bill {
+  font-family: var(--f-mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.movement-date {
+  font-family: var(--f-sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.movement-action {
+  font-family: var(--f-sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+  margin: 0 0 0.15rem;
+}
+
+.movement-synopsis {
+  font-family: var(--f-serif);
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .movement-item-head { gap: 0.4rem; }
+  .movement-action { font-size: 0.8rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 

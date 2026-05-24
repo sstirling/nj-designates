@@ -241,6 +241,7 @@
         <li><strong>Party, district, and legislator demographics are not included.</strong> See above.</li>
         <li><strong>Two bills sit in <code>other_ceremonial</code>.</strong> Both designate Public Laws by honorific names ("Miranda Vargas Act"). These are honorific uses of a substantive law, not a ceremonial designation of a symbol or place. We flag them as a genuine judgment call rather than force them into a category.</li>
         <li><strong>The "what's new" callout and ticker reflect this dataset, not the legislature's calendar.</strong> The ticker shows the current session's most recently active bills by their last date of action. The "what's new" block counts bills that didn't exist in our previous weekly snapshot. Bills already in the archive when we started tracking that field have <code>first_seen = null</code> — we do not retroactively assign a date we don't have.</li>
+        <li><strong>The "on the move" panel counts events from the last 7 days only.</strong> Each Friday-night refresh pulls every ceremonial bill's official action history from the NJ Legislature's site and classifies actions into buckets (signings and vetoes, floor passage, committee action, cross-chamber transfers, other). Initial introductions are excluded because the "what's new" panel already covers them. If a bill moves multiple times in the same week, each step gets its own row.</li>
       </ul>
     </section>
 

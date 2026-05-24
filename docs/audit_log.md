@@ -2,6 +2,23 @@
 
 Every rule change, human-review decision, and data refresh that is worth recording for future-me.
 
+## 2026-05-24 — Added weekly "on the move" tracking
+
+Shipped a new feature: each weekly refresh now also pulls the per-bill action history from `/api/billDetail/billHistory/{BILL}/{SESSION}`, classifies events into buckets (governor / floor / committee / transfer / other), and emits a `data/movement.json` feed of everything that happened in the last 7 days. The site renders this as a new "On the move" panel below the existing "What's new" panel.
+
+Design decisions worth recording:
+
+- **Window:** fixed 7-day window anchored to UTC today at build time. Considered anchoring to `meta.json`'s `previous_refresh_at` for self-correction on missed cron runs, but the fixed window is simpler and a missed week is a rare enough edge case that the empty-panel signal is itself useful editorially.
+- **Initial introductions are excluded.** The HistoryAction `"Introduced, Referred to ..."` (and variants) is silently dropped by `scraper.movement.classify()`. The site's "What's new" panel already surfaces newly-introduced bills via `first_seen`; surfacing them again here would double-report. Movement = post-introduction progress.
+- **Classifier is regex-based on the HistoryAction prose.** Clerks write the action text in English, so the classifier matches lowercased substrings. Patterns and test fixtures cover everything observed in the 2024 + 2026 sessions; unrecognized actions fall through to the `other` bucket rather than being dropped silently, so a wording change at NJ Leg's end degrades gracefully.
+- **`CurrentStatus` vs `billHistory` can disagree.** Spot-checked SJR43/2026, which had `CurrentStatus=SEN` ("Senate enacted") but only a single intro event in its history. The API can lag. We treat `billHistory` as authoritative for events and dates; `CurrentStatus` remains the authoritative *current state* shown on bill cards. They're shown independently.
+- **Cache strategy.** `fetch_bill_details.py` now requires the cached detail file to carry a `history` key for a cache hit, alongside the existing LDOA match. Existing detail files written before this feature ship will be treated as cache misses on the first run after deploy, triggering a one-time backfill — roughly 2–3 minutes of extra API time at 1 req/sec.
+- **"Filed with Secretary of State" is ambiguous and must be disambiguated by bill type + both-chamber passage.** The phrase appears for two distinct events:
+  1. A Bill or Joint Resolution that's been signed by the governor and is now law (the genuine "governor's desk" arrival).
+  2. A single-chamber Resolution (AR/SR) being formally recorded after one chamber adopted it — no governor involvement possible, since AR/SR don't go to the governor at all.
+
+  Both come back from the API with the same `Filed with Secretary of State` HistoryAction text. We disambiguate by checking whether the bill (or its identical companion via `IdenticalBillNumber`) shows floor passage in BOTH chambers. If it does, the event stays in the `governor` bucket. If not, it's demoted to `other`. Caught this against AR130/2026 (NJ-Taiwan recognition): passed Assembly, filed with SoS the same day, but companion SR96 was still in Senate committee — the panel was falsely claiming governor's-desk status. `Approved P.L.` events are unambiguous and stay in `governor` regardless.
+
 ## 2026-05-07 — Re-added "Honors" and "Recognizes" to search keywords
 
 Reversing the May-4 decision to keep `Honors`/`Recognizes` out. The earlier reasoning leaned on aggregate hit-counts; an actual inspection of the 21 bills currently in the dataset whose synopses start with those verbs showed the signal is much higher than the search-volume number suggested.

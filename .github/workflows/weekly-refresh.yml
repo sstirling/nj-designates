@@ -82,6 +82,7 @@ jobs:
             Review the diffs below before merging:
             - `data/meta.json` — totals and per-category counts.
             - `data/bills.json` — site dataset.
+            - `data/movement.json` — bills that advanced in the last 7 days.
             - `data/sessions.json` — session list.
             - `data/processed/bills.parquet` — columnar audit copy.
             - `data/processed/audit_rejected.csv` — every bill the filter dropped, with reason.
@@ -91,6 +92,7 @@ jobs:
           add-paths: |
             data/bills.json
             data/meta.json
+            data/movement.json
             data/sessions.json
             data/processed/bills.parquet
             data/processed/audit_rejected.csv

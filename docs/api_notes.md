@@ -103,6 +103,35 @@ A two-element array: `[primarySponsors, coSponsors]`. `BioLink` may be null for 
 
 One gotcha: `billDetail/billDescription/A444/2024` sometimes returns data for the **current live** version of a bill number, not the 2024 version specifically. Use `billDetailHist/...` for anything before the current session.
 
+#### `billHistory` resource — action timeline
+
+`GET /api/billDetail/billHistory/{BILL}/{SESSION}` (or `billDetailHist/...` for closed sessions) returns the chronological list of legislative actions for a bill. The shape is dead simple:
+
+```json
+[
+  {"ActionDate": "1/9/2024",  "HistoryAction": "Introduced, Referred to Assembly State and Local Government Committee"},
+  {"ActionDate": "10/21/2024", "HistoryAction": "Reported out of Assembly Committee, 2nd Reading"},
+  {"ActionDate": "10/28/2024", "HistoryAction": "Passed by the Assembly (75-0-0)"},
+  {"ActionDate": "12/18/2025", "HistoryAction": "Passed Senate (Passed Both Houses) (38-0)"},
+  {"ActionDate": "1/12/2026",  "HistoryAction": "Approved P.L.2025, JR-17."}
+]
+```
+
+- `ActionDate` is US format `M/D/YYYY` with no time and no timezone. The scraper normalises to ISO at fetch time (`scraper/fetch_bill_details._normalize_action_date`).
+- `HistoryAction` is English prose written by legislative clerks — not codes. Event vocabulary observed in the wild (2024–2026):
+  - `Introduced, Referred to [chamber] [committee]` / `Introduced in the [chamber], ...`
+  - `Reported out of [Assembly|Senate] Committee[, 2nd Reading]` / `Reported with Amendments`
+  - `Passed by the [Assembly|Senate] ([vote])` / `Passed Senate (Passed Both Houses) ([vote])`
+  - `Received in the [Assembly|Senate][, Referred to ...]` / `Received without Reference`
+  - `Substituted for [BILL] (1R)` / `Substituted by [BILL]`
+  - `Approved P.L.YYYY, [L|JR]-NN.` — signed into law
+  - `Approved by Governor`
+  - `Filed with Secretary of State` — **ambiguous**: appears both when the governor's signature has been recorded (Bills, Joint Resolutions) AND when a single-chamber resolution (AR/SR) is being formally archived after one chamber adopts it. `scraper/movement.py` disambiguates by checking whether both chambers have passed the legislation (own history or companion via `IdenticalBillNumber`).
+  - `Absolute Veto` / `Conditional Veto` / `Line Item Veto` / `Pocket Veto` / `Without Approval`
+  - `Withdrawn Because Approved P.L.YYYY, ...` — identical companion bill became law
+- Bills where `CurrentStatus` indicates a stage past introduction sometimes still show only the introduction event in `billHistory` (observed for SJR43/2026 with `CurrentStatus=SEN`). Treat `billHistory` as authoritative for *which* events happened and *when*, and `CurrentStatus` as the bill's last known overall state — they can disagree briefly.
+- This endpoint backs the weekly "on the move" panel; see `scraper/movement.py` for the classifier mapping `HistoryAction` strings into buckets (governor/floor/committee/transfer/other).
+
 ### `GET /legislative-roster` (HTML page, not an API)
 
 The current legislator roster is **not** exposed at any `/api/...` route we have been able to find — every variant we tried (`/api/legislative-roster`, `/api/legislators`, `/api/members`, etc.) returns a 404 with `{"message":"Route GET:/... not found"}`. The roster page at `https://www.njleg.state.nj.us/legislative-roster` is server-rendered by Next.js and inlines the roster as JSON inside a single `<script id="__NEXT_DATA__">` block.

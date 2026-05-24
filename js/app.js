@@ -14,6 +14,7 @@ import { wireTable, renderTable, sortBills, refreshSortHeaders } from "./table.j
 import { renderSessionChart } from "./charts.js";
 import { aggregateSponsors, canonicalizeName, renderSponsors, wireSponsorToggle } from "./sponsors.js";
 import { renderTicker, renderWhatsNew } from "./recent.js";
+import { renderMovement } from "./movement.js";
 
 const state = {
   bills: [],
@@ -36,8 +37,10 @@ const state = {
 async function boot() {
   initState();
 
-  // Load dataset and metadata in parallel.
-  let meta, bills;
+  // Load dataset and metadata in parallel. movement.json is optional — it
+  // may not exist yet on the very first deploy of this feature — so we
+  // fetch it separately and tolerate failure.
+  let meta, bills, movement = null;
   try {
     [meta, bills] = await Promise.all([
       fetch("data/meta.json", { cache: "no-cache" }).then(r => r.json()),
@@ -52,6 +55,14 @@ async function boot() {
   state.meta = meta;
   state.bills = bills;
   state.sessionsInData = [...new Set(bills.map(b => b.session))];
+
+  // Tolerated-failure load: if movement.json is missing or unparseable the
+  // panel just stays hidden. Don't fail the page over an optional feed.
+  try {
+    movement = await fetch("data/movement.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null);
+  } catch (e) {
+    console.warn("Could not load data/movement.json; movement panel disabled.", e);
+  }
 
   // Roster is non-essential — if it fails to load, the rest of the site still
   // works; the filter chip just stays hidden and badges don't render.
@@ -77,6 +88,7 @@ async function boot() {
   // view, so render once on boot rather than on every state change.
   renderTicker(document.getElementById("ticker"), state.bills, meta);
   renderWhatsNew(document.getElementById("whats-new"), state.bills, meta);
+  renderMovement(document.getElementById("movement"), movement);
 
   // Wire static event handlers.
   wireTable(document.getElementById("bills-table"));

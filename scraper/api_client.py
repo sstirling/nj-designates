@@ -191,6 +191,22 @@ def fetch_sponsors(client: Client, bill: str, session: int, is_current: bool,
     return client.get(f"/api/{base}/billSponsors/{bill}/{session}", force_refresh=force_refresh)
 
 
+def fetch_history(client: Client, bill: str, session: int, is_current: bool,
+                  force_refresh: bool = False) -> list[dict]:
+    """
+    GET /api/billDetail/billHistory/{bill}/{session}     for current session
+    GET /api/billDetailHist/billHistory/{bill}/{session} for closed sessions
+
+    Returns a list of {ActionDate, HistoryAction} dicts in chronological order.
+    ActionDate is a US-format date string (M/D/YYYY) without a time component;
+    HistoryAction is a human-readable English sentence describing what happened.
+
+    See docs/api_notes.md for the full event vocabulary observed in the wild.
+    """
+    base = "billDetail" if is_current else "billDetailHist"
+    return client.get(f"/api/{base}/billHistory/{bill}/{session}", force_refresh=force_refresh)
+
+
 def fetch_sessions(client: Client) -> list[dict]:
     """GET /api/advancedSearch/sessions → [{"display": "...", "value": 2024}, ...]"""
     return client.get("/api/advancedSearch/sessions")

@@ -37,6 +37,7 @@ from scraper.decode_status import (
     status_label,
 )
 from scraper.filter_ceremonial import filter_reason, is_ceremonial
+from scraper.movement import compute_movement
 
 log = logging.getLogger(__name__)
 
@@ -290,12 +291,19 @@ def write_outputs(all_records: list[dict], all_rejected: list[dict],
         {"value": s, "label": session_label(s)} for s in sorted(sessions_covered, reverse=True)
     ]))
 
+    # Weekly "what moved" feed. Closed sessions are filtered out naturally
+    # because their history events never fall inside the recent date window.
+    movement = compute_movement(all_records, DATA_RAW / "bill_details")
+    (SITE_DATA / "movement.json").write_text(json.dumps(movement))
+
     (SITE_DATA / "meta.json").write_text(json.dumps(
-        _build_meta(all_records, sessions_covered, previous_refresh_at)
+        _build_meta(all_records, sessions_covered, previous_refresh_at, movement)
     ))
 
-    log.info("wrote %d bills (%d rejected) across sessions %s",
-             len(all_records), len(all_rejected), sessions_covered)
+    log.info("wrote %d bills (%d rejected) across sessions %s; "
+             "%d movement events in last %d days",
+             len(all_records), len(all_rejected), sessions_covered,
+             len(movement["events"]), movement["window_days"])
 
 
 def _slim_for_site(records: list[dict]) -> list[dict]:
@@ -332,9 +340,11 @@ def _slim_for_site(records: list[dict]) -> list[dict]:
 
 
 def _build_meta(records: list[dict], sessions_covered: list[int],
-                previous_refresh_at: str | None = None) -> dict:
+                previous_refresh_at: str | None = None,
+                movement: dict | None = None) -> dict:
     now = dt.datetime.utcnow().isoformat() + "Z"
     today = dt.datetime.utcnow().date().isoformat()
+    moved_this_refresh = len((movement or {}).get("events") or [])
     if not records:
         return {
             "updated_at": now,
@@ -342,6 +352,7 @@ def _build_meta(records: list[dict], sessions_covered: list[int],
             "total_bills": 0,
             "sessions_covered": sessions_covered,
             "added_this_refresh": 0,
+            "moved_this_refresh": moved_this_refresh,
         }
     df = pd.DataFrame(records)
     by_category = df["primary_category"].value_counts().to_dict()
@@ -364,6 +375,7 @@ def _build_meta(records: list[dict], sessions_covered: list[int],
         "total_became_law": became_law,
         "pass_rate": round(became_law / len(df), 4) if len(df) else 0.0,
         "added_this_refresh": added_this_refresh,
+        "moved_this_refresh": moved_this_refresh,
     }
 
 
