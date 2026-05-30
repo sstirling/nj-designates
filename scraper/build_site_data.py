@@ -344,7 +344,14 @@ def _build_meta(records: list[dict], sessions_covered: list[int],
                 movement: dict | None = None) -> dict:
     now = dt.datetime.utcnow().isoformat() + "Z"
     today = dt.datetime.utcnow().date().isoformat()
-    moved_this_refresh = len((movement or {}).get("events") or [])
+    movement_events = (movement or {}).get("events") or []
+    moved_this_refresh = len(movement_events)
+    # Bills that advanced this week belong to the "on the move" panel. Exclude
+    # them from "what's new" so a bill the scraper discovered late — after it
+    # already passed a chamber — doesn't show as brand new (see SJR137). This is
+    # the mirror of movement.py dropping introductions because "what's new"
+    # covers those; the two panels stay mutually exclusive.
+    moved_ids = {e.get("bill_id") for e in movement_events}
     if not records:
         return {
             "updated_at": now,
@@ -352,6 +359,7 @@ def _build_meta(records: list[dict], sessions_covered: list[int],
             "total_bills": 0,
             "sessions_covered": sessions_covered,
             "added_this_refresh": 0,
+            "new_bill_ids": [],
             "moved_this_refresh": moved_this_refresh,
         }
     df = pd.DataFrame(records)
@@ -359,10 +367,15 @@ def _build_meta(records: list[dict], sessions_covered: list[int],
     by_session = df.groupby("session").size().to_dict()
     became_law = int(df["became_law"].sum())
     # Bills the scraper tagged with today's date — i.e., didn't exist in last
-    # week's snapshot. Drives the "what's new" callout on the site.
-    added_this_refresh = int(
-        df["first_seen"].fillna("").eq(today).sum()
-    ) if "first_seen" in df.columns else 0
+    # week's snapshot — minus any that also advanced this week. Drives the
+    # "what's new" callout. new_bill_ids is the exact set the callout renders,
+    # so its count and the rendered list can't drift apart.
+    if "first_seen" in df.columns:
+        new_mask = df["first_seen"].fillna("").eq(today) & ~df["bill_id"].isin(moved_ids)
+        new_bill_ids = sorted(df.loc[new_mask, "bill_id"].tolist())
+    else:
+        new_bill_ids = []
+    added_this_refresh = len(new_bill_ids)
     return {
         "updated_at": now,
         "previous_refresh_at": previous_refresh_at,
@@ -375,6 +388,7 @@ def _build_meta(records: list[dict], sessions_covered: list[int],
         "total_became_law": became_law,
         "pass_rate": round(became_law / len(df), 4) if len(df) else 0.0,
         "added_this_refresh": added_this_refresh,
+        "new_bill_ids": new_bill_ids,
         "moved_this_refresh": moved_this_refresh,
     }
 

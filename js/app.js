@@ -189,7 +189,7 @@ function countByCategory(bills, st) {
 }
 
 function labelForCounter(st, n) {
-  const plural = n === 1 ? "ceremonial bill" : "ceremonial bills";
+  const plural = n === 1 ? "ceremonial bill or resolution" : "ceremonial bills and resolutions";
   const bits = [plural];
   if (st.category !== "all") {
     const catLabels = {
@@ -230,7 +230,7 @@ function ledeCopy(meta) {
     : `Since <strong>${first}</strong>, the New Jersey Legislature has introduced`;
 
   return `
-    ${range} <strong>${total}</strong> ceremonial bills —
+    ${range} <strong>${total}</strong> ceremonial bills and resolutions —
     designating state symbols, naming bridges and rest stops, or carving out a
     commemorative day or week. <strong>${laws}</strong> became law. The rest did not.
   `;

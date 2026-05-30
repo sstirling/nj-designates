@@ -27,7 +27,7 @@ export function renderMovement(container, movement) {
 
   const grouped = groupByBucket(events);
   const windowText = formatWindow(movement.window_start, movement.window_end);
-  const noun = events.length === 1 ? "ceremonial bill" : "ceremonial bills";
+  const noun = events.length === 1 ? "ceremonial bill or resolution" : "ceremonial bills and resolutions";
 
   const sections = BUCKETS
     .filter(b => grouped[b.key] && grouped[b.key].length)

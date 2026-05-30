@@ -74,15 +74,19 @@ export function renderWhatsNew(container, bills, meta) {
     container.innerHTML = `
       <h3 class="whats-new-heading">What's new</h3>
       <p class="whats-new-empty">
-        No new ceremonial bills${sinceText}. The legislature briefly rested.
+        No new ceremonial bills or resolutions${sinceText}. The legislature briefly rested.
       </p>
     `;
     return;
   }
 
+  // Prefer the explicit set the builder computed: first_seen==today minus any
+  // bill that also advanced this week (those live in "on the move"). Falls back
+  // to a raw first_seen match for meta.json written before new_bill_ids shipped.
   const today = (meta.updated_at || "").slice(0, 10);
+  const newIds = Array.isArray(meta.new_bill_ids) ? new Set(meta.new_bill_ids) : null;
   const newBills = bills
-    .filter(b => b.first_seen === today)
+    .filter(b => (newIds ? newIds.has(b.id) : b.first_seen === today))
     .sort((a, b) => (a.ldoa < b.ldoa ? 1 : -1));
 
   // Truncate long lists so the callout doesn't overrun the page. Items past
@@ -102,7 +106,7 @@ export function renderWhatsNew(container, bills, meta) {
     `;
   }).join("");
 
-  const noun = added === 1 ? "new ceremonial bill" : "new ceremonial bills";
+  const noun = added === 1 ? "new ceremonial bill or resolution" : "new ceremonial bills and resolutions";
   container.innerHTML = `
     <h3 class="whats-new-heading">What's new</h3>
     <p class="whats-new-lede">

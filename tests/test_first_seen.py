@@ -174,6 +174,33 @@ def test_meta_added_this_refresh_count(isolated_data_dirs, monkeypatch):
     assert meta["total_bills"] == 3
 
 
+def test_whats_new_excludes_in_window_movers():
+    """A first_seen==today bill that also advanced this week belongs to the
+    "on the move" panel, not "what's new". _build_meta must drop it from both
+    new_bill_ids and the added_this_refresh count. Regression for SJR137, which
+    the scraper discovered only after it had already passed the full Senate, so
+    it showed in both panels at once."""
+    today = dt.datetime.utcnow().date().isoformat()
+    records = [
+        _seed_record("2026", 1, first_seen=today),          # new AND moved
+        _seed_record("2026", 2, first_seen=today),          # new, no movement
+        _seed_record("2026", 3, first_seen="2026-04-27"),   # carried over
+    ]
+    movement = {
+        "events": [{"bill_id": "2026-A1", "bucket": "floor",
+                    "action": "Passed by the Senate (36-0)"}],
+        "window_days": 7,
+    }
+
+    meta = build_site_data._build_meta(records, [2026], None, movement)
+
+    assert meta["new_bill_ids"] == ["2026-A2"]
+    assert "2026-A1" not in meta["new_bill_ids"]
+    assert meta["added_this_refresh"] == 1
+    # The mover is still counted as movement, not new.
+    assert meta["moved_this_refresh"] == 1
+
+
 def test_previous_refresh_at_captured_before_overwrite(isolated_data_dirs, monkeypatch):
     """The prior meta.json's updated_at must be carried over as previous_refresh_at."""
     site, _ = isolated_data_dirs
