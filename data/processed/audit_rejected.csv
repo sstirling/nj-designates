@@ -294,6 +294,7 @@ bill_id,session,full_number,synopsis,reason
 2026-A1790,2026,A1790,"Designates drug court program as the ""special probation recovery court program"" in statutes.",no include pattern matched
 2026-A4236,2026,A4236,Designates accounting as STEM subject for various educational and other programs.,no include pattern matched
 2026-A4966,2026,A4966,Designates Hackensack City as urban enterprise zone.,no include pattern matched
+2026-A5460,2026,A5460,"""Practice What We Preach Act""; prohibits use of internet-enabled devices by legislators during voting sessions and committee meetings; requires installation of secure device lockers in certain locations; designates violations as disorderly persons offense.",no include pattern matched
 2026-S846,2026,S846,Establishes gold and silver transactional currency system; designates Commissioner of Banking and Insurance as administrator; provides legal tender status; authorizes fees.,excluded: administrative_officer (administrative officer/body designation)
 2026-S1500,2026,S1500,"Designates sweepstakes casinos as internet gaming; requires licensure, oversight, and taxation thereof within internet gaming framework.",excluded: regulatory_category (regulatory/administrative category definition)
 2026-S1714,2026,S1714,Transfers Division of Elections from Department of State to Department of Law and Public Safety; designates Attorney General as chief election official and requires two bipartisan co-directors.,excluded: administrative_officer (administrative officer/body designation)
@@ -318,6 +319,7 @@ bill_id,session,full_number,synopsis,reason
 2026-AR129,2026,AR129,Recognizes history of women's suffrage in NJ.,no include pattern matched
 2026-AR139,2026,AR139,Recognizes use of turfgrass for 2026 FIFA World Cup.,no include pattern matched
 2026-AR146,2026,AR146,Recognizes Judea and Samaria as ancestral homeland of Jewish people.,no include pattern matched
+2026-AR153,2026,AR153,Recognizes the scientific advancements made by the Haskin Shellfish Research Laboratory at Rutgers University.,no include pattern matched
 2026-SCR112,2026,SCR112,Recognizes role of natural gas in New Jersey's energy policy goals and declares natural gas clean fuel.,no include pattern matched
 2026-SCR134,2026,SCR134,Recognizes centennial of Shrewsbury Borough.,no include pattern matched
 2026-SCR137,2026,SCR137,Recognizes centennial of Township of Wyckoff.,no include pattern matched
