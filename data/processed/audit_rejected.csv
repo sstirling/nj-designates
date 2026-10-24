@@ -302,6 +302,7 @@ bill_id,session,full_number,synopsis,reason
 2026-S3195,2026,S3195,"Designates ""New Jersey and You - Perfect Together Again"" as Division of Travel and Tourism slogan.",no include pattern matched
 2026-S3407,2026,S3407,Designates Hackensack City as urban enterprise zone.,no include pattern matched
 2026-S4147,2026,S4147,Designates accounting as STEM subject for various educational and other programs.,no include pattern matched
+2026-S4951,2026,S4951,Designates open water lifeguards as first responders and emergency response providers.,excluded: legal_definition (legal/workforce classification)
 2026-A3684,2026,A3684,Establishes Military Funeral Honors Grant Program to provide grants to certain veteran organizations that provide military funeral honors.,no include pattern matched
 2026-AR122,2026,AR122,Honors Thomas Mundy Peterson for being first African American to vote following ratification of 15th Amendment to US Constitution.,no include pattern matched
 2026-S2042,2026,S2042,Establishes Military Funeral Honors Grant Program to provide grants to certain veteran organizations that provide military funeral honors.,no include pattern matched
